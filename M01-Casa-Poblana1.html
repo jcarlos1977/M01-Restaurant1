@@ -1,0 +1,2127 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)https://jcarlos1977.github.io/Restaurant-Demo/Restaurant-Demo.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>Mi Casita La Poblana1</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; }
+    header { background:#e9ecea; padding:70px; display:flex; gap:5px; }
+    header button { flex:1; padding:10px; color:white; border:none; border-radius:4px; cursor:pointer; }
+    #btn-menu { background:#2a9d8f; }
+    #btn-tomadas { background:#e9c46a; }
+    #btn-cocina { background:#f4a261; }
+    #btn-cerradas { background:#264653; color: white;}
+    .hidden { display:none; }
+    section { padding:20px; }
+    .card { border:1px solid #ddd; padding:10px; margin:10px 0; border-radius:4px; position:relative; }
+    .card.working { background:#e0f7fa; }
+    .card button { margin:5px 5px 0 0; }
+    .modal { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); }
+    .modal-content { background:white; margin:50px auto; padding:20px; width:300px; position:relative; }
+    .close { position:absolute; top:10px; right:15px; cursor:pointer; font-weight:bold; font-size:18px; }
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100vw;           /* 100% del ancho de la pantalla added */
+      height: 100vh;          /* 100% del alto de la pantalla added */
+      background: rgb(187, 187, 212);
+      color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      
+      
+    }
+
+    .modal-content {
+      /*position:absolute; top:180px; left: 100px;*/
+      background: rgb(108, 170, 221);
+      padding: 20px;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 90vw;
+      height: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+            
+      
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      body.modo-movil header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      body.modo-movil header button {
+        width: 100%;
+        margin-bottom: 5px;
+      }
+
+      .modal-content {
+        width: 95%;
+        max-width: 100%;
+        padding: 15px
+      }
+
+      .card {
+        font-size: 14px;
+      }
+    }
+    body.modo-movil {
+      font-size: 16px;
+      background-color: #fdf6e3;
+    }
+
+    body.modo-movil header {
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    body.modo-movil button {
+      font-size: 16px;
+      padding: 12px;
+    }
+
+    body.modo-movil .card {
+      font-size: 16px;
+      padding: 15px;
+    }
+    #seccion-mensaje {
+      color: white;
+    }
+    #modal-close {
+      display: none;
+    }
+    
+    .familia-card {
+      margin-bottom: 20px;
+      padding: 0;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+    }
+
+    .familia-card h3 {
+      margin: 0;
+      padding: 12px 16px;
+      background-color: #2563eb; /* azul */
+      color: white;
+      font-size: 24px; /* más grande */
+      font-weight: 600;
+    }
+
+    .familia-card h3 {
+      background-color: #2563eb;
+      color: white;
+      padding: 12px;
+      font-size: 20px;
+      margin: 0;
+      text-align: center;
+    }
+
+
+    .producto-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin: 6px 0;
+      cursor: pointer;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+      transition: transform 0.1s ease;
+    }
+
+    .producto-card:hover {
+      transform: scale(1.01);
+      background: #f0fdf4;
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 16px;
+      padding: 10px;
+    }
+
+    .familia-card {
+      background-color: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    
+    .familia-card p {
+      padding: 10px 12px;
+      margin: 0;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .familia-card p:hover {
+      background-color: #f3f4f6;
+    }
+    .menu-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-between;
+      padding: 20px;
+      background: #f1f5f9; /* fondo suave */
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(215, 7, 7, 0.05);
+    }
+    
+    /*Platillos Fondo*/
+    .columna {
+      flex: 1;
+      min-width: 220px;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      font-size: 30px;
+    }
+    
+    /*Platillos Titulo*/
+    .columna h3 {
+      font-size: 40px;
+      background-color: #1e3a8a;
+      color: white;
+      padding: 8px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .columna p {
+      margin: 6px 0;
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+
+    .columna p:hover {
+      background-color: #024a79; /* azul claro al pasar el cursor */
+    }
+
+
+    .familia-bloque {
+      margin-bottom: 16px;
+      background: #f9fafb;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+    }
+
+    .familia-bloque h3 {
+      background-color: #2563eb;
+      color: white;
+      padding: 12px;
+      font-size: 20px;
+      margin: 0;
+      text-align: center;
+    }
+
+    .familia-bloque p {
+      padding: 10px 12px;
+      margin: 0;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .familia-bloque p:hover {
+      background-color: #f3f4f6;
+    }
+
+    @media (max-width: 768px) {
+      .menu-grid {
+        flex-direction: column;
+      }
+
+      .columna {
+        width: 100%;
+      }
+    }
+    .card.proceso {
+      background-color: #d1fae5 !important; /* Verde claro */
+    }
+
+    .card.lista {
+      animation: flashGreen 1s infinite;
+    }
+
+    @keyframes flashGreen {
+      0% { background-color: #bbf7d0; }
+      50% { background-color: #22c55e; }
+      100% { background-color: #bbf7d0; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-button {
+        font-size: 12px;
+        padding: 8px 6px;
+      }
+
+      #contador-en-cocina {
+        font-size: 16px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+    }
+    .text {
+      font-size: 50px;
+      background-color: #1cff27;
+    }
+
+    .client-Label {
+      font-size: 35px;
+      color:  rgb(43, 6, 229);
+    }
+
+    .table-Label {
+      font-size: 35px;
+      color:  rgb(43, 6, 229);
+    }
+
+    input[type="text"] {
+      font-size: 18px;
+      padding: 8px;
+      width: 300px;
+    }
+
+    .contenedor-fila {
+      display: flex;
+      align-items: center;
+      gap: 12px; /* Espacio entre elementos */
+      margin-bottom: 20px;
+    }
+
+    .contenedor-fila2 {
+      display: flex;
+      align-items: center;
+      gap: 12px; /* Espacio entre elementos */
+      margin-bottom: 20px;
+    }
+
+    .boton-generar {
+      font-size: 30px;
+      background-color: #4CAF50;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 140px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+
+    .sticky-header {
+      position: static;
+      top: 0; /* Sticks it to the top */
+      background-color: #f7eeb98f;
+      padding: 40px;
+      font-size: 24px;
+      z-index: 1000; /* Keeps it above other content */
+      border-bottom: 2px solid #ccc;
+    }
+    
+    /*Los siguintes tres styles son para ordenes tomadas vision*/
+    .cantidad-producto {
+      font-size: 45px;
+      font-weight: bold;
+      margin-bottom: 2px;
+    }
+
+    .mesa-cliente {
+      font-size: 35px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .opciones-nota {
+      font-size: 32px;
+      font-style: italic;
+      margin-bottom: 6px;
+    }
+
+    #tomadas-section .edit {
+      background-color: #4CAF50; /* Verde */
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      margin-right: 6px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 30px;
+    }
+
+    #tomadas-section .cancel {
+      background-color: #f44336; /* Rojo */
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      margin-right: 6px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 30px;
+    }
+
+    #tomadas-section .to-cocina {
+      background-color: #2196F3; /* Azul */
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 30px;
+    }
+    
+    /*Modal flotante para lo del encabezado two styles*/
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      
+    }
+
+    .modal-content2 {
+      width: 900px;
+      max-width: 90vw;
+      padding: 30px;
+      height: 1200px;
+      gap: 15px;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 46px;
+      color: #333;
+      background-color: #fefefe;
+      border: 1px solid #ccc;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      font-family: 'Segoe UI', sans-serif;
+      
+      
+    }
+    .modal-content2 h3 {
+      font-size: 40px;
+      margin-bottom: 20px;
+      color: #2a9d8f;
+      
+    }
+    .modal-content2 button {
+      background-color: #2a9d8f;
+      color: white;
+      border: none;
+      padding: 20px 30px;
+      margin: 10px 5px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 44px;
+      min-width: 180px;
+      display: inline-block;
+      text-align: center;
+      display: block;
+      width: 100%;
+      font-size: 54px !important;
+    }
+
+    .modal-content2 button:hover {
+      background-color: #21867a;
+      
+    }
+
+    .modal-content2 input {
+      width: 90%;
+      padding: 16px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 60px
+    }
+
+
+
+
+  </style>
+  <!-- Firebase App -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <!-- Firebase Auth -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <!-- ✅ Firebase Firestore (MISMA VERSIÓN) -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  
+
+
+</head>
+<body class="">
+ 
+  <div id="modo-selector" style="position: fixed; inset: 0; background: white; display: none; flex-direction:  column; align-items: center; justify-content: center; z-index: 9999;">
+    <h2>Selecciona el modo de visualización</h2>
+    <button onclick="seleccionarModo('movil')" style="padding: 10px 20px; margin: 10px;">📱 Modo móvil</button>
+    <button onclick="seleccionarModo('escritorio')" style="padding: 10px 20px; margin: 10px;">💻 Modo escritorio</button>
+  </div>
+  
+  <div class="sticky-header">
+    
+    <button id="cambiar-modo" style="position: absolute; top: 10px; right: 100px; background: #06d410; color: white; padding: 26px 12px; border: none; border-radius: 4px; z-index: 10000;">
+      Cambiar modo
+    </button>
+
+    <!-- 🔓 Botón para cerrar sesión -->
+    <button id="logout-btn" onclick="logout()" style="position: absolute; top: 10px; right: 400px; background: #a90707; color: white;display: block;  padding: 26px 12px;">Cerrar Sesión</button><br><br>
+
+    <h1 style="color: rgb(43, 6, 229); flex-basis: 100%; margin: 0 0 10px 0; font-size: 44px;">🍽️ APLICACION PARA TOMAR ORDENES</h1>
+
+    <!--New lines para contador de ordenes-->
+    <p1 id="contador-en-cocina" style="color:  rgb(43, 6, 229); font-size: 36px; margin-bottom: 30px;">
+      👨‍🍳 Cantidad de Ordenes En cocina: <span id="numero-en-cocina">0</span>
+      
+    </p1>
+
+    <div class="contenedor-fila">
+      <label class="client-Label">
+        Cliente:
+        <input type="text" id="nombreClienteGlobal" placeholder="Cliente" style="width: 150px; height: 40px;">
+      </label>
+
+      <label class="table-Label">
+        Mesa:
+        <input type="text" id="numeroMesaGlobal" placeholder="#mesa" style="width: 50px; height: 40px;">
+      </label>
+
+      <label class="table-Label">
+        Orden:
+        <input type="text" id="numeroOrdenGlobal" placeholder="#orden" style="width: 70px; height: 40px;">
+      </label>
+      
+
+      <button class="boton-generar" onclick="generarNumeroOrden()">Generar#: 🎲</button>
+    </div>
+    
+    <!--Segunda Linea-->
+    <div class="contenedor-fila2">
+      <label class="client-Label">
+        Mesero:
+        <input type="text" id="nombreMeseroGlobal" placeholder="Mesero" style="width: 150px; height: 40px;">
+      </label>
+
+      <label class="client-Label"> 
+        Pass:
+        <input type="text" id="passMesa" value="M01" readonly style="width:150px; height: 40px; text-align:center;">
+      </label>
+
+    </div>
+
+    
+    <div style="display: flex; gap: 40px; width: 100%; height: 140px; position:relative;  top: 35px;">
+      <button id="btn-menu"><h1>📋 Menú</h1></button>
+      <button id="btn-tomadas"><h1>📋 Órdenes tomadas</h1></button>
+      <!--<button id="btn-cocina"><h1>👨‍🍳 Órdenes en cocina(<span id="contador-en-cocina">1</span>)</button></h1>-->
+      <button id="btn-cocina"><h1>👨‍🍳 Órdenes en cocina</button></h3>
+      <button id="btn-cerradas"><h1>📋 Órdenes cerradas</h1></button>
+      
+    </div>
+  </div>
+  
+  <!-- Content below to simulate scrolling -->
+  <div style="height: 5px;">
+    <p></p>
+  </div>
+
+  <div id="seccion-mensaje" style="padding: 10px 20px; background: rgb(244, 162, 97); font-style: italic; color: black;">.</div>
+  
+  
+  
+  <!-- 🔐 Login UI -->
+  <div id="login-container" style="position: fixed; inset: 0px; background: white; display: none; z-index: 1999; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <h1>Iniciar Sesión</h1>
+    <input type="email" id="login-email" placeholder="Correo" style="margin:5px; padding:10px 250px; font-size: 20px; background-color: blue; color: white;">
+    <input type="password" id="login-password" placeholder="Contraseña" style="margin:5px; padding:10px 250px; font-size: 20px; background-color: blue; color: white;">
+    <button onclick="login()" style="padding:50px 100px; margin-top:10px; background-color: #1cff27;">Entrar</button>
+    <p id="login-error" style="color:red;"></p>
+  </div>
+  
+  
+  <main>
+    <section id="menu-section" class="">
+      <div class="menu-grid">
+        <div class="columna columna-1"><h3 data-fam="Tacos">Tacos</h3><p>Tacos al Pastor - $2.70</p><p>Tacos de Asada - $2.70</p><p>Tacos de Pollo - $2.70</p><p>Tacos de Tripa - $2.70</p><p>Tacos de Cabeza - $2.70</p><p>Tacos de Lengua - $2.70</p><h3 data-fam="Sopes">Sopes</h3><p>Sopes de al Pastor - $2.70</p><p>Sopes de Asada - $2.70</p><p>Sopes de Pollo - $2.70</p><p>Sopes de Tripa - $2.70</p><p>Sopes de Cabeza - $2.70</p><p>Sopes de Lengua - $2.70</p></div>
+        <div class="columna columna-2"><h3 data-fam="Platillos">Platillos</h3><p>Enchiladas Suizas - $8.00</p><p>Quesadilla Chorizo - $6.00</p></div>
+        <!--<div class="columna columna-3"><h3 data-fam="Caldos">Caldos</h3><p>Caldo de Pollo - $2.70</p><p>Caldo de Res - $2.70</p><p>Caldo de Albondigas - $2.70</p><p>Caldo de Camaron - $2.70</p></div>
+        <div class="columna columna-4"><h3 data-fam="Bebidas">Bebidas</h3><p>Orchata - $2.00</p><p>Jamaica - $2.00</p><p>Tamarindo - $2.00</p><p>Soda de botella - $2.00</p><p>Soda de botella - $2.00</p></div>-->
+      </div>
+    </section>
+    
+    
+    
+    <section id="tomadas-section" class="hidden"></section>
+    <section id="cocina-section" class="hidden"><div class="card">         
+      </div></section>
+    <section id="cerradas-section" class="hidden"><div class="card">
+          <strong>#1 Tacos al Pastor</strong><br>
+          Mesa  - <br>
+          Cerrada: 7/12/2025, 2:12:41 PM<br>
+          <button class="cancel">Cancelar</button>
+          <button class="print">Imprimir</button>
+          <button onclick="reiniciarNumeracion()">🔄 Reiniciar numeración</button>
+        </div></section>
+  </main>
+  
+  <!-- Modal -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <span id="modal-close" class="close">×</span>
+      <form id="order-form">
+        <h2 id="modal-title">Tacos al Pastor</h2>
+
+        <label><strong>Cantidad:</strong><br>
+          <input type="number" id="cantidad" min="1" value="1" required="" style="width: 100%; padding: 5px;">
+        </label><br><br>
+
+        <label><strong>Opciones:</strong></label>
+        <div id="opciones-container" style="margin-bottom: 10px;"><label style="display: block;"><input type="checkbox" value="Con cebolla"> Con cebolla</label><label style="display: block;"><input type="checkbox" value="Sin cebolla"> Sin cebolla</label><label style="display: block;"><input type="checkbox" value="Con Cilantro"> Con Cilantro</label><label style="display: block;"><input type="checkbox" value="Sin Cilantro"> Sin Cilantro</label><label style="display: block;"><input type="checkbox" value="Salsa verde"> Salsa verde</label><label style="display: block;"><input type="checkbox" value="Salsa roja"> Salsa roja</label></div>
+
+        <label><strong>Notas extra:</strong><br>
+          <textarea id="nota" placeholder="Ej. Sin cebolla, extra salsa..." style="width: 100%; height: 60px;"></textarea>
+        </label><br><br>
+
+        <label><strong>Número de mesa:</strong><br>
+          <input type="text" id="mesa" placeholder="Ej. 4" value="${document.getElementById("numeroMesaGlobal")?.value || ""}" style="width: 100%; padding: 5px;" />
+        </label><br><br>
+
+        <label><strong>Nombre del cliente:</strong><br>
+          <input type="text" id="cliente" value="${document.getElementById("nombreClienteGlobal")?.value || ""}" style="width: 100%; padding: 5px;" />
+        </label><br><br>
+
+        <label><strong>Numero de orden:</strong><br>
+          <input type="text" id="orden" value="${document.getElementById("numeroOrdenGlobal")?.value || ""}" style="width: 100%; padding: 5px;" />
+        </label><br><br>
+
+        <label><strong>Mesero:</strong><br>
+          <input type="text" id="mesero" value="${document.getElementById("nombreMeseroGlobal")?.value || ""}" style="width: 100%; padding: 5px;" />
+        </label><br><br>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px;">
+          <button type="button" id="cancelarOrden" style="background-color: #ccc;">Cancelar</button>
+          <button type="submit" id="enviarOrden">Salvar</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- Firebase scripts (ya añadidos en el <head>) -->
+  <script>
+    
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBcWtL3B5aNVpEV0ahXSaP3pK00lEbb6rM",
+      authDomain: "restauranteapp-ad17d.firebaseapp.com",
+      projectId: "restauranteapp-ad17d",
+      storageBucket: "restauranteapp-ad17d.firebasestorage.app",
+      messagingSenderId: "132764157748",
+      appId: "1:132764157748:web:8e0d891c0747ecd681c761"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    
+  </script>
+  
+  <!--Este es el primer cambio-->
+  <!-- Modal flotante para lo del encabezado-->
+  <div id="modalOverlay" class="modal-overlay" style="display: none;">
+    <div class="modal-content2">
+      <h3>Detalles de la Orden</h3>
+      <label>Cliente: <input type="text" id="modalCliente" placeholder="Cliente"></label><br>
+      <label>Mesa: <input type="text" id="modalMesa" placeholder="#mesa"></label><br>
+      <label>Orden: <input type="text" id="modalOrdenInput" placeholder="#orden" readonly></label><br>
+      <label>Mesero: <input type="text" id="modalMesero" placeholder="Mesero"></label><br><br>
+      <button onclick="copiarDatosAlHeader()">Copiar al Encabezado</button>
+      <button onclick="cerrarModalOrden()">Cerrar</button>
+    </div>
+  </div>
+
+  
+  
+  <script>
+    //Funcion modificada para la orden flotante del encabezado
+    function generarNumeroOrden() {
+      limpiarEncabezado(); // Limpia encabezado
+      limpiarModal();      // Limpia modal
+
+      const usadas = new Set((tomadas || []).map(o => o.orden));
+      let nuevoNumero;
+      let intentos = 0;
+
+      do {
+        nuevoNumero = Math.floor(Math.random() * 9000) + 1000;
+        intentos++;
+        if (intentos > 10000) {
+          alert("Demasiados intentos. No se pudo generar un número único.");
+          return;
+        }
+      } while (usadas.has(nuevoNumero.toString()));
+
+      // Asignar al input del encabezado
+      document.getElementById("numeroOrdenGlobal").value = nuevoNumero;
+
+      // Asignar al input del modal
+      document.getElementById("modalOrdenInput").value = nuevoNumero;
+
+      // Mostrar el modal
+      document.getElementById("modalOverlay").style.display = "flex";
+    }
+
+
+
+    // Función para cerrar el modal
+    function cerrarModalOrden() {
+      const modal = document.getElementById("modalOverlay");
+      if (modal) {
+        modal.style.display = "none";
+      } else {
+        console.warn("No se encontró el modal con id 'modalOverlay'");
+      }
+    }
+    
+
+
+    function copiarDatosAlHeader() {
+      document.getElementById("nombreClienteGlobal").value = document.getElementById("modalCliente").value;
+      document.getElementById("numeroMesaGlobal").value = document.getElementById("modalMesa").value;
+      document.getElementById("numeroOrdenGlobal").value = document.getElementById("modalOrdenInput").value;
+      document.getElementById("nombreMeseroGlobal").value = document.getElementById("modalMesero").value;
+
+      cerrarModalOrden();
+    }
+
+
+    function cerrarModal() {
+      document.getElementById("modalOrden").parentElement.parentElement.style.display = "none";
+    }
+
+    function limpiarEncabezado() {
+      document.getElementById("nombreClienteGlobal").value = "";
+      document.getElementById("numeroMesaGlobal").value = "";
+      document.getElementById("numeroOrdenGlobal").value = "";
+      document.getElementById("nombreMeseroGlobal").value = "";
+    }
+
+    function limpiarModal() {
+      document.getElementById("modalCliente").value = "";
+      document.getElementById("modalMesa").value = "";
+      document.getElementById("modalMesero").value = "";
+      document.getElementById("modalOrdenInput").value = ""; // Aunque se sobreescribe, mejor dejarlo limpio
+    }
+
+
+
+
+    //New lines para contador de ordenes
+
+    function listenToCocinaCountRealtime(userId) {
+      const docRef = firebase.firestore().collection("ordenesEstado").doc(userId);
+      const contadorElemento = document.getElementById("contador-en-cocina");
+
+      docRef.onSnapshot((doc) => {
+        if (doc.exists) {
+          const data = doc.data();
+          const cocinaActual = data.enCocina || [];
+          contadorElemento.textContent = `👨‍🍳 Cantidad de Ordenes En cocina: ${cocinaActual.length}`;
+        } else {
+          contadorElemento.textContent = "👨‍🍳 En cocina: 0";
+        }
+      });
+      
+    }
+
+    
+    let menuData = [
+      { nombre: "Tacos al Pastor", precio: 2.7, familia: "Tacos" },
+      { nombre: "Tacos de Asada", precio: 2.7, familia: "Tacos" },
+      { nombre: "Tacos de Pollo", precio: 2.7, familia: "Tacos" },
+      { nombre: "Tacos de Tripa", precio: 2.7, familia: "Tacos" },
+      { nombre: "Tacos de Cabeza", precio: 2.7, familia: "Tacos" },
+      { nombre: "Tacos de Lengua", precio: 2.7, familia: "Tacos" },
+
+      { nombre: "Sopes de Asada", precio: 2.7, familia: "Sopes" },
+      { nombre: "Sopes de Pollo", precio: 2.7, familia: "Sopes" },
+      { nombre: "Sopes de Chorizo", precio: 2.7, familia: "Sopes" },
+      
+
+      { nombre: "Caldo de Pollo", precio: 2.7, familia: "Caldos" },
+      { nombre: "Caldo de Res", precio: 2.7, familia: "Caldos" },
+      { nombre: "Pozole", precio: 2.7, familia: "Caldos" },
+      { nombre: "Menudo", precio: 2.7, familia: "Caldos" },
+
+
+      { nombre: "Enchiladas Suizas", precio: 8.0, familia: "Platillos" },
+      { nombre: "Flautas", precio: 6.0, familia: "Platillos" },
+      { nombre: "Quesadillas sencillas", precio: 6.0, familia: "Platillos" },
+      { nombre: "Quesadillas con carne", precio: 6.0, familia: "Platillos" },
+      { nombre: "Chilaquiles con ranchera", precio: 6.0, familia: "Platillos" },
+      { nombre: "Chilaquiles con asada", precio: 6.0, familia: "Platillos" },
+      { nombre: "Chilaquiles con pollo", precio: 6.0, familia: "Platillos" },
+      { nombre: "Chilaquiles con huevos revueltos", precio: 6.0, familia: "Platillos" },
+      { nombre: "Chilaquiles con huevos estrellados", precio: 6.0, familia: "Platillos" },
+      { nombre: "Chilaquiles simples", precio: 6.0, familia: "Platillos" },
+
+      { nombre: "Tortas De milanesa", precio: 10.0, familia: "Tortas" },
+      { nombre: "Tortas De pierna", precio: 10.0, familia: "Tortas" },
+      { nombre: "Tortas De jamon", precio: 10.0, familia: "Tortas" },
+      { nombre: "Tortas De ranchera", precio: 10.0, familia: "Tortas" },
+      { nombre: "Tortas De pollo asado", precio: 10.0, familia: "Tortas" },
+      { nombre: "Tortas De pollo empanizado", precio: 10.0, familia: "Tortas" },
+
+      { nombre: "Cubanas De pierna", precio: 10.0, familia: "Tortas Cubanas" },
+      { nombre: "Cubanas De jamon", precio: 10.0, familia: "Tortas Cubanas" },
+      { nombre: "Cubanas De milanesa", precio: 10.0, familia: "Tortas Cubanas" },
+      
+      { nombre: "Cemitas De milanesa", precio: 10.0, familia: "Cemitas" },
+      { nombre: "Cemitas De pierna", precio: 10.0, familia: "Cemitas" },
+      { nombre: "Cemitas De jamon", precio: 10.0, familia: "Cemitas" },
+      { nombre: "Cemitas De ranchera", precio: 10.0, familia: "Cemitas" },
+      { nombre: "Cemitas De pollo asado", precio: 10.0, familia: "Cemitas" },
+      { nombre: "Cemitas De pollo empanizado", precio: 10.0, familia: "Cemitas" },
+
+      { nombre: "Orchata", precio: 2.0, familia: "Bebidas" },
+      { nombre: "Jamaica", precio: 2.0, familia: "Bebidas" },
+      { nombre: "Tamarindo", precio: 2.0, familia: "Bebidas" },
+      { nombre: "Sandia", precio: 2.0, familia: "Bebidas" },
+      { nombre: "Soda de botella", precio: 2.0, familia: "Bebidas" },
+      { nombre: "Soda de lata", precio: 2.0, familia: "Bebidas" }
+
+    ]; // Esto se llena al cargar tu menú, por ejemplo desde Firebase o un archivo JSON
+    
+    const productos = [
+      
+      { nombre: "Tacos al Pastor", precio: 2.7, familia: "Tacos" },
+      { nombre: "Tacos de Asada", precio: 2.7, familia: "Tacos" },
+      { nombre: "Tacos de Pollo", precio: 2.7, familia: "Tacos" },
+      { nombre: "Tacos de Tripa", precio: 2.7, familia: "Tacos" },
+      { nombre: "Tacos de Cabeza", precio: 2.7, familia: "Tacos" },
+      { nombre: "Tacos de Lengua", precio: 2.7, familia: "Tacos" },
+
+      { nombre: "Sopes de Asada", precio: 2.7, familia: "Sopes" },
+      { nombre: "Sopes de Pollo", precio: 2.7, familia: "Sopes" },
+      { nombre: "Sopes de Chorizo", precio: 2.7, familia: "Sopes" },
+      
+
+      { nombre: "Caldo de Pollo", precio: 2.7, familia: "Caldos" },
+      { nombre: "Caldo de Res", precio: 2.7, familia: "Caldos" },
+      { nombre: "Pozole", precio: 2.7, familia: "Caldos" },
+      { nombre: "Menudo", precio: 2.7, familia: "Caldos" },
+
+
+      { nombre: "Enchiladas Suizas", precio: 8.0, familia: "Platillos" },
+      { nombre: "Flautas", precio: 6.0, familia: "Platillos" },
+      { nombre: "Quesadillas sencillas", precio: 6.0, familia: "Platillos" },
+      { nombre: "Quesadillas con carne", precio: 6.0, familia: "Platillos" },
+      { nombre: "Chilaquiles con ranchera", precio: 6.0, familia: "Platillos" },
+      { nombre: "Chilaquiles con asada", precio: 6.0, familia: "Platillos" },
+      { nombre: "Chilaquiles con pollo", precio: 6.0, familia: "Platillos" },
+      { nombre: "Chilaquiles con huevos revueltos", precio: 6.0, familia: "Platillos" },
+      { nombre: "Chilaquiles con huevos estrellados", precio: 6.0, familia: "Platillos" },
+      { nombre: "Chilaquiles simples", precio: 6.0, familia: "Platillos" },
+
+      { nombre: "Tortas De milanesa", precio: 10.0, familia: "Tortas" },
+      { nombre: "Tortas De pierna", precio: 10.0, familia: "Tortas" },
+      { nombre: "Tortas De jamon", precio: 10.0, familia: "Tortas" },
+      { nombre: "Tortas De ranchera", precio: 10.0, familia: "Tortas" },
+      { nombre: "Tortas De pollo asado", precio: 10.0, familia: "Tortas" },
+      { nombre: "Tortas De pollo empanizado", precio: 10.0, familia: "Tortas" },
+
+      { nombre: "Cubanas De pierna", precio: 10.0, familia: "Tortas Cubanas" },
+      { nombre: "Cubanas De jamon", precio: 10.0, familia: "Tortas Cubanas" },
+      { nombre: "Cubanas De milanesa", precio: 10.0, familia: "Tortas Cubanas" },
+      
+      { nombre: "Cemitas De milanesa", precio: 10.0, familia: "Cemitas" },
+      { nombre: "Cemitas De pierna", precio: 10.0, familia: "Cemitas" },
+      { nombre: "Cemitas De jamon", precio: 10.0, familia: "Cemitas" },
+      { nombre: "Cemitas De ranchera", precio: 10.0, familia: "Cemitas" },
+      { nombre: "Cemitas De pollo asado", precio: 10.0, familia: "Cemitas" },
+      { nombre: "Cemitas De pollo empanizado", precio: 10.0, familia: "Cemitas" },
+
+      { nombre: "Orchata", precio: 2.0, familia: "Bebidas" },
+      { nombre: "Jamaica", precio: 2.0, familia: "Bebidas" },
+      { nombre: "Tamarindo", precio: 2.0, familia: "Bebidas" },
+      { nombre: "Sandia", precio: 2.0, familia: "Bebidas" },
+      { nombre: "Soda de botella", precio: 2.0, familia: "Bebidas" },
+      { nombre: "Soda de lata", precio: 2.0, familia: "Bebidas" }
+      
+      
+    ];
+    
+
+    const itemOptions = {
+      "Tacos al Pastor": ["Con todo:", "No cebolla","No Cilantro", "Salsa verde", "Salsa roja"],
+      "Tacos de Asada": ["Con todo:", "No cebolla","No Cilantro", "Salsa verde", "Salsa roja"],
+      "Tacos de Pollo": ["Con todo:", "No cebolla","No Cilantro", "Salsa verde", "Salsa roja"],
+      "Tacos de Tripa": ["Con todo:", "No cebolla","No Cilantro", "Salsa verde", "Salsa roja"],
+      "Tacos de Cabeza": ["Con todo:", "No cebolla","No Cilantro", "Salsa verde", "Salsa roja"],
+      "Tacos de Lengua": ["Con todo:", "No cebolla","No Cilantro", "Salsa verde", "Salsa roja"], 
+      
+      "Sopes de Asada": ["Con todo:", "No crema","No repollo", "Salsa verde", "Salsa roja"],
+      "Sopes de Pollo": ["Con todo:", "No crema","No repollo", "Salsa verde", "Salsa roja"],
+      "Sopes de Chorizo": ["Con todo:", "No crema","No repollo", "Salsa verde", "Salsa roja"],
+           
+      "Caldo de Pollo": ["Con todo:", "No cebolla", "No Cilantro", "Salsa verde", "Salsa roja"],
+      "Caldo de Res": ["Con todo:", "No cebolla", "No Cilantro", "Salsa verde", "Salsa roja"],
+      "Pozole": ["Con todo:", "No cebolla", "No repollo", "No jitomate"],
+      "Menudo": ["Con todo:", "No cebolla", "No repollo", "No jitomate"],
+
+      
+      "Enchiladas Suizas": ["Con todo:", "No No crema", "No lechuga", "No jitomate", "Rojas", "Verdes"],
+      "Flautas": ["Con todo:", "No No crema", "No lechuga", "No jitomate", "Salsa roja", "Salsa verde"],
+      "Quesadillas sencillas": ["Con todo:", "No No crema", "No lechuga", "No jitomate", "Tortilla de arina", "Tortilla de maiz"],
+      "Quesadillas con carne": ["Con todo:", "No No crema", "No lechuga", "No jitomate", "Asada", "Pollo","Tortilla de arina", "Tortilla de maiz"],
+      "Chilaquiles con ranchera": ["Con todo:", "No No crema", "No queso", "No Frijoles", "No arroz", "Rojos", "Verdes"],
+      "Chilaquiles con asada": ["Con todo:", "No No crema", "No queso", "No Frijoles", "No arroz", "Rojos", "Verdes"],
+      "Chilaquiles con pollo": ["Con todo:", "No No crema", "No queso", "No Frijoles", "No arroz", "Rojos", "Verdes"],
+      "Chilaquiles con huevos revueltos": ["Con todo:", "No No crema", "No queso", "No Frijoles", "No arroz", "Rojos", "Verdes"],
+      "Chilaquiles simples": ["Con todo:", "No No crema", "No queso", "No Frijoles", "No arroz", "Rojos", "Verdes"],
+
+      "Tortas De milanesa": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Tortas De pierna": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Tortas De jamon": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Tortas De ranchera": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Tortas De pollo asado": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Tortas De pollo empanizado": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+
+      "Cubanas De pierna": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Cubanas De jamon": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Cubanas De milanesa": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+
+      "Cemitas De milanesa": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Cemitas De pierna": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Cemitas De jamon": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Cemitas De ranchera": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Cemitas De pollo asado": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Cemitas De pollo empanizado": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+
+      "Orchata": ["Con hielo", "Sin hielo", "Tamaño chico", "Tamaño grande"],
+      "Jamaica": ["Con hielo", "Sin hielo", "Tamaño chico", "Tamaño grande"],
+      "Tamarindo": ["Con hielo", "Sin hielo", "Tamaño chico", "Tamaño grande"],
+      "Sandia": ["Con hielo", "Sin hielo", "Tamaño chico", "Tamaño grande"],
+      "Soda de botella": ["Fanta","Pepsi","Coca","Con hielo", "Sin hielo", "Tamaño chico", "Tamaño grande"],
+      "Soda de lata": ["Fanta","Pepsi","Coca","Con hielo", "Sin hielo", "Tamaño chico", "Tamaño grande"]
+      
+      
+    };
+
+    firebase.firestore()
+    .collection("ordenesEstado")
+    .doc("default_user")
+    .onSnapshot((doc) => {
+      if (doc.exists) {
+        const data = doc.data();
+        tomadas = data.tomadas || []; //Esto permite que no se borren cuando agan refres pero se miran en otro dispositivo
+        enCocina = (data.enCocina || []).map((orden) => ({
+          ...orden,
+          start: new Date(orden.start) // Convertir siempre a objeto Date
+        }));
+        cerradas = (data.cerradas || []).map(o => ({
+          ...o,
+          fecha: o.fecha ? new Date(o.fecha) : null,
+          fin: o.fin ? new Date(o.fin) : null
+        }));
+
+        seqCerradas = data.seqCerradas || 0;
+        //renderAll(); // vuelve a renderizar
+      }
+    });
+
+
+
+    let tomadas = [], enCocina = [], cerradas = [], seqCerradas = 0;
+    const $ = id => document.getElementById(id);
+    const secciones = [$("menu-section"), $("tomadas-section"), $("cocina-section"), $("cerradas-section")];
+    const countCocina = $("count-cocina");
+    const modal = $("modal"), modalTitle = $("modal-title"), opcionesContainer = $("opciones-container");
+    const form = $("order-form");
+    let productoSeleccionado = null;
+
+    // Aqui va el nuevo testo
+    // Observa
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        const userId = user.uid;
+        const docRef = firebase.firestore().collection("ordenesEstado").doc(userId);
+        //New lines para contador de ordenes
+        listenToCocinaCountRealtime(user.uid);
+
+        docRef.onSnapshot((doc) => {
+          if (doc.exists) {
+            const data = doc.data();
+            
+            // Actualizar variables globales
+            tomadas = data.tomadas || []; //Esto permite que no se borren cuando agan refres pero se miran en otro dispositivo
+            enCocina = (data.enCocina || []).map(o => ({
+              ...o,
+              start: o.start ? new Date(o.start) : null
+            }));
+            cerradas = (data.cerradas || []).map(o => ({
+              ...o,
+              fecha: o.fecha ? new Date(o.fecha) : null
+            }));
+
+            seqCerradas = data.seqCerradas || 1;
+
+            // Re-renderizar UI
+            renderTomadas(); //Esto permite que no se borren cuando agan refres pero se miran en otro dispositivo
+            renderCocina();
+            renderCerradas();
+
+            console.log("Datos sincronizados desde Firestore.");
+          } else {
+            console.log("Documento no existe aún.");
+          }
+        });
+      } else {
+        console.log("Usuario no autenticado.");
+      }
+    });
+
+
+    function saveData() {
+      const userId = firebase.auth().currentUser?.uid || "default_user";
+      const docRef = firebase.firestore().collection("ordenesEstado").doc(userId);
+
+      // Convertir todas las fechas a cadenas ISO
+      const dataToSave = {
+        tomadas: tomadas, //Esto permite que no se borren cuando agan refres pero se miran en otro dispositivo
+        enCocina: enCocina.map(o => ({
+          ...o,
+          start: (o.start instanceof Date) ? o.start.toISOString() : o.start
+        })),
+        cerradas: cerradas,
+        seqCerradas: seqCerradas
+      };
+
+      docRef.set(dataToSave)
+        .then(() => {
+          console.log("Datos guardados en Firestore.");
+        })
+        .catch((error) => {
+          console.error("Error guardando en Firestore:", error);
+        });
+    }
+
+
+    function loadData() {
+      const userId = firebase.auth().currentUser?.uid || "default_user";
+      const docRef = firebase.firestore().collection("ordenesEstado").doc(userId);
+
+      docRef.get().then((doc) => {
+        if (doc.exists) {
+          const data = doc.data();
+          tomadas = data.tomadas || [];
+          enCocina = data.enCocina || [];
+          cerradas = (data.cerradas || []).map(o => ({
+            ...o,
+            fecha: o.fecha ? new Date(o.fecha) : null
+          }));
+
+          seqCerradas = data.seqCerradas || 0;
+          console.log("Datos cargados desde Firestore.");
+        } else {
+          console.log("No hay datos previos en Firestore.");
+        }
+      }).catch((error) => {
+        console.error("Error cargando desde Firestore:", error);
+      });
+    }
+
+
+    function switchSection(index) {
+      const mensajes = [
+        "📋 Aquí puedes ver los platillos disponibles para ordenar. " ,
+        "📝 Órdenes que han sido tomadas y están pendientes de enviarse a cocina.",
+        "👨‍🍳 Órdenes que están siendo preparadas actualmente por la cocina.",
+        "📦 Historial de órdenes finalizadas, puedes imprimir o cancelar."
+      ];
+
+      const colores = [
+        "#2a9d8f", // Menú - fondo oscuro
+        "#e9c46a", // Tomadas - fondo claro
+        "#f4a261", // Cocina - fondo claro
+        "#264653"  // Cerradas - fondo oscuro
+      ];
+
+      const colorTexto = [ "white", "black", "black", "white" ];
+
+      secciones.forEach((sec, i) => sec.classList.toggle("hidden", i !== index));
+      const mensajeEl = $("seccion-mensaje");
+      mensajeEl.textContent = mensajes[index];
+      mensajeEl.style.backgroundColor = colores[index];
+      mensajeEl.style.color = colorTexto[index];  // 👈 cambia el color según la sección
+      mensajeEl.style.fontSize = "22px";
+      mensajeEl.style.padding = "12px 24px";
+      mensajeEl.style.borderRadius = "12px";
+      mensajeEl.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
+      mensajeEl.style.margin = "10px auto";
+      mensajeEl.style.textAlign = "center";
+      mensajeEl.style.fontWeight = "bold";
+      mensajeEl.style.maxWidth = "90%";
+    }
+
+
+    $("btn-menu").onclick = () => { renderMenu();switchSection(0) };
+    $("btn-tomadas").onclick = () => { renderTomadas(); switchSection(1); };
+    $("btn-cocina").onclick = () => { renderCocina(); switchSection(2); };
+    $("btn-cerradas").onclick = () => { renderCerradas(); switchSection(3); };
+    
+    /*
+    function renderMenu() {
+      // Limpiar columnas
+      [1, 2, 3, 4].forEach(num => {
+        document.querySelector(`.columna-${num}`).innerHTML = "";
+      });
+
+      // 🔧 Asignación de familia a columna
+      const familiasPorColumna = {
+        "Bebidas": 4,
+        "Platillos": 3,
+        "Quesadillas": 3,
+        "Tacos": 1,
+        "Sopes": 1,
+        "Caldos": 3,
+        "Tortas": 2,
+        "Tortas Cubanas": 2,
+        "Tortas Cemitas": 2,
+
+        // Agrega más como necesites
+      };
+      */
+      
+      function renderMenu() {
+      // Limpiar columnas
+      [1, 2].forEach(num => {
+        document.querySelector(`.columna-${num}`).innerHTML = "";
+      });
+
+      // 🔧 Asignación de familia a columna
+      const familiasPorColumna = {
+        "Bebidas": 2,
+        "Platillos": 2,
+        "Quesadillas": 2,
+        "Tacos": 1,
+        "Sopes": 1,
+        "Caldos": 2,
+        "Tortas": 1,
+        "Tortas Cubanas": 1,
+        "Cemitas": 1,
+
+        // Agrega más como necesites
+      };
+
+
+
+      // Recorrer productos y asignar según familia
+      productos.forEach(prod => {
+        const colNum = familiasPorColumna[prod.familia] || 1; // por defecto columna 1
+        const columna = document.querySelector(`.columna-${colNum}`);
+
+        // Si es la primera vez que aparece esta familia en esta columna, agregar encabezado
+        if (!columna.querySelector(`h3[data-fam="${prod.familia}"]`)) {
+          const header = document.createElement("h3");
+          header.dataset.fam = prod.familia;
+          header.textContent = prod.familia;
+          columna.appendChild(header);
+        }
+
+        const pEl = document.createElement("p");
+        pEl.textContent = `${prod.nombre} - $${prod.precio.toFixed(2)}`;
+        pEl.ondblclick = () => openModal(prod);
+        columna.appendChild(pEl);
+      });
+    }
+    
+
+    function openModal(p, opcionesSeleccionadas = []) {
+      productoSeleccionado = p;
+
+      const nombreCliente = document.getElementById("nombreClienteGlobal")?.value || "";
+      const numeroMesa = document.getElementById("numeroMesaGlobal")?.value || "";
+      const numeroOrden = document.getElementById("numeroOrdenGlobal")?.value || "";
+      const nombreMesero = document.getElementById("nombreMeseroGlobal")?.value || "";
+
+
+      const opciones = itemOptions[p.nombre] || [];
+
+      const form = document.getElementById("order-form");
+
+      form.innerHTML = `
+        <h2 id="modal-title" style="font-size: 68px; font-weight:bold; color: purple">${p.nombre}</h2>
+
+        <label style="font-size: 50px; font-weight:bold;">Cantidad:<br>
+          <input type="number" id="cantidad" min="1" style="font-size: 40px; font-weight:bold; width: 50%; padding: 5px;" value="1" required />
+        </label><br><br>
+
+        <label style="font-size: 50px; font-weight:bold;">Opciones:</label>
+        <div id="opciones-container" style="margin-bottom: 20px; font-size: 40px;"></div>
+
+        <label style="font-size: 50px; font-weight:bold;">Notas extra:<br>
+          <textarea id="nota" style="font-size: 35px; font-weight:bold; width: 50%; height: 60px;" placeholder=""></textarea>
+        </label><br><br>
+
+        <label style="font-size: 50px; font-weight:bold;">Número de mesa:<br>
+          <input type="text" id="mesa" style="font-size: 35px; font-weight:bold; width: 50%; padding: 5px;" value="${numeroMesa}"/>
+        </label><br><br>
+
+        <label style="font-size: 50px; font-weight:bold;">Nombre del cliente:<br>
+          <input type="text" id="cliente" style="font-size: 35px; font-weight:bold; width: 50%; padding: 5px;" value="${nombreCliente}"/>
+        </label><br><br>
+
+        <label style="font-size: 50px; font-weight:bold;">Numero de orden:<br>
+          <input type="text" id="orden" style="font-size: 35px; font-weight:bold; width: 50%; padding: 5px;" value="${numeroOrden}"/>
+        </label><br><br>
+
+        <label style="font-size: 50px; font-weight:bold;">Mesero:<br>
+          <input type="text" id="mesero" style="font-size: 35px; font-weight:bold; width: 50%; padding: 5px;" value="${nombreMesero}"/>
+        </label><br><br>
+
+        <div style="display: flex; justify-content: flex-start; gap: 30px; margin-top: 10px;">
+          <button type="button" id="cancelarOrden" style="background-color: red; font-size: 80px;">Cancelar</button>
+          <button type="submit" id="enviarOrden" style="background-color: green; font-size: 80px;">Salvar</button>
+        </div>
+      `;
+
+      // ✅ Mostrar checkboxes y marcar los seleccionados
+      const opcionesContainer = document.getElementById("opciones-container");
+      opciones.forEach(opt => {
+        const label = document.createElement("label");
+        label.style.display = "block";
+        const isChecked = opcionesSeleccionadas.includes(opt) ? "checked" : "";
+        //label.innerHTML = `<input type="checkbox" value="${opt}" ${isChecked}> ${opt}`; / Old check box desig
+        label.innerHTML = `<input type="checkbox" value="${opt}" ${isChecked} style="width: 40px; height: 40px; margin-right: 8px;"> <span style="font-size: 50px;">${opt}</span>`;
+        opcionesContainer.appendChild(label);
+      });
+
+      // Mostrar modal
+      document.getElementById("modal").classList.remove("hidden");
+
+      document.getElementById("cancelarOrden").onclick = () => {
+        modal.classList.add("hidden");
+      };
+
+      
+
+    }   
+
+
+    $("modal-close").onclick = () => modal.classList.add("hidden");
+    modal.addEventListener("click", e => {
+      if (e.target === modal) e.stopPropagation();
+    });
+    
+    let filtroOrdenActual = "";
+
+    function aplicarDatosGlobalesAFiltradas() {
+      const nombre = document.getElementById("nombreClienteGlobal").value.trim();
+      const mesa = document.getElementById("numeroMesaGlobal").value.trim();
+      const ordenGlobal = document.getElementById("numeroOrdenGlobal").value.trim();
+      const mesero = document.getElementById("nombreMeseroGlobal").value.trim();
+      const filtro = filtroOrdenActual.toLowerCase().trim();
+
+
+      if (!nombre && !mesa && !ordenGlobal && !mesero) {
+        alert("Por favor completa al menos un campo del encabezado para aplicar.");
+        return;
+      }
+
+      // Filtramos igual que renderTomadas lo hace
+      const filtroLimpio = filtro.toLowerCase().trim();
+      let modificadas = 0;
+
+      tomadas.forEach(o => {
+        const coincide = filtroLimpio === "" || (o.orden && o.orden.toLowerCase().includes(filtroLimpio));
+        if (coincide) {
+          if (nombre) o.cliente = nombre;
+          if (mesa) o.mesa = mesa;
+          if (mesero) o.mesero = mesero;
+          //if (ordenGlobal) o.orden = ordenGlobal;
+          
+          modificadas++;
+        }
+      });
+
+      saveData();
+      renderTomadas(filtro);
+      alert(`✅ Se aplicaron los datos del encabezado a ${modificadas} orden(es) filtrada(s).`);
+    }
+
+    
+
+
+    function filtrarPorOrden() {
+      const valor = document.getElementById("filtroOrdenInput").value;
+      filtroOrdenActual = valor.trim(); // Guardamos el valor globalmente
+      renderTomadas(filtroOrdenActual);
+    }
+   
+
+    
+    function renderTomadas(filtro = "") {
+      const cont = $("tomadas-section");
+      cont.innerHTML = "";
+
+      // Pass fijo para esta terminal
+      const passTerminal = "M01"; // 🔹 Cambia esto en la otra app a "M02"
+
+      // Normalizar el filtro de número de orden
+      const filtroLimpio = filtro.toLowerCase().trim();
+
+      // Encabezado con Input Pass
+      const headerActions = document.createElement("div");
+      headerActions.innerHTML = `
+        <div style="margin: 10px 0; display: flex; gap: 10px; align-items: center;">
+          <input type="text" id="passTerminal" value="${passTerminal}" readonly
+            style="padding: 12px 15px; font-size: 18px; width: 80px; border: 2px solid #ccc; border-radius: 8px; background-color: #f5f5f5;" />
+
+          <input type="text" id="filtroOrdenInput" placeholder="🔎 Número de orden..." value="${filtroLimpio}"
+            style="padding: 12px 15px; font-size: 18px; width: 150px; border: 2px solid #ccc; border-radius: 8px;" />
+
+          <button onclick="filtrarPorOrden()" 
+            style="padding: 12px 20px; font-size: 18px; background-color: #4285F4; color: white; border: none; border-radius: 8px; cursor: pointer;">
+            🔍 Buscar
+          </button>
+
+          <button onclick="renderTomadas()" 
+            style="padding: 12px 20px; font-size: 18px; background-color: #34A853; color: white; border: none; border-radius: 8px; cursor: pointer;">
+            📋 Mostrar todas
+          </button>
+
+          <button onclick="aplicarDatosGlobalesAFiltradas()" 
+            style="padding: 12px 20px; font-size: 18px; background-color: #FBBC05; color: black; border: none; border-radius: 8px; cursor: pointer;">
+            📝 Aplicar encabezado
+          </button>
+        </div>
+      `;
+      cont.appendChild(headerActions);
+
+      tomadas
+        .filter(orden => {
+          // Filtrar por pass
+          const coincidePass = orden.pass === passTerminal;
+          if (!coincidePass) return false;
+
+          // Filtrar por número de orden si hay filtro
+          return filtroLimpio === "" || (orden.orden && orden.orden.toLowerCase().includes(filtroLimpio));
+        })
+        .forEach(orden => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `
+            <div class="cantidad-producto"><strong>Orden: ${orden.orden}</strong></div>
+            <div class="cantidad-producto"><strong>Mesero: ${orden.mesero}</strong></div>
+            <div class="mesa-cliente"><strong>Mesa: ${orden.mesa}</strong> Cliente: ${orden.cliente}</div>
+            <div class="cantidad-producto"><strong>${orden.cantidad || 1} ${orden.producto}</strong></div>            
+            <div class="opciones-nota"><em>${orden.opciones.join(", ")} ${orden.nota ? "- " + orden.nota : ""}</em></div>
+            <button class="edit">Editar</button>
+            <button class="cancel">Cancelar</button>
+            <button class="to-cocina">Enviar a cocina</button>
+          `;
+
+          // resto de los eventos (igual que antes)...
+          card.querySelector(".cancel").onclick = () => {
+            tomadas = tomadas.filter(o => o.id !== orden.id);
+            saveData();
+            renderTomadas(filtro);
+          };
+
+          card.querySelector(".to-cocina").onclick = () => {
+            const missingFields = [];
+            if (!orden.orden) missingFields.push("Número de orden");
+            if (!orden.mesero) missingFields.push("Nombre del mesero");
+            if (!orden.mesa) missingFields.push("Número de mesa");
+            if (!orden.cliente) missingFields.push("Nombre del cliente");
+
+            if (missingFields.length > 0) {
+              alert("Por favor completa los siguientes campos:\n\n" + missingFields.join("\n"));
+              return;
+            }
+
+            const producto = productos.find(p => p.nombre === orden.producto);
+            if (producto && producto.familia === "Bebidas") {
+              const platillo = menuData.find(p => p.nombre === orden.producto);
+              const precio = platillo ? platillo.precio : 0;
+              const cantidad = orden.cantidad || 1;
+              seqCerradas++;
+              cerradas.push({
+                ...orden,
+                fin: new Date().toISOString(),
+                seq: seqCerradas,
+                cantidad,
+                precio,
+                total: cantidad * precio
+              });
+              tomadas = tomadas.filter(o => o.id !== orden.id);
+              saveData();
+              renderTomadas(filtro);
+              renderCerradas();
+            } else {
+              enCocina.push({ ...orden, start: new Date(), working: false });
+              tomadas = tomadas.filter(o => o.id !== orden.id);
+              saveData();
+              renderTomadas(filtro);
+              renderCocina();
+              updateCountCocina();
+            }
+          };
+
+          card.querySelector(".edit").onclick = () => {
+            openModal({ nombre: orden.producto }, orden.opciones || []);
+            form.mesero.value = orden.mesero;
+            form.mesa.value = orden.mesa;
+            form.cliente.value = orden.cliente;
+            form.nota.value = orden.nota;
+            form.cantidad.value = orden.cantidad;
+            tomadas = tomadas.filter(o => o.id !== orden.id);
+            saveData();
+            renderTomadas(filtro);
+            form.orden.value = orden.orden;
+          };
+
+          card.onclick = () => {
+            const filtroInput = document.getElementById("filtroOrdenInput");
+            filtroInput.value = orden.orden;
+            filtroOrdenActual = orden.orden;
+            renderTomadas(orden.orden);
+          };
+
+          cont.appendChild(card);
+        });
+    }
+
+
+
+    function renderCocina() {
+      const cont = $("cocina-section");
+      cont.innerHTML = "";
+
+      enCocina.forEach((orden, i) => {
+        const startTime = (orden.start instanceof Date) ? orden.start : new Date(orden.start);
+        const elapsed = Math.floor((new Date() - startTime) / 1000);
+        const card = document.createElement("div");
+
+        // 🔁 Asegurar estado inicial
+        if (!orden.estado) orden.estado = "pendiente";
+
+        card.className = "card";
+        if (orden.estado === "proceso") card.classList.add("proceso");
+        if (orden.estado === "lista") card.classList.add("lista");
+
+        const opcionesHTML = (orden.opciones || []).map(op => `
+          <span style="background-color:#d1fae5; color:#065f46; padding:6px 12px; margin:4px; display:inline-block; border-radius:8px; font-size:28px; font-weight:bold;">
+            ${op}
+          </span>`).join("");
+
+
+        const notaHTML = orden.nota
+          ? `<div style="margin-top:10px; background:#fef3c7; padding:10px 12px; border-radius:6px; color:#92400e; font-size:28px;">
+              <h1 style="margin:0; font-size:28px;">Nota:</h1>
+              ${orden.nota}
+            </div>`
+          : "";
+
+
+        card.innerHTML = `
+          <h1 style="margin:0; font-size:28px;">
+            <strong>Orden: ${orden.orden || "—"}</strong>
+          </h1>
+
+          <h1 style="margin:0; font-size:28px;">
+            <strong>Mesero: ${orden.mesero || "—"}</strong>
+          </h1>
+
+          <h1 style="display: inline-block; background-color: purple; color: white; padding: 10px 12px; border-radius: 6px; margin: 0;  font-size: 35px;">
+              ${orden.cantidad || 1} ${orden.producto}
+          </h1>
+
+          <div style="margin:8px 0;">
+            <h1 style="margin:0; font-size:30px;">Opciones:</h1>
+            <div style="font-size:16px;">${opcionesHTML || "—"}</div>
+          </div>
+          
+          ${notaHTML}
+
+          
+          <div>
+            <span style="font-size: 28px; font-weight: bold;">Hora Recivida:</span>
+            <span style="font-size: 25px;">${startTime.toLocaleTimeString()}</span>
+          </div>
+
+          <!-- Tiempo -->
+          <div style="display: flex; justify-content: space-between; width: 50%;">
+            <span style="font-size: 28px; font-weight: bold;">Tiempo Transcurrido:---------</span>
+            <span style="font-size: 25px;">${elapsed}s</span>
+          </div>
+
+          <!-- Mesa -->
+          <div style="display: flex; justify-content: space-between; width: 50%;">
+            <span style="font-size: 28px; font-weight: bold;">Mesa:-------------------------------</span>
+            <span style="font-size: 25px;">${orden.mesa}</span>
+          </div>
+
+          <!-- Cliente -->
+          <div style="display: flex; justify-content: space-between; width: 50%;">
+            <span style="font-size: 28px; font-weight: bold;">Cliente:----------------------------</span>
+            <span style="font-size: 25px;">${orden.cliente || "—"}</span>
+          </div>          
+
+          
+          <div style="margin-top: 12px; display: flex; flex-wrap: wrap; gap: 10px;">
+            <button class="start" style="background-color: #28a745; color: white; font-size: 20px; font-weight: bold; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer;">
+              🟢 Comenzar orden
+            </button>
+
+            <button class="done" style="background-color: #007bff; color: white; font-size: 20px; font-weight: bold; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer;">
+              ✅ Orden lista
+            </button>
+
+            <button class="edit" style="background-color: #ffc107; color: black; font-size: 20px; font-weight: bold; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer;">
+              ✏️ Editar
+            </button>
+
+            <button class="cancel" style="background-color: #dc3545; color: white; font-size: 20px; font-weight: bold; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer;">
+              ❌ Cancelar
+            </button>
+
+            <button class="to-cerradas" style="background-color: #6f42c1; color: white; font-size: 20px; font-weight: bold; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer;">
+              📦 Cerrar orden
+            </button>
+          </div>
+
+        `;
+
+        // Botones funcionales
+        card.querySelector(".start").onclick = () => {
+          orden.estado = "proceso";
+          saveData();
+          renderCocina();
+        };
+
+        card.querySelector(".done").onclick = () => {
+          orden.estado = "lista";
+          saveData();
+          renderCocina();
+        };
+
+        card.querySelector(".edit").onclick = () => {
+          openModal({ nombre: orden.producto }, orden.opciones || []);
+          form.mesero.value = orden.mesero;
+          form.mesa.value = orden.mesa;
+          form.cliente.value = orden.cliente;
+          form.nota.value = orden.nota;
+          form.cantidad.value = orden.cantidad || 1;
+          form.dataset.editandoDesdeCocina = orden.id;
+        };
+
+        card.querySelector(".cancel").onclick = () => {
+          enCocina.splice(i, 1);
+          saveData();
+          renderCocina();
+          updateCountCocina();
+        };
+
+        card.querySelector(".to-cerradas").onclick = () => {
+          const platillo = menuData.find(p => p.nombre === orden.producto);
+          const precio = platillo ? platillo.precio : 0;
+          const cantidad = orden.cantidad || 1;
+
+          seqCerradas++;
+          cerradas.push({
+            ...orden,
+            cantidad: cantidad,
+            precio: precio,
+            total: cantidad * precio,
+            fin: new Date().toISOString(),
+            seq: seqCerradas
+          });
+
+          enCocina.splice(i, 1);
+          saveData();
+          renderCocina();
+          renderCerradas();
+          updateCountCocina();
+        };
+
+
+        cont.appendChild(card);
+      });
+    }
+
+    // ⏱️ Temporizador para actualizar cocina cada 5 segundos
+    if (window.cocinaTimer) clearInterval(window.cocinaTimer);
+    window.cocinaTimer = setInterval(() => {
+      const cocinaVisible = !document.getElementById("cocina-section").classList.contains("hidden");
+      if (cocinaVisible) renderCocina();
+    }, 1000);
+
+
+    function updateCountCocina(count) {
+      const countElem = document.getElementById("contadorCocina");
+      if (countElem) {
+        countElem.textContent = count;
+      } else {
+        //console.warn("Elemento 'contadorCocina' no existe.");
+      }
+    }
+
+      
+    // Funcion modicada
+    //Ojo aqui
+    //Test 0 antes del print
+    //Test 1 antes del print
+
+    function renderCerradas() {
+      
+      const cont = $("cerradas-section");
+      cont.innerHTML = "";
+      const ordenadas = [...cerradas].sort((a, b) => b.seq - a.seq); // Por línea descendente
+      ordenadas.forEach(o => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+        <div style="font-size: 18px; line-height: 1.6; margin-bottom: 20px;">
+          <div style="font-size: 22px; font-weight: bold; color: #333;">
+            🔢 Línea #${o.seq} — Número de Orden: ${o.orden || "—"}
+          </div>
+
+          <div>Mesero: <strong>${o.mesero}</strong></div>
+
+          <div>Mesa: <strong>${o.mesa}</strong> — Cliente: <strong>${o.cliente}</strong></div>
+          <div>Platillo: <strong>${o.producto}</strong></div>
+
+          <div>
+            Cantidad: <strong>${o.cantidad}</strong> — 
+            Precio: <strong>$${o.precio?.toFixed(2)}</strong>
+          </div>
+
+          ${
+            (() => {
+              const subtotal = (o.total || 0);
+              const tax = subtotal * 0.095;
+              const totalConTax = subtotal + tax;
+              return `
+                <div>
+                  Subtotal: <strong>$${subtotal.toFixed(2)}</strong> — 
+                  Tax (9.5%): <strong>$${tax.toFixed(2)}</strong> — 
+                  Total con Tax: <strong>$${totalConTax.toFixed(2)}</strong>
+                </div>
+              `;
+            })()
+          }
+
+          <div>Cerrada: <strong>${new Date(o.fin).toLocaleString()}</strong></div>
+
+          <div style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px;">
+            <button class="cancel" style="background-color: #dc3545; color: white; font-size: 18px; font-weight: bold; padding: 10px 16px; border: none; border-radius: 8px; cursor: pointer;">
+              ❌ Cancelar
+            </button>
+            <button class="print" style="background-color: #17a2b8; color: white; font-size: 18px; font-weight: bold; padding: 10px 16px; border: none; border-radius: 8px; cursor: pointer;">
+              🖨️ Imprimir
+            </button>
+            <button class="print-orden" style="background-color: #007bff; color: white; font-size: 18px; font-weight: bold; padding: 10px 16px; border: none; border-radius: 8px; cursor: pointer;">
+              🧾 Imprimir esta orden completa
+            </button>
+            <button onclick="reiniciarNumeracion()" style="background-color: #6f42c1; color: white; font-size: 18px; font-weight: bold; padding: 10px 16px; border: none; border-radius: 8px; cursor: pointer;">
+              🔄 Reiniciar numeración
+            </button>
+          </div>
+        </div>
+
+
+      `;
+
+      card.querySelector(".cancel").onclick = () => {
+        cerradas = cerradas.filter(c => c.seq !== o.seq);
+        saveData(); renderCerradas();
+      };
+
+      card.querySelector(".print").onclick = () => {
+        const desde = prompt("Desde #?");
+        const hasta = prompt("Hasta #?");
+        const lista = cerradas.filter(c => c.seq >= desde && c.seq <= hasta);
+        const doc = window.open("");
+
+        doc.document.write("<h1>Órdenes cerradas</h1>");
+
+        let totalGeneralConTax = 0;
+
+        // Contador de órdenes por mesero
+        const conteoMeseros = {};
+
+        lista.forEach(c => {
+          const subtotal = c.precio * c.cantidad;
+          const tax = subtotal * 0.095;
+          const totalConTax = subtotal + tax;
+          totalGeneralConTax += totalConTax;
+
+          // Contar órdenes por mesero
+          if (!conteoMeseros[c.mesero]) {
+            conteoMeseros[c.mesero] = 0;
+          }
+          conteoMeseros[c.mesero]++;
+
+          doc.document.write(`<p>
+            Line#: ${c.seq} — Qty: ${c.cantidad} - ${c.producto} <br>
+            Subtotal: $${subtotal.toFixed(2)} — Tax (9.5%): $${tax.toFixed(2)} — Total: $${totalConTax.toFixed(2)}<br>
+            Mesa ${c.mesa} — Nombre: ${c.cliente} — Fecha: ${new Date(c.fin).toLocaleString()}<br>
+            Mesero ${c.mesero}<br>
+          </p><hr>`);
+        });
+
+        // Mostrar resumen de órdenes por mesero
+        doc.document.write("<h3>Resumen de órdenes por mesero:</h3>");
+        for (const mesero in conteoMeseros) {
+          doc.document.write(`<p><strong>${mesero}:</strong> ${conteoMeseros[mesero]} órdenes</p>`);
+        }
+
+        doc.document.write(`<h3>Total general con tax: $${totalGeneralConTax.toFixed(2)}</h3>`);
+        doc.print();
+      };
+
+      // NUEVO BOTÓN: Imprimir todos los platillos de esta orden
+      card.querySelector(".print-orden").onclick = () => {
+        const lista = cerradas.filter(c => c.orden === o.orden);
+        const doc = window.open("");
+
+        doc.document.write(`<h1>Orden completa: ${o.orden}</h1>`);
+
+        let totalOrdenConTax = 0;
+
+        const nombreMesero = lista.length > 0 ? lista[0].mesero : "Desconocido";
+
+        lista.forEach(c => {
+          const subtotal = c.precio * c.cantidad;
+          const tax = subtotal * 0.095;
+          const totalConTax = subtotal + tax;
+          totalOrdenConTax += totalConTax;
+
+          doc.document.write(`<p>
+            Line#: ${c.seq} — Qty: ${c.cantidad} - ${c.producto} <br>
+            Subtotal: $${subtotal.toFixed(2)} — Tax (9.5%): $${tax.toFixed(2)} — Total: $${totalConTax.toFixed(2)}<br>
+            Mesa ${c.mesa} — Nombre: ${c.cliente} — Fecha: ${new Date(c.fin).toLocaleString()}<br>
+            
+          </p><hr>`);
+        });
+
+        
+        doc.document.write(`<p><strong>Mesero:</strong> ${nombreMesero}</p>`);
+        doc.document.write(`<h3>Total de esta orden con tax: $${totalOrdenConTax.toFixed(2)}</h3>`);
+        doc.print();
+      };
+
+
+        cont.appendChild(card);
+      });
+    }
+    
+    document.addEventListener("submit", function(e) {
+      if (e.target.id === "order-form") {
+        e.preventDefault();
+
+        const cantidad = parseInt(document.getElementById("cantidad").value);
+        const mesa = document.getElementById("mesa").value.trim();
+        const cliente = document.getElementById("cliente").value.trim();
+        const nota = document.getElementById("nota").value.trim();
+        const orden = document.getElementById("orden").value.trim();
+        const mesero = document.getElementById("mesero").value.trim();
+        const passMesa = document.getElementById("passMesa").value.trim(); // <-- NUEVO
+
+        const opciones = Array.from(document.querySelectorAll("#opciones-container input:checked"))
+          .map(el => el.value);
+
+        const idExistente = form.dataset.editandoDesdeCocina;
+
+        const nuevaOrden = {
+          producto: productoSeleccionado.nombre,
+          orden,
+          mesero,
+          cantidad,
+          mesa,
+          cliente,
+          nota,
+          opciones,
+          pass: passMesa, // <-- NUEVO CAMPO
+          id: idExistente ? parseInt(idExistente) : Date.now(),
+          start: new Date()
+        };
+
+        // Si venía de cocina, eliminarla primero
+        if (idExistente) {
+          const idx = enCocina.findIndex(o => o.id === parseInt(idExistente));
+          if (idx !== -1) {
+            enCocina[idx] = {
+              ...nuevaOrden,
+              start: enCocina[idx].start,
+              working: enCocina[idx].working
+            };
+            saveData();
+            renderCocina();
+            updateCountCocina();
+          }
+          delete form.dataset.editandoDesdeCocina;
+        } else {
+          tomadas.push(nuevaOrden);
+          saveData();
+          renderTomadas();
+        }
+
+        document.getElementById("modal").classList.add("hidden");
+        alert("✅ Orden enviada correctamente");
+      }
+    });
+
+
+    document.getElementById("cambiar-modo").onclick = function () {
+      const confirmar = confirm("¿Deseas cambiar de modo de visualización?");
+      if (confirmar) {
+        localStorage.removeItem("modo"); // borra la preferencia guardada
+        location.reload(); // recarga la página para volver a preguntar
+      }
+    };
+
+
+    function seleccionarModo(modo) {
+      localStorage.setItem("modoApp", modo);
+      document.body.classList.add(modo === "movil" ? "modo-movil" : "modo-escritorio");
+      document.getElementById("modo-selector").style.display = "none";
+      iniciarApp();
+    }
+    // Si ya hay modo guardado, cargar automáticamente
+    const modoGuardado = localStorage.getItem("modoApp");
+    if (modoGuardado) {
+      document.getElementById("modo-selector").style.display = "none";
+      document.body.classList.add(modoGuardado === "movil" ? "modo-movil" : "modo-escritorio");
+      iniciarApp();
+    }
+
+    function iniciarApp() {
+      // 👇 Detectar o pedir el modo de visualización
+      let modo = localStorage.getItem("modo");
+
+      if (!modo) {
+        const usarMovil = confirm("¿Deseas usar el modo móvil?");
+        modo = usarMovil ? "movil" : "escritorio";
+        localStorage.setItem("modo", modo);
+      }
+
+      if (modo === "movil") {
+        document.body.classList.add("modo-movil");
+      } else {
+        document.body.classList.remove("modo-movil");
+      }
+
+      // ✅ Tu lógica original de iniciar la app
+      loadData();
+      renderMenu();
+      updateCountCocina();
+      
+
+      $("btn-menu").onclick = () => { renderMenu(); switchSection(0); };
+      $("btn-tomadas").onclick = () => { renderTomadas(); switchSection(1); };
+      $("btn-cocina").onclick = () => { renderCocina(); switchSection(2); };
+      $("btn-cerradas").onclick = () => { renderCerradas(); switchSection(3); };
+
+      $("modal-close").onclick = () => modal.classList.add("hidden");
+
+      modal.addEventListener("click", e => {
+        if (e.target === modal) e.stopPropagation();
+      });
+      
+    }
+    iniciarApp();
+
+    function login() {
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+          document.getElementById("login-container").style.display = "none";
+          document.getElementById("logout-btn").style.display = "block";
+        })
+        .catch(error => {
+          document.getElementById("login-error").textContent = error.message;
+        });
+    }
+
+    function logout() {
+      auth.signOut().then(() => {
+        location.reload(); // recargar para volver al login
+      });
+    }
+
+    // ⏳ Detectar si ya hay sesión activa
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        document.getElementById("login-container").style.display = "none";
+        document.getElementById("logout-btn").style.display = "block";
+        iniciarApp(); // solo iniciar si hay sesión
+      } else {
+        document.getElementById("login-container").style.display = "flex";
+        document.getElementById("logout-btn").style.display = "none";
+      }
+    });
+
+    
+
+
+  </script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+  function reiniciarNumeracion() {
+    if (confirm("¿Seguro que deseas reiniciar el contador de órdenes cerradas?")) {
+      seqCerradas = 0;
+      localStorage.setItem("seqCerradas", seqCerradas);
+      alert("✅ Contador reiniciado.");
+    }
+  }
+
+  
+	// ]]>
+</script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+
+  
+</script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+  
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", () => {
+        firebase.auth().signOut().then(() => {
+          console.log("Sesión cerrada.");
+          window.location.href = "login.html"; // Redirige a la pantalla de login
+        }).catch((error) => {
+          console.error("Error al cerrar sesión:", error);
+        });
+      });
+    } else {
+      //console.warn("No se encontró el botón de logout en el DOM.");
+    }
+  });
+</script>
+
+</body></html>
