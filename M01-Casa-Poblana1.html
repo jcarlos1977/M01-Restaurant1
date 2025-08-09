@@ -53,6 +53,7 @@
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
       font-family: 'Segoe UI', sans-serif;
+      
             
       
     }
@@ -1190,34 +1191,34 @@
       form.innerHTML = `
         <h2 id="modal-title" style="font-size: 68px; font-weight:bold; color: purple">${p.nombre}</h2>
 
-        <label style="font-size: 50px; font-weight:bold;">Cantidad:<br>
-          <input type="number" id="cantidad" min="1" style="font-size: 40px; font-weight:bold; width: 50%; padding: 5px;" value="1" required />
-        </label><br>
+        <label style="font-size: 50px; font-weight:bold;">Cantidad:
+          <input type="number" id="cantidad" min="1" style="background-color: #eeefe9; font-size: 40px; font-weight:bold; width: 50%; padding: 5px;" value="1" required />
+        </label><br><br>
 
         <label style="font-size: 50px; font-weight:bold;">Opciones:</label>
         <div id="opciones-container" style="margin-bottom: 20px; font-size: 40px;"></div>
 
         <label style="font-size: 50px; font-weight:bold;">Notas extra:<br>
-          <textarea id="nota" style="font-size: 35px; font-weight:bold; width: 50%; height: 60px;" placeholder=""></textarea>
-        </label><br>
+          <textarea id="nota" style="background-color: #eeefe9; font-size: 35px; font-weight:bold; width: 75%; height: 100px;" placeholder=""></textarea>
+        </label><br><br>
 
-        <label style="font-size: 50px; font-weight:bold;">Número de mesa:<br>
-          <input type="text" id="mesa" style="font-size: 35px; font-weight:bold; width: 50%; padding: 5px;" value="${numeroMesa}"/>
-        </label><br>
+        <label style="font-size: 50px; font-weight:bold;"> #Mesa:&nbsp;&nbsp;
+          <input type="text" id="mesa" style="background-color: #eeefe9; text-align: right; font-size: 40px; font-weight:bold; width: 50%; height: 60px; padding: 10px;" value="${numeroMesa}"/>
+        </label><br><br>
 
-        <label style="font-size: 50px; font-weight:bold;">Nombre del cliente:<br>
-          <input type="text" id="cliente" style="font-size: 35px; font-weight:bold; width: 50%; padding: 5px;" value="${nombreCliente}"/>
-        </label><br>
+        <label style="font-size: 50px; font-weight:bold;">Cliente:&nbsp;
+          <input type="text" id="cliente" style="background-color: #eeefe9; text-align: right; font-size: 40px; font-weight:bold; width: 50%; height: 60px; padding: 10px;" value="${nombreCliente}"/>
+        </label><br><br>
 
-        <label style="font-size: 50px; font-weight:bold;">Numero de orden:<br>
-          <input type="text" id="orden" style="font-size: 35px; font-weight:bold; width: 50%; padding: 5px;" value="${numeroOrden}"/>
-        </label><br>
+        <label style="font-size: 50px; font-weight:bold;">#Orden:
+          <input type="text" id="orden" style="background-color: #eeefe9; text-align: right; font-size: 40px; font-weight:bold; width: 50%; height: 60px; padding: 10px;" value="${numeroOrden}"/>
+        </label><br><br>
 
-        <label style="font-size: 50px; font-weight:bold;">Mesero:<br>
-          <input type="text" id="mesero" style="font-size: 35px; font-weight:bold; width: 50%; padding: 5px;" value="${nombreMesero}"/>
-        </label><br>
+        <label style="font-size: 50px; font-weight:bold;">Mesero:
+          <input type="text" id="mesero" style="background-color: #eeefe9; text-align: right; font-size: 40px; font-weight:bold; width: 50%; height: 60px; padding: 10px;" value="${nombreMesero}"/>
+        </label><br><br><br>
 
-        <div style="display: flex; justify-content: flex-start; gap: 30px; margin-top: 10px;">
+        <div style="display: flex; justify-content: flex-start; gap: 100px; margin-top: 10px;">
           <button type="button" id="cancelarOrden" style="background-color: red; font-size: 80px;">Cancelar</button>
           <button type="submit" id="enviarOrden" style="background-color: green; font-size: 80px;">Salvar</button>
         </div>
@@ -2131,4 +2132,3 @@
 </script>
 
 </body></html>
-
