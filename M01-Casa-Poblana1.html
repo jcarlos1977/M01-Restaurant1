@@ -23,8 +23,8 @@
       position: fixed;
       top: 0;
       left: 0;
-      right: 0;
-      bottom: 0;
+      /*right: 0;*/
+      /*bottom: 0;*/
       width: 100vw;           /* 100% del ancho de la pantalla added */
       height: 100vh;          /* 100% del alto de la pantalla added */
       background: rgb(187, 187, 212);
@@ -41,12 +41,12 @@
       width: 900px;
       max-width: 90vw;
       padding: 30px;
-      height: 1700px;
+      height: 1400px;
       gap: 15px;
       font-family: 'Segoe UI', sans-serif;
       font-size: 46px;
       color: #333;
-      background-color: #fefefe;
+      background-color:  white;
       border: 1px solid #ccc;
       background: white;
       padding: 30px;
@@ -1199,26 +1199,26 @@
         <div id="opciones-container" style="margin-bottom: 20px; font-size: 40px;"></div>
 
         <label style="font-size: 50px; font-weight:bold;">Notas extra:<br>
-          <textarea id="nota" style="background-color: #eeefe9; font-size: 35px; font-weight:bold; width: 75%; height: 100px;" placeholder=""></textarea>
+          <textarea id="nota" style="background-color: #eeefe9; font-size: 35px; font-weight:bold; width: 95%; height: 100px;" placeholder=""></textarea>
         </label><br><br>
 
         <label style="font-size: 50px; font-weight:bold;"> #Mesa:&nbsp;&nbsp;
-          <input type="text" id="mesa" style="background-color: #eeefe9; text-align: right; font-size: 40px; font-weight:bold; width: 50%; height: 60px; padding: 10px;" value="${numeroMesa}"/>
-        </label><br><br>
+          <input type="text" id="mesa" style="background-color: #eeefe9; text-align: right; font-size: 40px; font-weight:bold; width: 21%; height: 60px; padding: 10px;" value="${numeroMesa}"/>
+        </label>
 
         <label style="font-size: 50px; font-weight:bold;">Cliente:&nbsp;
-          <input type="text" id="cliente" style="background-color: #eeefe9; text-align: right; font-size: 40px; font-weight:bold; width: 50%; height: 60px; padding: 10px;" value="${nombreCliente}"/>
+          <input type="text" id="cliente" style="background-color: #eeefe9; text-align: right; font-size: 40px; font-weight:bold; width: 21%; height: 60px; padding: 10px;" value="${nombreCliente}"/>
         </label><br><br>
 
         <label style="font-size: 50px; font-weight:bold;">#Orden:
-          <input type="text" id="orden" style="background-color: #eeefe9; text-align: right; font-size: 40px; font-weight:bold; width: 50%; height: 60px; padding: 10px;" value="${numeroOrden}"/>
-        </label><br><br>
+          <input type="text" id="orden" style="background-color: #eeefe9; text-align: right; font-size: 40px; font-weight:bold; width: 21%; height: 60px; padding: 10px;" value="${numeroOrden}"/>
+        </label>
 
         <label style="font-size: 50px; font-weight:bold;">Mesero:
-          <input type="text" id="mesero" style="background-color: #eeefe9; text-align: right; font-size: 40px; font-weight:bold; width: 50%; height: 60px; padding: 10px;" value="${nombreMesero}"/>
+          <input type="text" id="mesero" style="background-color: #eeefe9; text-align: right; font-size: 40px; font-weight:bold; width: 21%; height: 60px; padding: 10px;" value="${nombreMesero}"/>
         </label><br><br>
 
-        <div style="display: flex; justify-content: flex-start; gap: 100px; margin-top: 10px;">
+        <div style="display: flex; justify-content: flex-start; gap: 250px; margin-top: 10px;">
           <button type="button" id="cancelarOrden" style="background-color: red; font-size: 80px;">Cancelar</button>
           <button type="submit" id="enviarOrden" style="background-color: green; font-size: 80px;">Salvar</button>
         </div>
