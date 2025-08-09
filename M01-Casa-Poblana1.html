@@ -38,10 +38,10 @@
     }
 
     .modal-content {
-      width: 900px;
+      width: 830px;
       max-width: 90vw;
       padding: 30px;
-      height: 1400px;
+      height: 1450px;
       gap: 15px;
       font-family: 'Segoe UI', sans-serif;
       font-size: 46px;
@@ -1191,23 +1191,22 @@
       form.innerHTML = `
         <h2 id="modal-title" style="font-size: 68px; font-weight:bold; color: purple">${p.nombre}</h2>
 
-        <label style="font-size: 50px; font-weight:bold;">Cantidad:
-          <input type="number" id="cantidad" min="1" style="background-color: #eeefe9; font-size: 40px; font-weight:bold; width: 50%; padding: 5px;" value="1" required />
+        <label style="font-size: 50px; font-weight:bold;">Cantidad: &nbsp;<input type="number" id="cantidad" min="1" style="background-color: #eeefe9; font-size: 40px; font-weight:bold; width: 65%; padding: 5px;" value="1" required />
         </label><br>
 
         <label style="font-size: 50px; font-weight:bold;">Opciones:</label>
         <div id="opciones-container" style="margin-bottom: 20px; font-size: 40px;"></div>
 
         <label style="font-size: 50px; font-weight:bold;">Notas extra:<br>
-          <textarea id="nota" style="background-color: #eeefe9; font-size: 35px; font-weight:bold; width: 95%; height: 100px;" placeholder=""></textarea>
+          <textarea id="nota" style="background-color: #eeefe9; font-size: 35px; font-weight:bold; width: 97%; height: 100px;" placeholder=""></textarea>
         </label><br><br>
 
-        <label style="font-size: 50px; font-weight:bold;"> #Mesa:&nbsp;&nbsp;
-          <input type="text" id="mesa" style="background-color: #eeefe9; text-align: right; font-size: 40px; font-weight:bold; width: 21%; height: 60px; padding: 10px;" value="${numeroMesa}"/>
+        <label style="font-size: 50px; font-weight:bold;"> #Mesa:
+          <input type="text" id="mesa" style=" margin-left: 21px; background-color: #eeefe9; text-align: right; font-size: 40px; font-weight:bold; width: 21%; height: 60px; padding: 10px;" value="${numeroMesa}"/>
         </label>
 
-        <label style="font-size: 50px; font-weight:bold;">Cliente:&nbsp;
-          <input type="text" id="cliente" style="background-color: #eeefe9; text-align: right; font-size: 40px; font-weight:bold; width: 21%; height: 60px; padding: 10px;" value="${nombreCliente}"/>
+        <label style="font-size: 50px; font-weight:bold;">Cliente:
+          <input type="text" id="cliente" style="margin-left: 14px; background-color: #eeefe9; text-align: right; font-size: 40px; font-weight:bold; width: 21%; height: 60px; padding: 10px;" value="${nombreCliente}"/>
         </label><br><br>
 
         <label style="font-size: 50px; font-weight:bold;">#Orden:
