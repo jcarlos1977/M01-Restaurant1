@@ -1501,7 +1501,12 @@
 
             <div style="display: inline-block; background-color: purple; color: white; padding: 10px 12px; border-radius: 6px; margin: 0; font-size: 50px;"><strong>Qty: [ ${orden.cantidad || 1} ] ${orden.producto}</strong></div><br>
 
-            <div style="background-color:#d1fae5; color:#065f46; padding:6px 12px; margin:4px; display:inline-block; border-radius:8px; font-size:28px; font-weight:bold;"><strong>${(orden.opciones || []).join(" / ")}</strong></div><br>
+            <div>
+              ${(orden.opciones || []).map(op => `
+                <span style="background-color:#d1fae5; color:#065f46; padding:6px 12px; margin:4px; display:inline-block; border-radius:8px; font-size:28px; font-weight:bold;">
+                  ${op}
+                </span>`).join("")}
+            </div><br>
 
             <div style="margin-top:10px; background:#fef3c7; padding:10px 12px; border-radius:6px; color:#92400e; font-size:28px;">
               <h1 style="margin:0; font-size:28px;"><strong>Notas: <br> ${orden.nota}</strong></div><br>
