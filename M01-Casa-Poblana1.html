@@ -355,6 +355,7 @@
       font-size: 45px;
       font-weight: bold;
       margin-bottom: 2px;
+      
     }
 
     .mesa-cliente {
@@ -373,7 +374,7 @@
       background-color: #4CAF50; /* Verde */
       color: white;
       border: none;
-      padding: 6px 12px;
+      padding: 20px 30px;
       margin-right: 6px;
       border-radius: 6px;
       cursor: pointer;
@@ -384,7 +385,7 @@
       background-color: #f44336; /* Rojo */
       color: white;
       border: none;
-      padding: 6px 12px;
+      padding: 20px 30px;
       margin-right: 6px;
       border-radius: 6px;
       cursor: pointer;
@@ -395,7 +396,7 @@
       background-color: #2196F3; /* Azul */
       color: white;
       border: none;
-      padding: 6px 12px;
+      padding: 20px 12px;
       border-radius: 6px;
       cursor: pointer;
       font-size: 30px;
@@ -1456,23 +1457,23 @@
       headerActions.innerHTML = `
         <div style="margin: 10px 0; display: flex; gap: 10px; align-items: center;">
           <input type="text" id="passTerminal" value="${passTerminal}" readonly
-            style="padding: 12px 15px; font-size: 18px; width: 80px; border: 2px solid #ccc; border-radius: 8px; background-color: #f5f5f5;" />
+            style="padding: 30px 15px; font-size: 18px; width: 80px; border: 2px solid #ccc; border-radius: 8px; background-color: #f5f5f5;" />
 
           <input type="text" id="filtroOrdenInput" placeholder="🔎 Número de orden..." value="${filtroLimpio}"
-            style="padding: 12px 15px; font-size: 18px; width: 150px; border: 2px solid #ccc; border-radius: 8px;" />
+            style="padding: 30px 15px; font-size: 18px; width: 150px; border: 2px solid #ccc; border-radius: 8px;" />
 
           <button onclick="filtrarPorOrden()" 
-            style="padding: 12px 20px; font-size: 18px; background-color: #4285F4; color: white; border: none; border-radius: 8px; cursor: pointer;">
+            style="padding: 30px 20px; font-size: 18px; background-color: #4285F4; color: white; border: none; border-radius: 8px; cursor: pointer;">
             🔍 Buscar
           </button>
 
           <button onclick="renderTomadas()" 
-            style="padding: 12px 20px; font-size: 18px; background-color: #34A853; color: white; border: none; border-radius: 8px; cursor: pointer;">
+            style="padding: 30px 20px; font-size: 18px; background-color: #34A853; color: white; border: none; border-radius: 8px; cursor: pointer;">
             📋 Mostrar todas
           </button>
 
           <button onclick="aplicarDatosGlobalesAFiltradas()" 
-            style="padding: 12px 20px; font-size: 18px; background-color: #FBBC05; color: black; border: none; border-radius: 8px; cursor: pointer;">
+            style="padding: 30px 20px; font-size: 18px; background-color: #FBBC05; color: black; border: none; border-radius: 8px; cursor: pointer;">
             📝 Aplicar encabezado
           </button>
         </div>
@@ -1493,10 +1494,18 @@
           card.className = "card";
           card.innerHTML = `
             <div class="cantidad-producto"><strong>Orden: ${orden.orden}</strong></div>
+
             <div class="cantidad-producto"><strong>Mesero: ${orden.mesero}</strong></div>
+
             <div class="mesa-cliente"><strong>Mesa: ${orden.mesa}</strong> Cliente: ${orden.cliente}</div>
-            <div class="cantidad-producto"><strong>${orden.cantidad || 1} ${orden.producto}</strong></div>            
-            <div class="opciones-nota"><em>${orden.opciones.join(", ")} ${orden.nota ? "- " + orden.nota : ""}</em></div>
+
+            <div style="display: inline-block; background-color: purple; color: white; padding: 10px 12px; border-radius: 6px; margin: 0; font-size: 50px;"><strong>Qty: [ ${orden.cantidad || 1} ] ${orden.producto}</strong></div><br>
+
+            <div style="background-color:#d1fae5; color:#065f46; padding:6px 12px; margin:4px; display:inline-block; border-radius:8px; font-size:28px; font-weight:bold;"><strong>${(orden.opciones || []).join(" / ")}</strong></div><br>
+
+            <div style="margin-top:10px; background:#fef3c7; padding:10px 12px; border-radius:6px; color:#92400e; font-size:28px;">
+              <h1 style="margin:0; font-size:28px;"><strong>Notas: <br> ${orden.nota}</strong></div><br>
+
             <button class="edit">✏️<!--Editar--></button>
             <button class="cancel">❌<!--Cancelar--></button>
             <button class="to-cocina">📝➡️🍳<!--Enviar a cocina--></button>
@@ -1651,23 +1660,23 @@
 
           
           <div style="margin-top: 12px; display: flex; flex-wrap: wrap; gap: 10px;">
-            <button class="start" style="background-color: #28a745; color: white; font-size: 20px; font-weight: bold; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer;">
-              🟢 <!--Comenzar orden-->
+            <button class="start" style="background-color: #28a745; color: white; font-size: 20px; font-weight: bold; padding: 30px 40px; border: none; border-radius: 8px; cursor: pointer;">
+            🟢 <!--Comenzar orden-->
             </button>
 
-            <button class="done" style="background-color: #007bff; color: white; font-size: 20px; font-weight: bold; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer;">
-              ✅ <!--Orden lista-->
+            <button class="done" style="background-color: #007bff; color: white; font-size: 20px; font-weight: bold; padding: 30px 40px; border: none; border-radius: 8px; cursor: pointer;">
+            ✅ <!--Orden lista-->
             </button>
 
-            <button class="edit" style="background-color: #ffc107; color: black; font-size: 20px; font-weight: bold; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer;">
-              ✏️ <!--Editar-->
+            <button class="edit" style="background-color: #ffc107; color: black; font-size: 20px; font-weight: bold; padding: 30px 40px; border: none; border-radius: 8px; cursor: pointer;">
+            ✏️ <!--Editar-->
             </button>
 
-            <button class="cancel" style="background-color: #dc3545; color: white; font-size: 20px; font-weight: bold; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer;">
-              ❌ <!--Cancelar-->
+            <button class="cancel" style="background-color: #dc3545; color: white; font-size: 20px; font-weight: bold; padding: 30px 60px; border: none; border-radius: 8px; cursor: pointer;">
+            ❌ <!--Cancelar-->
             </button>
 
-            <button class="to-cerradas" style="background-color: #6f42c1; color: white; font-size: 20px; font-weight: bold; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer;">
+            <button class="to-cerradas" style="background-color: #6f42c1; color: white; font-size: 20px; font-weight: bold; padding: 30px 40px; border: none; border-radius: 8px; cursor: pointer;">
               📦📤🔒 <!--Cerrar orden-->
             </button>
           </div>
@@ -1693,6 +1702,7 @@
           form.mesa.value = orden.mesa;
           form.cliente.value = orden.cliente;
           form.nota.value = orden.nota;
+          form.orden.value = orden.orden;
           form.cantidad.value = orden.cantidad || 1;
           form.dataset.editandoDesdeCocina = orden.id;
         };
