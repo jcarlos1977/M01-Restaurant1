@@ -27,7 +27,7 @@
       /*bottom: 0;*/
       width: 100vw;           /* 100% del ancho de la pantalla added */
       height: 100vh;          /* 100% del alto de la pantalla added */
-      background: rgb(187, 187, 212);
+      /*background: rgb(187, 187, 212);*/
       color: black;
       display: flex;
       justify-content: center;
@@ -41,7 +41,7 @@
       width: 830px;
       max-width: 90vw;
       padding: 30px;
-      height: 1450px;
+      height: 1650px;
       gap: 15px;
       font-family: 'Segoe UI', sans-serif;
       font-size: 46px;
@@ -497,7 +497,7 @@
   
   <div class="sticky-header">
     
-    <button id="cambiar-modo" style="position: absolute; top: 10px; right: 100px; background: #06d410; color: white; padding: 26px 12px; border: none; border-radius: 4px; z-index: 10000;">
+    <button id="cambiar-modo" style="position: absolute; top: 10px; right: 100px; background: #06d410; color: white; padding: 26px 12px; border: none; border-radius: 4px;">
       Cambiar modo
     </button>
 
@@ -773,133 +773,234 @@
 
     
     let menuData = [
-      { nombre: "Tacos al Pastor", precio: 2.7, familia: "Tacos" },
-      { nombre: "Tacos de Asada", precio: 2.7, familia: "Tacos" },
-      { nombre: "Tacos de Pollo", precio: 2.7, familia: "Tacos" },
-      { nombre: "Tacos de Tripa", precio: 2.7, familia: "Tacos" },
-      { nombre: "Tacos de Cabeza", precio: 2.7, familia: "Tacos" },
-      { nombre: "Tacos de Lengua", precio: 2.7, familia: "Tacos" },
+      { nombre: "Tacos al Pastor", precio: 1.25, familia: "Tacos" },/*Modifide*/
+      { nombre: "Tacos de Asada", precio: 1.25, familia: "Tacos" },/*Modifide*/
+      { nombre: "Tacos de Pollo", precio: 1.25, familia: "Tacos" },/*Modifide*/
+      { nombre: "Tacos de Tripa", precio: 1.25, familia: "Tacos" },/*Modifide*/
+      { nombre: "Tacos de Cabeza", precio: 1.25, familia: "Tacos" },/*Modifide*/
+      { nombre: "Tacos de Chorizo", precio: 1.25, familia: "Tacos" },/*Modifide*/
 
-      { nombre: "Sopes de Asada", precio: 2.7, familia: "Sopes" },
-      { nombre: "Sopes de Pollo", precio: 2.7, familia: "Sopes" },
-      { nombre: "Sopes de Chorizo", precio: 2.7, familia: "Sopes" },
+      { nombre: "Burrito de Asada", precio: 6.85, familia: "Burritos" },/*Modifide*/
+      { nombre: "Burrito de Pollo", precio: 6.85, familia: "Burritos" },/*Modifide*/
+      { nombre: "Burrito al Pastor", precio: 6.85, familia: "Burritos" },/*Modifide*/           
+      { nombre: "Wet Burrito Green ", precio: 7.75, familia: "Burritos" },/*Modifide*/
+      { nombre: "Wet Burrito Red", precio: 7.75, familia: "Burritos" },/*Modifide*/
+
+      { nombre: "Sopes Asada", precio: 3.50, familia: "Sopes" },/*Modifide*/
+      { nombre: "Sopes Pollo Desebrado", precio: 3.50, familia: "Sopes" },/*Modifide*/
+      { nombre: "Sopes Pollo Asado", precio: 3.50, familia: "Sopes" },/*Modifide*/
+      { nombre: "Sopes al Pastos", precio: 3.50, familia: "Sopes" },/*Modifide*/
+      { nombre: "Sopes Tinga", precio: 3.50, familia: "Sopes" },/*Modifide*/
+      { nombre: "Sopes Chorizo", precio: 3.50, familia: "Sopes" },/*Modifide*/
+
+      { nombre: "Caldo de Pollo", precio: 9.20, familia: "Caldos" },/*Modifide*/
+      { nombre: "Caldo de Res", precio: 9.20, familia: "Caldos" },/*Modifide*/
+      { nombre: "Pozole", precio: 9.20, familia: "Caldos" },/*Modifide*/
+      { nombre: "Menudo", precio: 9.20, familia: "Caldos" },/*Modifide*/
+
+      { nombre: "Enchiladas", precio: 7.0, familia: "Platillos" },/*Modifide*/
+      { nombre: "Enchiladas con Mole", precio: 8.50, familia: "Platillos" },/*Modifide*/ 
+      { nombre: "Flautas", precio: 7.0, familia: "Platillos" },/*Modifide*/
+      { nombre: "Pipian", precio: 8.50, familia: "Platillos" },/*Modifide*/
+      { nombre: "Mole", precio: 8.50, familia: "Platillos" },/*Modifide*/
+      { nombre: "Pechuga Asada", precio: 8.0, familia: "Platillos" },/*Modifide*/
+      { nombre: "Pechuga Empanisada", precio: 8.0, familia: "Platillos" },/*Modifide*/
+      { nombre: "Costillas en Salsa Roja", precio: 8.0, familia: "Platillos" },/*Modifide*/
+      { nombre: "Costillas en Salsa Verde", precio: 8.0, familia: "Platillos" },/*Modifide*/
+      { nombre: "Arranchera con Chile Relleno", precio: 11.0, familia: "Platillos" },/*Modifide*/
+      { nombre: "Lomo Enchilado", precio: 7.99, familia: "Platillos" },/*Modifide*/
+      { nombre: "Carne Asada", precio: 9.99, familia: "Platillos" },/*Modifide*/
+      { nombre: "Tostada", precio: 3.0, familia: "Platillos" },/*Modifide*/
+      { nombre: "Chile Relleno", precio: 7.99, familia: "Platillos" },/*Modifide*/
+      { nombre: "Racnchera con Chile Relleno", precio: 7.99, familia: "Platillos" },/*Modifide*/
+
+      { nombre: "Quesadillas Tortillas Arina", precio: 3.95, familia: "Platillos" },/*Modifide*/
+      { nombre: "Quesadillas Tortillas Maiz", precio: 5.75, familia: "Platillos" },/*Modifide*/
+      { nombre: "Quesadillas Con Carne", precio: 5.75, familia: "Platillos" },/*Modifide*/
+      { nombre: "Quesadillas Con Carne Fri Y Arroz", precio: 7.50, familia: "Platillos" },/*Modifide*/
       
+      { nombre: "Chilaquiles Simples", precio: 6.0, familia: "Chilaquiles" },/*Modifide*/
+      { nombre: "Chilaquiles con Huevos Estrellados", precio: 6.0, familia: "Chilaquiles" },/*Modifide*/
+      { nombre: "Chilaquiles con Pollo", precio: 6.0, familia: "Chilaquiles" },/*Modifide*/
+      { nombre: "Chilaquiles con Huevos Revueltos", precio: 6.0, familia: "Chilaquiles" },/*Modifide*/
+      { nombre: "Chilaquiles con Ranchera", precio: 6.0, familia: "Chilaquiles" },/*Modifide*/
+      { nombre: "Chilaquiles con Asada", precio: 6.0, familia: "Chilaquiles" },/*Modifide*/      
 
-      { nombre: "Caldo de Pollo", precio: 2.7, familia: "Caldos" },
-      { nombre: "Caldo de Res", precio: 2.7, familia: "Caldos" },
-      { nombre: "Pozole", precio: 2.7, familia: "Caldos" },
-      { nombre: "Menudo", precio: 2.7, familia: "Caldos" },
+      { nombre: "Tortas de Milanesa", precio: 6.0, familia: "Tortas" },/*Modifide*/
+      { nombre: "Tortas de Pierna", precio: 6.0, familia: "Tortas" },/*Modifide*/
+      { nombre: "Tortas de Jamon", precio: 6.0, familia: "Tortas" },/*Modifide*/
+      { nombre: "Tortas de Carne Asada", precio: 6.0, familia: "Tortas" },/*Modifide*/
+      { nombre: "Tortas de Pechuga Asada", precio: 6.0, familia: "Tortas" },/*Modifide*/
+      { nombre: "Tortas de Pechuga Empnizada", precio: 6.0, familia: "Tortas" },/*Modifide*/
 
-
-      { nombre: "Enchiladas Suizas", precio: 8.0, familia: "Platillos" },
-      { nombre: "Flautas", precio: 6.0, familia: "Platillos" },
-      { nombre: "Quesadillas sencillas", precio: 6.0, familia: "Platillos" },
-      { nombre: "Quesadillas con carne", precio: 6.0, familia: "Platillos" },
-      { nombre: "Chilaquiles con ranchera", precio: 6.0, familia: "Platillos" },
-      { nombre: "Chilaquiles con asada", precio: 6.0, familia: "Platillos" },
-      { nombre: "Chilaquiles con pollo", precio: 6.0, familia: "Platillos" },
-      { nombre: "Chilaquiles con huevos revueltos", precio: 6.0, familia: "Platillos" },
-      { nombre: "Chilaquiles con huevos estrellados", precio: 6.0, familia: "Platillos" },
-      { nombre: "Chilaquiles simples", precio: 6.0, familia: "Platillos" },
-
-      { nombre: "Tortas De milanesa", precio: 10.0, familia: "Tortas" },
-      { nombre: "Tortas De pierna", precio: 10.0, familia: "Tortas" },
-      { nombre: "Tortas De jamon", precio: 10.0, familia: "Tortas" },
-      { nombre: "Tortas De ranchera", precio: 10.0, familia: "Tortas" },
-      { nombre: "Tortas De pollo asado", precio: 10.0, familia: "Tortas" },
-      { nombre: "Tortas De pollo empanizado", precio: 10.0, familia: "Tortas" },
-
-      { nombre: "Cubanas De pierna", precio: 10.0, familia: "Tortas Cubanas" },
-      { nombre: "Cubanas De jamon", precio: 10.0, familia: "Tortas Cubanas" },
-      { nombre: "Cubanas De milanesa", precio: 10.0, familia: "Tortas Cubanas" },
+      { nombre: "Cubanas de Pierna", precio: 6.0, familia: "Tortas Cubanas" },/*Modifide*/
+      { nombre: "Cubanas de Jamon", precio: 6.0, familia: "Tortas Cubanas" },/*Modifide*/
+      { nombre: "Cubanas de Milanesa", precio: 6.0, familia: "Tortas Cubanas" },/*Modifide*/
+      { nombre: "Cubanas de Asada", precio: 6.0, familia: "Tortas Cubanas" },/*Modifide*/
+      { nombre: "Cubanas de Ranchera", precio: 6.0, familia: "Tortas Cubanas" },/*Modifide*/
+      { nombre: "Cubanas de Pollo Asado", precio: 6.0, familia: "Tortas Cubanas" },/*Modifide*/
+      { nombre: "Cubanas de Pollo Empanizado", precio: 6.0, familia: "Tortas Cubanas" },/*Modifide*/
       
-      { nombre: "Cemitas De milanesa", precio: 10.0, familia: "Cemitas" },
-      { nombre: "Cemitas De pierna", precio: 10.0, familia: "Cemitas" },
-      { nombre: "Cemitas De jamon", precio: 10.0, familia: "Cemitas" },
-      { nombre: "Cemitas De ranchera", precio: 10.0, familia: "Cemitas" },
-      { nombre: "Cemitas De pollo asado", precio: 10.0, familia: "Cemitas" },
-      { nombre: "Cemitas De pollo empanizado", precio: 10.0, familia: "Cemitas" },
+      { nombre: "Cemitas de Jamon", precio: 7.50, familia: "Cemitas" },/*Modifide*/
+      { nombre: "Cemitas de Quesillo", precio: 7.50, familia: "Cemitas" },/*Modifide*/
+      { nombre: "Cemitas de Milanesa", precio: 7.50, familia: "Cemitas" },/*Modifide*/
+      { nombre: "Cemitas de Pollo Empanizado", precio: 7.50, familia: "Cemitas" },/*Modifide*/
+      { nombre: "Cemitas de Pollo Asado", precio: 7.50, familia: "Cemitas" },/*Modifide*/
+      { nombre: "Cemitas de Carne Asda", precio: 7.50, familia: "Cemitas" },/*Modifide*/
+      { nombre: "Cemitas de Pierna", precio: 7.50, familia: "Cemitas" },/*Modifide*/
+      
+      { nombre: "Huevos Divorciados Regulares", precio: 6.0, familia: "Desayunos" },/*Modifide*/
+      { nombre: "Huevos Divorciados Con Mole", precio: 6.99, familia: "Desayunos" },/*Modifide*/
+      { nombre: "Huevos Estrellados Regulares", precio: 5.50, familia: "Desayunos" },/*Modifide*/
+      { nombre: "Huevos Estrellados Speciales", precio: 6.50, familia: "Desayunos" },/*Modifide*/
+      { nombre: "Huevos al la Mexicana", precio: 6.75, familia: "Desayunos" },/*Modifide*/
+      { nombre: "Huevos con Chorizo", precio: 6.0, familia: "Desayunos" },/*Modifide*/
+      { nombre: "Huevos con Jamon", precio: 6.0, familia: "Desayunos" },/*Modifide*/
+      { nombre: "Huevos con Salchicha", precio: 6.0, familia: "Desayunos" },/*Modifide*/
+      { nombre: "Huevos con Tozino", precio: 6.0, familia: "Desayunos" },/*Modifide*/
 
-      { nombre: "Orchata", precio: 2.0, familia: "Bebidas" },
-      { nombre: "Jamaica", precio: 2.0, familia: "Bebidas" },
-      { nombre: "Tamarindo", precio: 2.0, familia: "Bebidas" },
-      { nombre: "Sandia", precio: 2.0, familia: "Bebidas" },
-      { nombre: "Soda de botella", precio: 2.0, familia: "Bebidas" },
-      { nombre: "Soda de lata", precio: 2.0, familia: "Bebidas" }
+
+      { nombre: "Agua de Orchata", precio: 2.0, familia: "Bebidas" },/*Modifide*/
+      { nombre: "Agua de Jamaica", precio: 2.0, familia: "Bebidas" },/*Modifide*/
+      { nombre: "Agua de Tamarindo", precio: 2.0, familia: "Bebidas" },/*Modifide*/
+      { nombre: "Agua de Piña", precio: 2.0, familia: "Bebidas" },/*Modifide*/
+      { nombre: "Agua de Limon", precio: 2.0, familia: "Bebidas" },/*Modifide*/
+      { nombre: "Soda de Botella", precio: 1.50, familia: "Bebidas" },/*Modifide*/
+      { nombre: "Soda de Lata", precio: 1.0, familia: "Bebidas" },/*Modifide*/
+      { nombre: "Smoothies / Fresa", precio: 3.0, familia: "Bebidas" },/*Modifide*/
+      { nombre: "Smoothies / Platano", precio: 3.0, familia: "Bebidas" },/*Modifide*/
+      { nombre: "Smoothies / Mango", precio: 3.0, familia: "Bebidas" },/*Modifide*/
+      { nombre: "Smoothies / Piña", precio: 3.0, familia: "Bebidas" }/*Modifide*/
 
     ]; // Esto se llena al cargar tu menú, por ejemplo desde Firebase o un archivo JSON
     
     const productos = [
+
+      { nombre: "Huevos Divorciados Regulares", precio: 6.0, familia: "Desayunos" },/*Modifide*/
+      { nombre: "Huevos Divorciados Con Mole", precio: 6.99, familia: "Desayunos" },/*Modifide*/
+      { nombre: "Huevos Estrellados Regulares", precio: 5.50, familia: "Desayunos" },/*Modifide*/
+      { nombre: "Huevos Estrellados Speciales", precio: 6.50, familia: "Desayunos" },/*Modifide*/
+      { nombre: "Huevos al la Mexicana", precio: 6.75, familia: "Desayunos" },/*Modifide*/
+      { nombre: "Huevos con Chorizo", precio: 6.0, familia: "Desayunos" },/*Modifide*/
+      { nombre: "Huevos con Jamon", precio: 6.0, familia: "Desayunos" },/*Modifide*/
+      { nombre: "Huevos con Salchicha", precio: 6.0, familia: "Desayunos" },/*Modifide*/
+      { nombre: "Huevos con Tozino", precio: 6.0, familia: "Desayunos" },/*Modifide*/
       
-      { nombre: "Tacos al Pastor", precio: 2.7, familia: "Tacos" },
-      { nombre: "Tacos de Asada", precio: 2.7, familia: "Tacos" },
-      { nombre: "Tacos de Pollo", precio: 2.7, familia: "Tacos" },
-      { nombre: "Tacos de Tripa", precio: 2.7, familia: "Tacos" },
-      { nombre: "Tacos de Cabeza", precio: 2.7, familia: "Tacos" },
-      { nombre: "Tacos de Lengua", precio: 2.7, familia: "Tacos" },
+      { nombre: "Tacos al Pastor", precio: 1.25, familia: "Tacos" },/*Modifide*/
+      { nombre: "Tacos de Asada", precio: 1.25, familia: "Tacos" },/*Modifide*/
+      { nombre: "Tacos de Pollo", precio: 1.25, familia: "Tacos" },/*Modifide*/
+      { nombre: "Tacos de Tripa", precio: 1.25, familia: "Tacos" },/*Modifide*/
+      { nombre: "Tacos de Cabeza", precio: 1.25, familia: "Tacos" },/*Modifide*/
+      { nombre: "Tacos de Chorizo", precio: 1.25, familia: "Tacos" },/*Modifide*/
 
-      { nombre: "Sopes de Asada", precio: 2.7, familia: "Sopes" },
-      { nombre: "Sopes de Pollo", precio: 2.7, familia: "Sopes" },
-      { nombre: "Sopes de Chorizo", precio: 2.7, familia: "Sopes" },
+      { nombre: "Sopes Asada", precio: 3.50, familia: "Sopes" },/*Modifide*/
+      { nombre: "Sopes Pollo Desebrado", precio: 3.50, familia: "Sopes" },/*Modifide*/
+      { nombre: "Sopes Pollo Asado", precio: 3.50, familia: "Sopes" },/*Modifide*/
+      { nombre: "Sopes al Pastos", precio: 3.50, familia: "Sopes" },/*Modifide*/
+      { nombre: "Sopes Tinga", precio: 3.50, familia: "Sopes" },/*Modifide*/
+      { nombre: "Sopes Chorizo", precio: 3.50, familia: "Sopes" },/*Modifide*/
+
+      { nombre: "Burrito de Asada", precio: 6.85, familia: "Burritos" },/*Modifide*/
+      { nombre: "Burrito de Pollo", precio: 6.85, familia: "Burritos" },/*Modifide*/
+      { nombre: "Burrito al Pastor", precio: 6.85, familia: "Burritos" },/*Modifide*/           
+      { nombre: "Wet Burrito Green ", precio: 7.75, familia: "Burritos" },/*Modifide*/
+      { nombre: "Wet Burrito Red", precio: 7.75, familia: "Burritos" },/*Modifide*/      
+
+      { nombre: "Caldo de Pollo", precio: 9.20, familia: "Caldos" },/*Modifide*/
+      { nombre: "Caldo de Res", precio: 9.20, familia: "Caldos" },/*Modifide*/
+      { nombre: "Pozole", precio: 9.20, familia: "Caldos" },/*Modifide*/
+      { nombre: "Menudo", precio: 9.20, familia: "Caldos" },/*Modifide*/
+
+      { nombre: "Enchiladas", precio: 7.0, familia: "Platillos" },/*Modifide*/
+      { nombre: "Enchiladas con Mole", precio: 8.50, familia: "Platillos" },/*Modifide*/ 
+      { nombre: "Flautas", precio: 7.0, familia: "Platillos" },/*Modifide*/
+      { nombre: "Pipian", precio: 8.50, familia: "Platillos" },/*Modifide*/
+      { nombre: "Mole", precio: 8.50, familia: "Platillos" },/*Modifide*/
+      { nombre: "Pechuga Asada", precio: 8.0, familia: "Platillos" },/*Modifide*/
+      { nombre: "Pechuga Empanisada", precio: 8.0, familia: "Platillos" },/*Modifide*/
+      { nombre: "Costillas en Salsa Roja", precio: 8.0, familia: "Platillos" },/*Modifide*/
+      { nombre: "Costillas en Salsa Verde", precio: 8.0, familia: "Platillos" },/*Modifide*/
+      { nombre: "Arranchera con Chile Relleno", precio: 11.0, familia: "Platillos" },/*Modifide*/
+      { nombre: "Lomo Enchilado", precio: 7.99, familia: "Platillos" },/*Modifide*/
+      { nombre: "Carne Asada", precio: 9.99, familia: "Platillos" },/*Modifide*/
+      { nombre: "Tostada", precio: 3.0, familia: "Platillos" },/*Modifide*/
+      { nombre: "Chile Relleno", precio: 7.99, familia: "Platillos" },/*Modifide*/
+      { nombre: "Racnchera con Chile Relleno", precio: 7.99, familia: "Platillos" },/*Modifide*/
+
+      { nombre: "Quesadillas Tortillas Arina", precio: 3.95, familia: "Platillos" },/*Modifide*/
+      { nombre: "Quesadillas Tortillas Maiz", precio: 5.75, familia: "Platillos" },/*Modifide*/
+      { nombre: "Quesadillas Con Carne", precio: 5.75, familia: "Platillos" },/*Modifide*/
+      { nombre: "Quesadillas Con Carne Fri Y Arroz", precio: 7.50, familia: "Platillos" },/*Modifide*/
       
+      { nombre: "Chilaquiles Simples", precio: 6.0, familia: "Chilaquiles" },/*Modifide*/
+      { nombre: "Chilaquiles con Huevos Estrellados", precio: 6.0, familia: "Chilaquiles" },/*Modifide*/
+      { nombre: "Chilaquiles con Pollo", precio: 6.0, familia: "Chilaquiles" },/*Modifide*/
+      { nombre: "Chilaquiles con Huevos Revueltos", precio: 6.0, familia: "Chilaquiles" },/*Modifide*/
+      { nombre: "Chilaquiles con Ranchera", precio: 6.0, familia: "Chilaquiles" },/*Modifide*/
+      { nombre: "Chilaquiles con Asada", precio: 6.0, familia: "Chilaquiles" },/*Modifide*/      
 
-      { nombre: "Caldo de Pollo", precio: 2.7, familia: "Caldos" },
-      { nombre: "Caldo de Res", precio: 2.7, familia: "Caldos" },
-      { nombre: "Pozole", precio: 2.7, familia: "Caldos" },
-      { nombre: "Menudo", precio: 2.7, familia: "Caldos" },
+      { nombre: "Tortas de Milanesa", precio: 6.0, familia: "Tortas" },/*Modifide*/
+      { nombre: "Tortas de Pierna", precio: 6.0, familia: "Tortas" },/*Modifide*/
+      { nombre: "Tortas de Jamon", precio: 6.0, familia: "Tortas" },/*Modifide*/
+      { nombre: "Tortas de Carne Asada", precio: 6.0, familia: "Tortas" },/*Modifide*/
+      { nombre: "Tortas de Pechuga Asada", precio: 6.0, familia: "Tortas" },/*Modifide*/
+      { nombre: "Tortas de Pechuga Empnizada", precio: 6.0, familia: "Tortas" },/*Modifide*/
 
-
-      { nombre: "Enchiladas Suizas", precio: 8.0, familia: "Platillos" },
-      { nombre: "Flautas", precio: 6.0, familia: "Platillos" },
-      { nombre: "Quesadillas sencillas", precio: 6.0, familia: "Platillos" },
-      { nombre: "Quesadillas con carne", precio: 6.0, familia: "Platillos" },
-      { nombre: "Chilaquiles con ranchera", precio: 6.0, familia: "Platillos" },
-      { nombre: "Chilaquiles con asada", precio: 6.0, familia: "Platillos" },
-      { nombre: "Chilaquiles con pollo", precio: 6.0, familia: "Platillos" },
-      { nombre: "Chilaquiles con huevos revueltos", precio: 6.0, familia: "Platillos" },
-      { nombre: "Chilaquiles con huevos estrellados", precio: 6.0, familia: "Platillos" },
-      { nombre: "Chilaquiles simples", precio: 6.0, familia: "Platillos" },
-
-      { nombre: "Tortas De milanesa", precio: 10.0, familia: "Tortas" },
-      { nombre: "Tortas De pierna", precio: 10.0, familia: "Tortas" },
-      { nombre: "Tortas De jamon", precio: 10.0, familia: "Tortas" },
-      { nombre: "Tortas De ranchera", precio: 10.0, familia: "Tortas" },
-      { nombre: "Tortas De pollo asado", precio: 10.0, familia: "Tortas" },
-      { nombre: "Tortas De pollo empanizado", precio: 10.0, familia: "Tortas" },
-
-      { nombre: "Cubanas De pierna", precio: 10.0, familia: "Tortas Cubanas" },
-      { nombre: "Cubanas De jamon", precio: 10.0, familia: "Tortas Cubanas" },
-      { nombre: "Cubanas De milanesa", precio: 10.0, familia: "Tortas Cubanas" },
+      { nombre: "Cubanas de Pierna", precio: 6.0, familia: "Tortas Cubanas" },/*Modifide*/
+      { nombre: "Cubanas de Jamon", precio: 6.0, familia: "Tortas Cubanas" },/*Modifide*/
+      { nombre: "Cubanas de Milanesa", precio: 6.0, familia: "Tortas Cubanas" },/*Modifide*/
+      { nombre: "Cubanas de Asada", precio: 6.0, familia: "Tortas Cubanas" },/*Modifide*/
+      { nombre: "Cubanas de Ranchera", precio: 6.0, familia: "Tortas Cubanas" },/*Modifide*/
+      { nombre: "Cubanas de Pollo Asado", precio: 6.0, familia: "Tortas Cubanas" },/*Modifide*/
+      { nombre: "Cubanas de Pollo Empanizado", precio: 6.0, familia: "Tortas Cubanas" },/*Modifide*/
       
-      { nombre: "Cemitas De milanesa", precio: 10.0, familia: "Cemitas" },
-      { nombre: "Cemitas De pierna", precio: 10.0, familia: "Cemitas" },
-      { nombre: "Cemitas De jamon", precio: 10.0, familia: "Cemitas" },
-      { nombre: "Cemitas De ranchera", precio: 10.0, familia: "Cemitas" },
-      { nombre: "Cemitas De pollo asado", precio: 10.0, familia: "Cemitas" },
-      { nombre: "Cemitas De pollo empanizado", precio: 10.0, familia: "Cemitas" },
-
-      { nombre: "Orchata", precio: 2.0, familia: "Bebidas" },
-      { nombre: "Jamaica", precio: 2.0, familia: "Bebidas" },
-      { nombre: "Tamarindo", precio: 2.0, familia: "Bebidas" },
-      { nombre: "Sandia", precio: 2.0, familia: "Bebidas" },
-      { nombre: "Soda de botella", precio: 2.0, familia: "Bebidas" },
-      { nombre: "Soda de lata", precio: 2.0, familia: "Bebidas" }
+      { nombre: "Cemitas de Jamon", precio: 7.50, familia: "Cemitas" },/*Modifide*/
+      { nombre: "Cemitas de Quesillo", precio: 7.50, familia: "Cemitas" },/*Modifide*/
+      { nombre: "Cemitas de Milanesa", precio: 7.50, familia: "Cemitas" },/*Modifide*/
+      { nombre: "Cemitas de Pollo Empanizado", precio: 7.50, familia: "Cemitas" },/*Modifide*/
+      { nombre: "Cemitas de Pollo Asado", precio: 7.50, familia: "Cemitas" },/*Modifide*/
+      { nombre: "Cemitas de Carne Asda", precio: 7.50, familia: "Cemitas" },/*Modifide*/
+      { nombre: "Cemitas de Pierna", precio: 7.50, familia: "Cemitas" },/*Modifide*/
+      
+      
+      { nombre: "Agua de Orchata", precio: 2.0, familia: "Bebidas" },/*Modifide*/
+      { nombre: "Agua de Jamaica", precio: 2.0, familia: "Bebidas" },/*Modifide*/
+      { nombre: "Agua de Tamarindo", precio: 2.0, familia: "Bebidas" },/*Modifide*/
+      { nombre: "Agua de Piña", precio: 2.0, familia: "Bebidas" },/*Modifide*/
+      { nombre: "Agua de Limon", precio: 2.0, familia: "Bebidas" },/*Modifide*/
+      { nombre: "Soda de Botella", precio: 1.50, familia: "Bebidas" },/*Modifide*/
+      { nombre: "Soda de Lata", precio: 1.0, familia: "Bebidas" },/*Modifide*/
+      { nombre: "Smoothies / Fresa", precio: 3.0, familia: "Bebidas" },/*Modifide*/
+      { nombre: "Smoothies / Platano", precio: 3.0, familia: "Bebidas" },/*Modifide*/
+      { nombre: "Smoothies / Mango", precio: 3.0, familia: "Bebidas" },/*Modifide*/
+      { nombre: "Smoothies / Piña", precio: 3.0, familia: "Bebidas" }/*Modifide*/
+            
       
       
     ];
     
 
     const itemOptions = {
+
+      "Sopes de Asada": ["Con todo:", "No cebolla","No Cilantro", "Salsa verde", "Salsa roja"],
+      "Sopes Pollo Desebrado": ["Con todo:", "No cebolla","No Cilantro", "Salsa verde", "Salsa roja"],
+      "Sopes Pollo Asado": ["Con todo:", "No cebolla","No Cilantro", "Salsa verde", "Salsa roja"],
+      "Sopes al Pastos": ["Con todo:", "No cebolla","No Cilantro", "Salsa verde", "Salsa roja"],
+      "Sopes Tinga": ["Con todo:", "No cebolla","No Cilantro", "Salsa verde", "Salsa roja"],
+      "Sopes Tinga": ["Con todo:", "No cebolla","No Cilantro", "Salsa verde", "Salsa roja"],
+
       "Tacos al Pastor": ["Con todo:", "No cebolla","No Cilantro", "Salsa verde", "Salsa roja"],
       "Tacos de Asada": ["Con todo:", "No cebolla","No Cilantro", "Salsa verde", "Salsa roja"],
       "Tacos de Pollo": ["Con todo:", "No cebolla","No Cilantro", "Salsa verde", "Salsa roja"],
       "Tacos de Tripa": ["Con todo:", "No cebolla","No Cilantro", "Salsa verde", "Salsa roja"],
       "Tacos de Cabeza": ["Con todo:", "No cebolla","No Cilantro", "Salsa verde", "Salsa roja"],
-      "Tacos de Lengua": ["Con todo:", "No cebolla","No Cilantro", "Salsa verde", "Salsa roja"], 
+      "Tacos de Chorizo": ["Con todo:", "No cebolla","No Cilantro", "Salsa verde", "Salsa roja"], 
       
-      "Sopes de Asada": ["Con todo:", "No crema","No repollo", "Salsa verde", "Salsa roja"],
-      "Sopes de Pollo": ["Con todo:", "No crema","No repollo", "Salsa verde", "Salsa roja"],
-      "Sopes de Chorizo": ["Con todo:", "No crema","No repollo", "Salsa verde", "Salsa roja"],
+      "Burrito de Asada": ["Con todo:", "No crema","No repollo", "Salsa verde", "Salsa roja"],
+      "Burrito de Pollo": ["Con todo:", "No crema","No repollo", "Salsa verde", "Salsa roja"],
+      "Burrito al pastor": ["Con todo:", "No crema","No repollo", "Salsa verde", "Salsa roja"],
+      "Wet Burrito Green": ["Con todo:", "No crema","No repollo", "Salsa verde", "Salsa roja"],
+      "Wet Burrito Red": ["Con todo:", "No crema","No repollo", "Salsa verde", "Salsa roja"],
            
       "Caldo de Pollo": ["Con todo:", "No cebolla", "No Cilantro", "Salsa verde", "Salsa roja"],
       "Caldo de Res": ["Con todo:", "No cebolla", "No Cilantro", "Salsa verde", "Salsa roja"],
@@ -907,40 +1008,79 @@
       "Menudo": ["Con todo:", "No cebolla", "No repollo", "No jitomate"],
 
       
-      "Enchiladas Suizas": ["Con todo:", "No No crema", "No lechuga", "No jitomate", "Rojas", "Verdes"],
+      "Enchiladas": ["Con todo:", "No No crema", "No lechuga", "No jitomate", "Rojas", "Verdes"],
+      "Enchiladas con Mole": ["Con todo:", "No No crema", "No lechuga", "No jitomate", "Rojas", "Verdes"],
       "Flautas": ["Con todo:", "No No crema", "No lechuga", "No jitomate", "Salsa roja", "Salsa verde"],
-      "Quesadillas sencillas": ["Con todo:", "No No crema", "No lechuga", "No jitomate", "Tortilla de arina", "Tortilla de maiz"],
-      "Quesadillas con carne": ["Con todo:", "No No crema", "No lechuga", "No jitomate", "Asada", "Pollo","Tortilla de arina", "Tortilla de maiz"],
-      "Chilaquiles con ranchera": ["Con todo:", "No No crema", "No queso", "No Frijoles", "No arroz", "Rojos", "Verdes"],
-      "Chilaquiles con asada": ["Con todo:", "No No crema", "No queso", "No Frijoles", "No arroz", "Rojos", "Verdes"],
-      "Chilaquiles con pollo": ["Con todo:", "No No crema", "No queso", "No Frijoles", "No arroz", "Rojos", "Verdes"],
-      "Chilaquiles con huevos revueltos": ["Con todo:", "No No crema", "No queso", "No Frijoles", "No arroz", "Rojos", "Verdes"],
-      "Chilaquiles simples": ["Con todo:", "No No crema", "No queso", "No Frijoles", "No arroz", "Rojos", "Verdes"],
+      "Pipian": ["Con todo:", "No No crema", "No lechuga", "No jitomate", "Salsa roja", "Salsa verde"],
+      "Mole": ["Con todo:", "No No crema", "No lechuga", "No jitomate", "Salsa roja", "Salsa verde"],
+      "Pechuga Asada": ["Con todo:", "No No crema", "No lechuga", "No jitomate", "Salsa roja", "Salsa verde"],
+      "Pechuga Empanizda": ["Con todo:", "No No crema", "No lechuga", "No jitomate", "Salsa roja", "Salsa verde"],
+      "Costillas en Salsa Roja": ["Con todo:", "No No crema", "No lechuga", "No jitomate", "Salsa roja", "Salsa verde"],
+      "Costillas en Salsa Verde": ["Con todo:", "No No crema", "No lechuga", "No jitomate", "Salsa roja", "Salsa verde"],
+      "Arranchera con Chile Relleno": ["Con todo:", "No No crema", "No lechuga", "No jitomate", "Salsa roja", "Salsa verde"],
+      "Lomo Enchilado": ["Con todo:", "No No crema", "No lechuga", "No jitomate", "Salsa roja", "Salsa verde"],
+      "Carne Asada": ["Con todo:", "No No crema", "No lechuga", "No jitomate", "Salsa roja", "Salsa verde"],
+      "Tostada": ["Con todo:", "No No crema", "No lechuga", "No jitomate", "Salsa roja", "Salsa verde"],
+      "Chile Relleno": ["Con todo:", "No No crema", "No lechuga", "No jitomate", "Salsa roja", "Salsa verde"],
+      "Racnchera con Chile Relleno": ["Con todo:", "No No crema", "No lechuga", "No jitomate", "Salsa roja", "Salsa verde"],
+      
 
-      "Tortas De milanesa": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
-      "Tortas De pierna": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
-      "Tortas De jamon": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
-      "Tortas De ranchera": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
-      "Tortas De pollo asado": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
-      "Tortas De pollo empanizado": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Quesadillas Tortillas Arina": ["Con todo:", "No No crema", "No lechuga", "No jitomate", "Tortilla de arina", "Tortilla de maiz"],
+      "Quesadillas Tortillas Maiz": ["Con todo:", "No No crema", "No lechuga", "No jitomate", "Asada", "Pollo","Tortilla de arina", "Tortilla de maiz"],
+      "Quesadillas Con Carne": ["Con todo:", "No No crema", "No lechuga", "No jitomate", "Asada", "Pollo","Tortilla de arina", "Tortilla de maiz"],
+      "Quesadillas Con Carne Fri Y Arroz": ["Con todo:", "No No crema", "No lechuga", "No jitomate", "Asada", "Pollo","Tortilla de arina", "Tortilla de maiz"],
 
-      "Cubanas De pierna": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
-      "Cubanas De jamon": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
-      "Cubanas De milanesa": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Chilaquiles Simples": ["Con todo:", "No No crema", "No queso", "No Frijoles", "No arroz", "Rojos", "Verdes"],
+      "Chilaquiles con Huevos Estrellados": ["Con todo:", "No No crema", "No queso", "No Frijoles", "No arroz", "Rojos", "Verdes"],
+      "Chilaquiles con Pollo": ["Con todo:", "No No crema", "No queso", "No Frijoles", "No arroz", "Rojos", "Verdes"],
+      "Chilaquiles con Huevos Revueltos": ["Con todo:", "No No crema", "No queso", "No Frijoles", "No arroz", "Rojos", "Verdes"],
+      "Chilaquiles con Ranchera": ["Con todo:", "No No crema", "No queso", "No Frijoles", "No arroz", "Rojos", "Verdes"],
+      "Chilaquiles con Asada": ["Con todo:", "No No crema", "No queso", "No Frijoles", "No arroz", "Rojos", "Verdes"],
 
-      "Cemitas De milanesa": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
-      "Cemitas De pierna": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
-      "Cemitas De jamon": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
-      "Cemitas De ranchera": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
-      "Cemitas De pollo asado": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
-      "Cemitas De pollo empanizado": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Tortas de Milanesa": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Tortas de Pierna": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Tortas de Jamon": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Tortas de Carne Asada": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Tortas de Pechuga Asada": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Tortas de Pechuga Empanizada": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
 
-      "Orchata": ["Con hielo", "Sin hielo", "Tamaño chico", "Tamaño grande"],
-      "Jamaica": ["Con hielo", "Sin hielo", "Tamaño chico", "Tamaño grande"],
-      "Tamarindo": ["Con hielo", "Sin hielo", "Tamaño chico", "Tamaño grande"],
-      "Sandia": ["Con hielo", "Sin hielo", "Tamaño chico", "Tamaño grande"],
+      "Cubanas de Pierna": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Cubanas de Jamon": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Cubanas de Milanesa": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Cubanas de Asada": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Cubanas de Ranchera": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Cubanas de Pollo Asado": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Cubanas de Pollo Empanizado": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+
+      "Cemitas de Jamon": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Cemitas de Quesillo": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Cemitas de Milanesa": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Cemitas de Pollo Empanizado": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Cemitas de Pollo Asado": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Cemitas de Carne Asada": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Cemitas de Pierna": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+
+      "Huevos Divorciados Regulares": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Huevos Divorciados Con Mole": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Huevos Estrellados Regulares": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Huevos Estrellados Speciales": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Huevos al la Mexicana": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Huevos con Chorizo": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Huevos con Jamon": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Huevos con Salchicha": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+      "Huevos con Tozino": ["Con todo:", "No lechuga", "No jitomate", "No crema", "No aguacate", "No cebolla"],
+
+      "Agua de Orchata": ["Con hielo", "Sin hielo", "Tamaño chico", "Tamaño grande"],
+      "Agua de Jamaica": ["Con hielo", "Sin hielo", "Tamaño chico", "Tamaño grande"],
+      "Agua de Tamarindo": ["Con hielo", "Sin hielo", "Tamaño chico", "Tamaño grande"],
+      "Agua De Piña": ["Con hielo", "Sin hielo", "Tamaño chico", "Tamaño grande"],
+      "Agua De Limon": ["Con hielo", "Sin hielo", "Tamaño chico", "Tamaño grande"],
       "Soda de botella": ["Fanta","Pepsi","Coca","Con hielo", "Sin hielo", "Tamaño chico", "Tamaño grande"],
-      "Soda de lata": ["Fanta","Pepsi","Coca","Con hielo", "Sin hielo", "Tamaño chico", "Tamaño grande"]
+      "Soda de lata": ["Fanta","Pepsi","Coca","Con hielo", "Sin hielo", "Tamaño chico", "Tamaño grande"],
+      "Smoothie / Fresa": ["Fanta","Pepsi","Coca","Con hielo", "Sin hielo", "Tamaño chico", "Tamaño grande"],
+      "Smoothie / Platano": ["Fanta","Pepsi","Coca","Con hielo", "Sin hielo", "Tamaño chico", "Tamaño grande"],
+      "Smoothie / Mango": ["Fanta","Pepsi","Coca","Con hielo", "Sin hielo", "Tamaño chico", "Tamaño grande"],
+      "Smoothie / Piña": ["Fanta","Pepsi","Coca","Con hielo", "Sin hielo", "Tamaño chico", "Tamaño grande"]
       
       
     };
@@ -1139,15 +1279,18 @@
 
       // 🔧 Asignación de familia a columna
       const familiasPorColumna = {
-        "Bebidas": 2,
-        "Platillos": 2,
-        "Quesadillas": 2,
+        "Desayunos": 1,
         "Tacos": 1,
         "Sopes": 1,
+        "Burritos": 1,
+        "Bebidas": 1,
+        "Chilaquiles": 2,
+        "Platillos": 2,
         "Caldos": 2,
-        "Tortas": 1,
-        "Tortas Cubanas": 1,
-        "Cemitas": 1,
+        "Tortas": 2,
+        "Tortas Cubanas": 2,
+        "Cemitas": 2,
+        
 
         // Agrega más como necesites
       };
@@ -1217,7 +1360,7 @@
           <input type="text" id="mesero" style="background-color: #eeefe9; text-align: right; font-size: 40px; font-weight:bold; width: 21%; height: 60px; padding: 10px;" value="${nombreMesero}"/>
         </label><br><br>
 
-        <div style="display: flex; justify-content: flex-start; gap: 210px; margin-top: 10px;">
+        <div style="display: flex; justify-content: flex-start; gap: 20px; margin-top: 10px;">
           <button type="button" id="cancelarOrden" style="background-color: red; font-size: 80px;">Cancelar</button>
           <button type="submit" id="enviarOrden" style="background-color: green; font-size: 80px;">Salvar</button>
         </div>
@@ -2131,4 +2274,3 @@
 </script>
 
 </body></html>
-
