@@ -396,7 +396,7 @@
       background-color: #2196F3; /* Azul */
       color: white;
       border: none;
-      padding: 20px 12px;
+      padding: 20px 70px;
       border-radius: 6px;
       cursor: pointer;
       font-size: 30px;
@@ -1511,9 +1511,11 @@
             <div style="margin-top:10px; background:#fef3c7; padding:10px 12px; border-radius:6px; color:#92400e; font-size:28px;">
               <h1 style="margin:0; font-size:28px;"><strong>Notas: <br> ${orden.nota}</strong></div><br>
 
-            <button class="edit">✏️<!--Editar--></button>
-            <button class="cancel">❌<!--Cancelar--></button>
-            <button class="to-cocina">📝➡️🍳<!--Enviar a cocina--></button>
+            <button class="edit">✏️ Editar</button>
+            <button class="cancel" style="background-color: red; color: white;">
+              <span style="background-color: white; border-radius: 50%; padding: 4px;">❌</span> Cancelar
+            </button>
+            <button class="to-cocina">📝➡️🍳Enviar a cocina</button>
           `;
 
           // resto de los eventos (igual que antes)...
@@ -1666,19 +1668,19 @@
           
           <div style="margin-top: 12px; display: flex; flex-wrap: wrap; gap: 10px;">
             <button class="start" style="background-color: #28a745; color: white; font-size: 20px; font-weight: bold; padding: 30px 40px; border: none; border-radius: 8px; cursor: pointer;">
-            🟢 <!--Comenzar orden-->
+            🟢 Comenzar orden
             </button>
 
             <button class="done" style="background-color: #007bff; color: white; font-size: 20px; font-weight: bold; padding: 30px 40px; border: none; border-radius: 8px; cursor: pointer;">
-            ✅ <!--Orden lista-->
+            ✅ Orden lista
             </button>
 
             <button class="edit" style="background-color: #ffc107; color: black; font-size: 20px; font-weight: bold; padding: 30px 40px; border: none; border-radius: 8px; cursor: pointer;">
-            ✏️ <!--Editar-->
+            ✏️ Editar
             </button>
 
-            <button class="cancel" style="background-color: #dc3545; color: white; font-size: 20px; font-weight: bold; padding: 30px 60px; border: none; border-radius: 8px; cursor: pointer;">
-            ❌ <!--Cancelar-->
+            <button class="cancel" style="background-color: red; color: white;">
+              <span style="background-color: white; border-radius: 50%; padding: 4px;">❌</span> Cancelar
             </button>
 
             <button class="to-cerradas" style="background-color: #6f42c1; color: white; font-size: 20px; font-weight: bold; padding: 30px 40px; border: none; border-radius: 8px; cursor: pointer;">
