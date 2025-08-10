@@ -1419,7 +1419,7 @@
           if (nombre) o.cliente = nombre;
           if (mesa) o.mesa = mesa;
           if (mesero) o.mesero = mesero;
-          //if (ordenGlobal) o.orden = ordenGlobal;
+          if (ordenGlobal) o.orden = ordenGlobal;
           
           modificadas++;
         }
@@ -1497,9 +1497,9 @@
             <div class="mesa-cliente"><strong>Mesa: ${orden.mesa}</strong> Cliente: ${orden.cliente}</div>
             <div class="cantidad-producto"><strong>${orden.cantidad || 1} ${orden.producto}</strong></div>            
             <div class="opciones-nota"><em>${orden.opciones.join(", ")} ${orden.nota ? "- " + orden.nota : ""}</em></div>
-            <button class="edit">Editar</button>
-            <button class="cancel">Cancelar</button>
-            <button class="to-cocina">Enviar a cocina</button>
+            <button class="edit">✏️<!--Editar--></button>
+            <button class="cancel">❌<!--Cancelar--></button>
+            <button class="to-cocina">📝➡️🍳<!--Enviar a cocina--></button>
           `;
 
           // resto de los eventos (igual que antes)...
@@ -1652,23 +1652,23 @@
           
           <div style="margin-top: 12px; display: flex; flex-wrap: wrap; gap: 10px;">
             <button class="start" style="background-color: #28a745; color: white; font-size: 20px; font-weight: bold; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer;">
-              🟢 Comenzar orden
+              🟢 <!--Comenzar orden-->
             </button>
 
             <button class="done" style="background-color: #007bff; color: white; font-size: 20px; font-weight: bold; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer;">
-              ✅ Orden lista
+              ✅ <!--Orden lista-->
             </button>
 
             <button class="edit" style="background-color: #ffc107; color: black; font-size: 20px; font-weight: bold; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer;">
-              ✏️ Editar
+              ✏️ <!--Editar-->
             </button>
 
             <button class="cancel" style="background-color: #dc3545; color: white; font-size: 20px; font-weight: bold; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer;">
-              ❌ Cancelar
+              ❌ <!--Cancelar-->
             </button>
 
             <button class="to-cerradas" style="background-color: #6f42c1; color: white; font-size: 20px; font-weight: bold; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer;">
-              📦 Cerrar orden
+              📦📤🔒 <!--Cerrar orden-->
             </button>
           </div>
 
