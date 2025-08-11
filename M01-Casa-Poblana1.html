@@ -559,8 +559,14 @@
       <button id="btn-cerradas"><h1>📋 Órdenes cerradas</h1></button>
       
     </div>
+  </div> 
+   
+  <div style="display: flex; gap: 20px; left: 100px; height: 70px; position:relative;  top: 25px;">      
+  <button id="mostrar-header-btn" onclick="mostrarHeader()" >Mostrar Header</button>
   </div>
-  <button id="mostrar-header-btn" onclick="mostrarHeader()" ...>Mostrar Header</button>
+   
+ 
+  
   
   <!-- Content below to simulate scrolling -->
   <div style="height: 5px;">
@@ -650,7 +656,6 @@
   </div>
 
   <script>
-    // Espera a que el DOM esté listo
     window.addEventListener('DOMContentLoaded', () => {
       const header = document.querySelector('.sticky-header');
       const mostrarBtn = document.getElementById('mostrar-header-btn');
