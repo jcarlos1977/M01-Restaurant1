@@ -190,14 +190,12 @@
     }
     .menu-grid {
       display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: space-between;
-      padding: 20px;
-      background: #f1f5f9; /* fondo suave */
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(215, 7, 7, 0.05);
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 60px;
+      padding: 10px 70px;
+      width: 90%;
     }
+
     
     /*Platillos Fondo*/
     .columna {
@@ -2346,4 +2344,3 @@
 </script>
 
 </body></html>
-
