@@ -474,6 +474,9 @@
       font-size: 60px
     }
 
+    .hidden-header {
+      display: none;
+    }
 
 
 
@@ -557,6 +560,7 @@
       
     </div>
   </div>
+  <button id="mostrar-header-btn" onclick="mostrarHeader()" ...>Mostrar Header</button>
   
   <!-- Content below to simulate scrolling -->
   <div style="height: 5px;">
@@ -644,6 +648,36 @@
       </form>
     </div>
   </div>
+
+  <script>
+    // Espera a que el DOM esté listo
+    window.addEventListener('DOMContentLoaded', () => {
+      const header = document.querySelector('.sticky-header');
+      const mostrarBtn = document.getElementById('mostrar-header-btn');
+
+      // Ocultar el header y mostrar el botón flotante
+      function ocultarHeader() {
+        header.classList.add('hidden-header');
+        mostrarBtn.style.display = 'block';
+      }
+
+      // Mostrar el header y ocultar el botón flotante
+      window.mostrarHeader = function () {
+        header.classList.remove('hidden-header');
+        mostrarBtn.style.display = 'none';
+      };
+
+      // Asignar eventos a los botones que deben ocultar el header
+      document.getElementById('btn-menu').addEventListener('click', ocultarHeader);
+      document.getElementById('btn-tomadas').addEventListener('click', ocultarHeader);
+      document.getElementById('btn-cocina').addEventListener('click', ocultarHeader);
+      document.getElementById('btn-cerradas').addEventListener('click', ocultarHeader);
+
+      // Al cargar la página, el botón flotante debe estar oculto
+      mostrarBtn.style.display = 'none';
+    });
+  </script>
+
 
   <!-- Firebase scripts (ya añadidos en el <head>) -->
   <script>
@@ -1912,7 +1946,7 @@
           doc.document.write(`<p>
             Qty: ${c.cantidad} - ${c.producto} <br>
             Subtotal: $${subtotal.toFixed(2)} — Tax (9.5%): $${tax.toFixed(2)} — Total: $${totalConTax.toFixed(2)}<br>
-            Fecha: ${new Date(c.fin).toLocaleString()}<br>
+            Mesa ${c.mesa} — Cliente: ${c.cliente} — Fecha: ${new Date(c.fin).toLocaleString()}<br>
             
           </p><hr>`);
         });
