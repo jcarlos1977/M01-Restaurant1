@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <!-- saved from url=(0066)https://jcarlos1977.github.io/Restaurant-Demo/Restaurant-Demo.html -->
-<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Mi Casita La Poblana1</title>
   <style>
@@ -62,14 +65,14 @@
       display: none;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 300px) {
       body.modo-movil header {
         flex-direction: column;
         align-items: stretch;
       }
 
       body.modo-movil header button {
-        width: 100%;
+        width: 80%;
         margin-bottom: 5px;
       }
 
@@ -477,6 +480,17 @@
     .hidden-header {
       display: none;
     }
+    
+    .contenedor-columnas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
 
 
 
