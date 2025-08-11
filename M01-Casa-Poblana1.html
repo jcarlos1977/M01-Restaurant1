@@ -163,10 +163,10 @@
     .menu-grid {
       display: flex;
       flex-wrap: wrap;
-      /*grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));*/
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
       justify-content: space-between;
-      gap: 20px;
-      padding: 20px 60px; /* ← más espacio lateral */
+      gap: 5px;
+      padding: 10px 20px; /* ← más espacio lateral */
     }
 
     .familia-card {
@@ -1361,7 +1361,7 @@
 
         // Compatibilidad con táctil y mouse
         if (esTactil) {
-          pEl.addEventListener('touchstart', () => openModal(prod));
+          pEl.addEventListener('dblclick', () => openModal(prod));//touchstart
         } else {
           pEl.addEventListener('dblclick', () => openModal(prod));
         }
