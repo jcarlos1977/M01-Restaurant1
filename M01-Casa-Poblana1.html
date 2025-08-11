@@ -1299,30 +1299,8 @@
     $("btn-cocina").onclick = () => { renderCocina(); switchSection(2); };
     $("btn-cerradas").onclick = () => { renderCerradas(); switchSection(3); };
     
-    /*
+          
     function renderMenu() {
-      // Limpiar columnas
-      [1, 2, 3, 4].forEach(num => {
-        document.querySelector(`.columna-${num}`).innerHTML = "";
-      });
-
-      // 🔧 Asignación de familia a columna
-      const familiasPorColumna = {
-        "Bebidas": 4,
-        "Platillos": 3,
-        "Quesadillas": 3,
-        "Tacos": 1,
-        "Sopes": 1,
-        "Caldos": 3,
-        "Tortas": 2,
-        "Tortas Cubanas": 2,
-        "Tortas Cemitas": 2,
-
-        // Agrega más como necesites
-      };
-      */
-      
-      function renderMenu() {
       // Limpiar columnas
       [1, 2].forEach(num => {
         document.querySelector(`.columna-${num}`).innerHTML = "";
@@ -1342,12 +1320,11 @@
         "Tortas": 2,
         "Tortas Cubanas": 2,
         "Cemitas": 2,
-        
-
         // Agrega más como necesites
       };
 
-
+      // Detectar si el dispositivo es táctil
+      const esTactil = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
       // Recorrer productos y asignar según familia
       productos.forEach(prod => {
@@ -1364,10 +1341,18 @@
 
         const pEl = document.createElement("p");
         pEl.textContent = `${prod.nombre} - $${prod.precio.toFixed(2)}`;
-        pEl.ondblclick = () => openModal(prod);
+
+        // Compatibilidad con táctil y mouse
+        if (esTactil) {
+          pEl.addEventListener('touchstart', () => openModal(prod));
+        } else {
+          pEl.addEventListener('dblclick', () => openModal(prod));
+        }
+
         columna.appendChild(pEl);
       });
     }
+
     
 
     function openModal(p, opcionesSeleccionadas = []) {
