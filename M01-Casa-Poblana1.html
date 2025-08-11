@@ -405,7 +405,7 @@
       background-color: #2196F3; /* Azul */
       color: white;
       border: none;
-      padding: 20px 70px;
+      padding: 20px 10px;
       border-radius: 6px;
       cursor: pointer;
       font-size: 30px;
@@ -1403,15 +1403,15 @@
         </label>
 
         <label style="font-size: 50px; font-weight:bold;">Cliente:
-          <input type="text" id="cliente" style="margin-left: 14px; background-color: #eeefe9; text-align: center; font-size: 40px; width: 21%; height: 60px; padding: 10px;" value="${nombreCliente}"/>
+          <input type="text" id="cliente" style="margin-left: 14px; background-color: #eeefe9; text-align: center; font-size: 30px; width: 21%; height: 60px; padding: 10px;" value="${nombreCliente}"/>
         </label><br><br>
 
         <label style="font-size: 50px; font-weight:bold;">#Orden:
-          <input type="text" id="orden" style="background-color: #eeefe9; text-align: center; font-size: 35px; width: 14%; height: 60px; padding: 10px;" value="${numeroOrden}"/>
+          <input type="text" id="orden" style="background-color: #eeefe9; text-align: center; font-size: 30px; width: 14%; height: 60px; padding: 10px;" value="${numeroOrden}"/>
         </label>
 
         <label style="font-size: 50px; font-weight:bold;">Mesero:
-          <input type="text" id="mesero" style="background-color: #eeefe9; text-align: center; font-size: 35px; width: 21%; height: 60px; padding: 10px;" value="${nombreMesero}"/>
+          <input type="text" id="mesero" style="background-color: #eeefe9; text-align: center; font-size: 30px; width: 21%; height: 60px; padding: 10px;" value="${nombreMesero}"/>
         </label><br><br>
 
         <div style="display: flex; justify-content: flex-start; gap: 20px; margin-top: 10px;">
@@ -1565,6 +1565,7 @@
               <h1 style="margin:0; font-size:28px;"><strong>Notas: <br> ${orden.nota}</strong></div><br>
 
             <button class="edit">✏️ Editar</button>
+
             <button class="cancel" style="background-color: red; color: white;">
               <span style="background-color: white; border-radius: 50%; padding: 4px;">❌</span> Cancelar
             </button>
