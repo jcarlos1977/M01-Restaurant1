@@ -563,8 +563,9 @@
    
   <div style="display: flex; gap: 20px; left: 100px; height: 70px; position:relative;  top: 25px;">      
   <button id="mostrar-header-btn" onclick="mostrarHeader()" >Mostrar Header</button>
+  <button id="toggleModalMode">Desactivar apertura de platillos</button>
   </div>
-   
+    
  
   
   
@@ -654,6 +655,29 @@
       </form>
     </div>
   </div>
+
+  <script>
+    let aperturaActiva = true; // Por defecto, los platillos se pueden abrir
+
+    document.getElementById("toggleModalMode").addEventListener("click", () => {
+      aperturaActiva = !aperturaActiva;
+
+      const btn = document.getElementById("toggleModalMode");
+      btn.textContent = aperturaActiva
+        ? "Desactivar apertura de platillos"
+        : "Activar apertura de platillos";
+    });
+
+    document.getElementById("toggleModalMode").addEventListener("click", () => {
+      aperturaActiva = !aperturaActiva;
+      document.getElementById("toggleModalMode").textContent = aperturaActiva
+        ? "Desactivar apertura de platillos"
+        : "Activar apertura de platillos";
+      renderMenu(); // 🔄 Actualiza el menú
+    });
+
+
+  </script>
 
   <script>
     window.addEventListener('DOMContentLoaded', () => {
@@ -1306,7 +1330,6 @@
         document.querySelector(`.columna-${num}`).innerHTML = "";
       });
 
-      // 🔧 Asignación de familia a columna
       const familiasPorColumna = {
         "Desayunos": 1,
         "Tacos": 1,
@@ -1320,18 +1343,14 @@
         "Tortas": 2,
         "Tortas Cubanas": 2,
         "Cemitas": 2,
-        // Agrega más como necesites
       };
 
-      // Detectar si el dispositivo es táctil
       const esTactil = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-      // Recorrer productos y asignar según familia
       productos.forEach(prod => {
-        const colNum = familiasPorColumna[prod.familia] || 1; // por defecto columna 1
+        const colNum = familiasPorColumna[prod.familia] || 1;
         const columna = document.querySelector(`.columna-${colNum}`);
 
-        // Si es la primera vez que aparece esta familia en esta columna, agregar encabezado
         if (!columna.querySelector(`h3[data-fam="${prod.familia}"]`)) {
           const header = document.createElement("h3");
           header.dataset.fam = prod.familia;
@@ -1342,16 +1361,19 @@
         const pEl = document.createElement("p");
         pEl.textContent = `${prod.nombre} - $${prod.precio.toFixed(2)}`;
 
-        // Compatibilidad con táctil y mouse
-        if (esTactil) {
-          pEl.addEventListener('touchstart', () => openModal(prod));
-        } else {
-          pEl.addEventListener('dblclick', () => openModal(prod));
+        // Solo agregar evento si apertura está activa
+        if (aperturaActiva) {
+          if (esTactil) {
+            pEl.addEventListener('touchstart', () => openModal(prod));
+          } else {
+            pEl.addEventListener('dblclick', () => openModal(prod));
+          }
         }
 
         columna.appendChild(pEl);
       });
     }
+
 
     
 
