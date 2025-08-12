@@ -1704,13 +1704,17 @@
             <span style="font-size: 25px;">${elapsed}s</span>
           </div>
 
-          <!-- Mesa -->
-          <div style="display: flex; justify-content: space-between; width: 15%;">
-            <span style="font-size: 28px; font-weight: bold;">Mesa: </span>
-            <span style="font-size: 25px;">${orden.mesa}</span>
+          <!-- Mesa y Cliente -->
+          <div style="display: flex; justify-content: space-between; align-items: center; width: 12%; max-width: 600px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span style="font-size: 28px; font-weight: bold;">Mesa:</span>
+              <span style="font-size: 25px;">${orden.mesa}</span>
+            </div>
 
-            <span style="font-size: 28px; font-weight: bold;">Cliente: </span>
-            <span style="font-size: 25px;">${orden.cliente || "—"}</span>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span style="font-size: 28px; font-weight: bold;">Cliente:</span>
+              <span style="font-size: 25px;">${orden.cliente || "—"}</span>
+            </div>
           </div>
        
 
@@ -2341,4 +2345,3 @@
 </script>
 
 </body></html>
-
