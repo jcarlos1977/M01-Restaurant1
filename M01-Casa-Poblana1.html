@@ -361,7 +361,7 @@
     
     /*Los siguintes tres styles son para ordenes tomadas vision*/
     .cantidad-producto {
-      font-size: 45px;
+      font-size: 30px;
       font-weight: bold;
       margin-bottom: 2px;
       
@@ -1546,13 +1546,13 @@
           const card = document.createElement("div");
           card.className = "card";
           card.innerHTML = `
-            <div class="cantidad-producto"><strong>Orden: ${orden.orden}</strong></div>
+            <div class="cantidad-producto"><strong>Orden: ${orden.orden} - Mesero: ${orden.mesero}</strong></div>
 
-            <div class="cantidad-producto"><strong>Mesero: ${orden.mesero}</strong></div>
+            <!--<div class="cantidad-producto"><strong>Mesero: ${orden.mesero}</strong></div>-->
 
             <div class="mesa-cliente"><strong>Mesa: ${orden.mesa}</strong> Cliente: ${orden.cliente}</div>
 
-            <div style="display: inline-block; background-color: purple; color: white; padding: 10px 12px; border-radius: 6px; margin: 0; font-size: 50px;"><strong>Qty: [ ${orden.cantidad || 1} ] ${orden.producto}</strong></div><br>
+            <div style="display: inline-block; background-color: purple; color: white; padding: 10px 12px; border-radius: 6px; margin: 0; font-size: 30px;"><strong>Qty: [ ${orden.cantidad || 1} ] ${orden.producto}</strong></div><br>
 
             <div>
               ${(orden.opciones || []).map(op => `
@@ -2346,4 +2346,3 @@
 </script>
 
 </body></html>
-
