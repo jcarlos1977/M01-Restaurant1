@@ -524,6 +524,45 @@
       overflow-x: hidden;
     }
 
+    .marquesina-container {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      background: #f0f0f0;
+      border: 1px solid #ccc;
+      padding: 10px;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    .marquesina-text {
+      display: inline-block;
+      padding-left: 100%;
+      animation: correr 10s linear infinite;
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    @keyframes correr {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    .paused {
+      animation-play-state: paused;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+
 
 
 
@@ -539,6 +578,7 @@
 
 </head>
 <body class="">
+   
  
   <div id="modo-selector" style="position: fixed; inset: 0; background: white; display: none; flex-direction:  column; align-items: center; justify-content: center; z-index: 9999;">
     <h2>Selecciona el modo de visualización</h2>
@@ -589,10 +629,15 @@
       </div>
     </div>
 
+    <div class="marquesina-container">
+      <div class="marquesina-text" id="texto-marquesina">
+        🌟 Bienvenido a la Aplicación — ¡Disfruta tu experiencia!
+      </div>
+    </div>
     
-
+    <button onclick="toggleMarquesina()">Desactivar Texto Animado</button>
     
-    <div style="display: flex; gap: 40px; width: 100%; height: 140px; position:relative;  top: 35px;">
+    <div style="display: flex; gap: 40px; width: 90%; height: 200px; position:relative;  top: 45px;">
       <button id="btn-menu"><h1>📋 Menú</h1></button>
       <button id="btn-tomadas"><h1>📋 Órdenes tomadas</h1></button>
       <!--<button id="btn-cocina"><h1>👨‍🍳 Órdenes en cocina(<span id="contador-en-cocina">1</span>)</button></h1>-->
@@ -602,6 +647,7 @@
     </div>
   </div> 
    
+  
   <div style="display: flex; gap: 20px; left: 100px; height: 70px; position:relative;  top: 25px;">      
   <button id="mostrar-header-btn" onclick="mostrarHeader()" >Mostrar Header</button>
   </div>  
@@ -2366,5 +2412,17 @@
     }
   });
 </script>
+
+ <script>
+    function toggleMarquesina() {
+      const texto = document.getElementById("texto-marquesina");
+      const btn = event.target;
+
+      texto.classList.toggle("paused");
+      btn.textContent = texto.classList.contains("paused")
+        ? "Activar Texto Animado"
+        : "Desactivar Texto Animado";
+    }
+  </script>
 
 </body></html>
