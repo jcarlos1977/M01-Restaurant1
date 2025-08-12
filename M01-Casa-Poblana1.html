@@ -320,16 +320,33 @@
 
     .contenedor-fila {
       display: flex;
-      align-items: center;
-      gap: 12px; /* Espacio entre elementos */
-      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: flex-start;
+      margin: 20px;
     }
 
-    .contenedor-fila2 {
+    .campo {
       display: flex;
-      align-items: center;
-      gap: 12px; /* Espacio entre elementos */
-      margin-bottom: 20px;
+      flex-direction: column;
+    }
+
+    .campo label {
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .campo input {
+      width: 150px;
+      height: 40px;
+      padding: 5px 10px;
+      box-sizing: border-box;
+    }
+
+    .boton-generar {
+      height: 40px;
+      padding: 0 15px;
+      cursor: pointer;
     }
 
     .boton-generar {
@@ -348,16 +365,26 @@
     }
 
 
-
+    /*******/
     .sticky-header {
-      position: static;
-      top: 0; /* Sticks it to the top */
-      background-color: #f7eeb98f;
-      padding: 40px;
-      font-size: 24px;
-      z-index: 1000; /* Keeps it above other content */
-      border-bottom: 2px solid #ccc;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: white; /* o el color que prefieras */
+      z-index: 9999;
+      overflow-y: auto;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
+
+    body.header-activo main,
+    body.header-activo .contenido {
+      display: none;
+    }
+
+
     
     /*Los siguintes tres styles son para ordenes tomadas vision*/
     .cantidad-producto {
@@ -537,38 +564,32 @@
     </p1>
 
     <div class="contenedor-fila">
-      <label class="client-Label">
-        Cliente:
-        <input type="text" id="nombreClienteGlobal" placeholder="Cliente" style="width: 150px; height: 40px;">
-      </label>
-
-      <label class="table-Label">
-        Mesa:
-        <input type="text" id="numeroMesaGlobal" placeholder="#mesa" style="width: 50px; height: 40px;">
-      </label>
-
-      <label class="table-Label">
-        Orden:
-        <input type="text" id="numeroOrdenGlobal" placeholder="#orden" style="width: 70px; height: 40px;">
-      </label>
-      
-
-      <button class="boton-generar" onclick="generarNumeroOrden()">Generar#: 🎲</button>
+      <div class="campo">
+        <label for="nombreClienteGlobal">Cliente:</label>
+        <input type="text" id="nombreClienteGlobal" placeholder="Cliente">
+      </div>
+      <div class="campo">
+        <label for="numeroMesaGlobal">Mesa:</label>
+        <input type="text" id="numeroMesaGlobal" placeholder="#mesa">
+      </div>
+      <div class="campo">
+        <label for="numeroOrdenGlobal">Orden:</label>
+        <input type="text" id="numeroOrdenGlobal" placeholder="#orden">
+      </div>
+      <div class="campo">
+        <label for="nombreMeseroGlobal">Mesero:</label>
+        <input type="text" id="nombreMeseroGlobal" placeholder="Mesero">
+      </div>
+      <div class="campo">
+        <label for="passMesa">Pass:</label>
+        <input type="text" id="passMesa" value="M01" readonly>
+      </div>
+      <div class="campo">
+        <button class="boton-generar" onclick="generarNumeroOrden()">Generar#: 🎲</button>
+      </div>
     </div>
+
     
-    <!--Segunda Linea-->
-    <div class="contenedor-fila2">
-      <label class="client-Label">
-        Mesero:
-        <input type="text" id="nombreMeseroGlobal" placeholder="Mesero" style="width: 150px; height: 40px;">
-      </label>
-
-      <label class="client-Label"> 
-        Pass:
-        <input type="text" id="passMesa" value="M01" readonly style="width:150px; height: 40px; text-align:center;">
-      </label>
-
-    </div>
 
     
     <div style="display: flex; gap: 40px; width: 100%; height: 140px; position:relative;  top: 35px;">
