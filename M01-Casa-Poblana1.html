@@ -538,7 +538,7 @@
     .marquesina-text {
       display: inline-block;
       padding-left: 100%;
-      animation: correr 10s linear infinite;
+      animation: correr 20s linear infinite;
       font-size: 80px;
       font-weight: bold;
       color: #333;
@@ -590,7 +590,7 @@
     
     <button id="cambiar-modo" style="position: absolute; top: 10px; right: 500px; background: #06d410; color: white; padding: 26px 12px; border: none; border-radius: 4px;">
       Cambiar modo
-    </button>
+    </button><br><br><br><br>
 
     <!-- 🔓 Botón para cerrar sesión -->
     <button id="logout-btn" onclick="logout()" style="position: absolute; top: 10px; right: 700px; background: #a90707; color: white;display: block;  padding: 26px 12px;">Cerrar Sesión</button><br><br><br><br>
@@ -631,7 +631,7 @@
 
     <div class="marquesina-container">
       <div class="marquesina-text" id="texto-marquesina">
-        🌟 Bienvenido a la Aplicación — ¡Disfruta tu experiencia!
+        🌟 Bienvenido a la Aplicación de Tomar Ordenes— ¡Disfruta tu Nueva Experiencia!
       </div>
     </div>
     
@@ -648,9 +648,22 @@
   </div> 
    
   
-  <div style="display: flex; gap: 20px; left: 100px; height: 70px; position:relative;  top: 25px;">      
-  <button id="mostrar-header-btn" onclick="mostrarHeader()" >Mostrar Header</button>
-  </div>  
+  <div style="display: flex; gap: 20px; left: 100px; height: 70px; position: relative; top: 25px;">
+    <button id="mostrar-header-btn" onclick="mostrarHeader()" style="
+      background-color: #06d410;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    ">
+      🏠 Mostrar Página Principal
+    </button>
+  </div>
   
   <!-- Content below to simulate scrolling -->
   <div style="height: 5px;">
