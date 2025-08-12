@@ -1677,12 +1677,9 @@
 
         card.innerHTML = `
           <h1 style="margin:0; font-size:28px;">
-            <strong>Orden: ${orden.orden || "—"}</strong>
+            <strong>Orden: ${orden.orden || "—"} - Mesero: ${orden.mesero || "—"}</strong><br>
           </h1>
-
-          <h1 style="margin:0; font-size:28px;">
-            <strong>Mesero: ${orden.mesero || "—"}</strong>
-          </h1>
+         
 
           <h1 style="display: inline-block; background-color: purple; color: white; padding: 10px 12px; border-radius: 6px; margin: 0;  font-size: 35px;">
               ${orden.cantidad || 1} ${orden.producto}
@@ -1702,22 +1699,20 @@
           </div>
 
           <!-- Tiempo -->
-          <div style="display: flex; justify-content: space-between; width: 50%;">
-            <span style="font-size: 28px; font-weight: bold;">Tiempo Transcurrido:---------</span>
+          <div style="display: flex; justify-content: space-between; width: 14%;">
+            <span style="font-size: 28px; font-weight: bold;">Tiempo Transcurrido: </span>
             <span style="font-size: 25px;">${elapsed}s</span>
           </div>
 
           <!-- Mesa -->
-          <div style="display: flex; justify-content: space-between; width: 50%;">
-            <span style="font-size: 28px; font-weight: bold;">Mesa:-------------------------------</span>
+          <div style="display: flex; justify-content: space-between; width: 12%;">
+            <span style="font-size: 28px; font-weight: bold;">Mesa: </span>
             <span style="font-size: 25px;">${orden.mesa}</span>
-          </div>
 
-          <!-- Cliente -->
-          <div style="display: flex; justify-content: space-between; width: 50%;">
-            <span style="font-size: 28px; font-weight: bold;">Cliente:----------------------------</span>
+            <span style="font-size: 28px; font-weight: bold;">Cliente: </span>
             <span style="font-size: 25px;">${orden.cliente || "—"}</span>
-          </div>          
+          </div>
+       
 
           
           <div style="margin-top: 12px; display: flex; flex-wrap: wrap; gap: 10px;">
