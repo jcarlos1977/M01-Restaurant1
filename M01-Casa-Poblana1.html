@@ -321,9 +321,11 @@
     .contenedor-fila {
       display: flex;
       flex-wrap: wrap;
-      gap: 15px;
+      gap: 50px;
       align-items: flex-start;
       margin: 20px;
+      
+      
     }
 
     .campo {
@@ -538,7 +540,7 @@
     .marquesina-text {
       display: inline-block;
       padding-left: 100%;
-      animation: correr 20s linear infinite;
+      animation: correr 40s linear infinite;
       font-size: 80px;
       font-weight: bold;
       color: #333;
@@ -588,17 +590,17 @@
   
   <div class="sticky-header">
     
-    <button id="cambiar-modo" style="position: absolute; top: 10px; right: 500px; background: #06d410; color: white; padding: 26px 12px; border: none; border-radius: 4px;">
+    <button id="cambiar-modo" style="position: absolute; top: 10px; right: 500px; background: #06d410; color: white; padding: 46px 26px; border: none; border-radius: 4px;">
       Cambiar modo
     </button><br><br><br><br>
 
     <!-- 🔓 Botón para cerrar sesión -->
-    <button id="logout-btn" onclick="logout()" style="position: absolute; top: 10px; right: 700px; background: #a90707; color: white;display: block;  padding: 26px 12px;">Cerrar Sesión</button><br><br><br><br>
+    <button id="logout-btn" onclick="logout()" style="position: absolute; top: 10px; right: 700px; background: #e50101c3; color: white;display: block;  padding: 46px 26px;">Cerrar Sesión</button><br><br><br><br>
 
-    <h1 style="color: rgb(43, 6, 229); flex-basis: 100%; margin: 0 0 10px 0; font-size: 44px;">🍽️ APLICACION PARA TOMAR ORDENES</h1>
+    <!--<h1 style="color: rgb(43, 6, 229); flex-basis: 100%; margin: 0 0 10px 0; font-size: 44px;">🍽️ APLICACION PARA TOMAR ORDENES</h1>-->
 
     <!--New lines para contador de ordenes-->
-    <p1 id="contador-en-cocina" style="color:  rgb(43, 6, 229); font-size: 36px; margin-bottom: 30px;">
+    <p1 id="contador-en-cocina" style="color:  rgb(43, 6, 229); font-size: 50px; margin-bottom: 30px;">
       👨‍🍳 Cantidad de Ordenes En cocina: <span id="numero-en-cocina">0</span>
       
     </p1>
@@ -606,32 +608,34 @@
     <div class="contenedor-fila">
       <div class="campo">
         <label for="nombreClienteGlobal">Cliente:</label>
-        <input type="text" id="nombreClienteGlobal" placeholder="Cliente">
-      </div>
-      <div class="campo">
+        <input type="text" id="nombreClienteGlobal" placeholder="Cliente" style="width: 200px; font-size: 30px;"><br>
+
         <label for="numeroMesaGlobal">Mesa:</label>
-        <input type="text" id="numeroMesaGlobal" placeholder="#mesa">
+        <input type="text" id="numeroMesaGlobal" placeholder="#mesa"style="width: 200px; font-size: 30px;">
       </div>
+      
       <div class="campo">
         <label for="numeroOrdenGlobal">Orden:</label>
-        <input type="text" id="numeroOrdenGlobal" placeholder="#orden">
-      </div>
-      <div class="campo">
+        <input type="text" id="numeroOrdenGlobal" placeholder="#orden"style="width: 200px; font-size: 30px;"><br>
+
         <label for="nombreMeseroGlobal">Mesero:</label>
-        <input type="text" id="nombreMeseroGlobal" placeholder="Mesero">
+        <input type="text" id="nombreMeseroGlobal" placeholder="Mesero"style="width: 200px; font-size: 30px;">
+      </div>
+      
+      <div class="campo">
+        <label for="passMesa">MeseroID:</label>
+        <input type="text" id="passMesa" value="M01" style=" padding: 59px 26px; font-size: 30px;"readonly><br>
       </div>
       <div class="campo">
-        <label for="passMesa">Pass:</label>
-        <input type="text" id="passMesa" value="M01" readonly>
-      </div>
-      <div class="campo">
-        <button class="boton-generar" onclick="generarNumeroOrden()">Generar#: 🎲</button>
+        <button class="boton-generar" onclick="generarNumeroOrden()" style=" padding: 59px 26px; font-size: 30px;">Generar#: 🎲</button>
       </div>
     </div>
 
     <div class="marquesina-container">
       <div class="marquesina-text" id="texto-marquesina">
-        🌟 Bienvenido a la Aplicación de Tomar Ordenes— ¡Disfruta tu Nueva Experiencia!
+        🌟 Bienvenido a la aplicación de tomar ordenes, primero comienza con generar un numero
+        de orden que te obtorgara el sistema oprimiendo el boton verde que esta aqui arriba, el boton tiene un emoji con un dado una vez que oprimas el boton se abrira un ventana para que llenes la informacion que va ser
+        necesaria para vincular la orden del cliente, una vez llenada la forma oprime el boton de copiar para salvar esto ahora es tiempo de que no pasemos a abrir el menu para tomar ordenes— ¡Disfruta tu Nueva Experiencia!
       </div>
     </div>
     
@@ -648,18 +652,19 @@
   </div> 
    
   
-  <div style="display: flex; gap: 20px; left: 100px; height: 70px; position: relative; top: 25px;">
+  <div style="display: flex; gap: 20px; left: 100px; height: 70px; position: relative; top: 1px;">
     <button id="mostrar-header-btn" onclick="mostrarHeader()" style="
       background-color: #06d410;
       color: white;
-      font-size: 20px;
+      font-size: 30px;
       font-weight: bold;
-      padding: 15px 30px;
+      padding: 5px 60px;
       border: none;
       border-radius: 8px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       cursor: pointer;
       transition: background-color 0.3s ease;
+      ;
     ">
       🏠 Mostrar Página Principal
     </button>
@@ -1580,7 +1585,7 @@
       cont.innerHTML = "";
 
       // Pass fijo para esta terminal
-      const passTerminal = "M01"; // 🔹 Cambia esto en la otra app a "M02"
+      const passTerminal = "M01"; // 🔹 Cambia esto en la otra app a "M01"
 
       // Normalizar el filtro de número de orden
       const filtroLimpio = filtro.toLowerCase().trim();
