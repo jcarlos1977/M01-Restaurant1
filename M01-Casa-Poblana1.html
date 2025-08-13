@@ -321,7 +321,7 @@
     .contenedor-fila {
       display: flex;
       flex-wrap: wrap;
-      gap: 50px;
+      gap: 20px;
       align-items: flex-start;
       margin: 20px;
       
@@ -565,6 +565,16 @@
       font-size: 50px;
     }
 
+    .label {
+      color: black;
+      font-weight: bold;
+    }
+
+    .valor {
+      color: blue;
+    }
+
+
 
 
 
@@ -627,7 +637,7 @@
         <input type="text" id="passMesa" value="M01" style=" padding: 59px 26px; font-size: 30px;"readonly><br>
       </div>
       <div class="campo">
-        <button class="boton-generar" onclick="generarNumeroOrden()" style=" padding: 59px 26px; font-size: 30px;">Generar#: 🎲</button>
+        <button class="boton-generar" onclick="generarNumeroOrden()" style=" padding: 60px 30px; font-size: 20px;">Generar#: 🎲</button>
       </div>
     </div>
 
@@ -1631,11 +1641,17 @@
           const card = document.createElement("div");
           card.className = "card";
           card.innerHTML = `
-            <div class="cantidad-producto"><strong>Orden: ${orden.orden} - Mesero: ${orden.mesero}</strong></div>
+            <div class="cantidad-producto">
+              <strong>
+                <span class="label">#:</span> <span class="valor">${orden.orden}</span> -
+                <span class="label">Mesero:</span> <span class="valor">${orden.mesero}</span> -
+                <span class="label">Mesa:</span> <span class="valor">${orden.mesa}</span> -
+                <span class="label">Cliente:</span> <span class="valor">${orden.cliente}</span>
+              </strong>
+            </div>
 
-            <!--<div class="cantidad-producto"><strong>Mesero: ${orden.mesero}</strong></div>-->
 
-            <div class="mesa-cliente"><strong>Mesa: ${orden.mesa}</strong> Cliente: ${orden.cliente}</div>
+           
 
             <div style="display: inline-block; background-color: purple; color: white; padding: 10px 12px; border-radius: 6px; margin: 0; font-size: 30px;"><strong>Qty: [ ${orden.cantidad || 1} ] ${orden.producto}</strong></div><br>
 
