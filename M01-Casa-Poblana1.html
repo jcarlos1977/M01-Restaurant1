@@ -16,7 +16,7 @@
     #btn-cerradas { background:#264653; color: white;}
     .hidden { display:none; }
     section { padding:20px; }
-    .card { border:1px solid #ddd; padding:10px; margin:10px 0; border-radius:4px; position:relative; }
+    .card { border:3px solid #010101; padding:10px; margin:5px 0; border-radius:4px; position:relative; }
     .card.working { background:#e0f7fa; }
     .card button { margin:5px 5px 0 0; }
     .modal { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); }
@@ -526,6 +526,22 @@
       overflow-x: hidden;
     }
 
+    @keyframes correr {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    @keyframes caerEstrella {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(300px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
     .marquesina-container {
       width: 100%;
       overflow: hidden;
@@ -540,11 +556,24 @@
     .marquesina-text {
       display: inline-block;
       padding-left: 100%;
-      animation: correr 40s linear infinite;
+      animation: correr 20s linear infinite;
       font-size: 80px;
       font-weight: bold;
       color: #333;
+      position: relative;
+      z-index: 1;
     }
+
+    /* 🌟 Estrellas */
+    .estrella {
+      position: absolute;
+      top: -50px;
+      font-size: 30px;
+      animation: caerEstrella 3s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
 
     @keyframes correr {
       0% {
@@ -573,9 +602,19 @@
     .valor {
       color: blue;
     }
+    
+    .label2 {
+      color: black;
+      font-weight: bold;
+      font-size:28px;
+    }
 
+    .valor2 {
+      color: blue;
+      font-size:28px;
+    }
 
-
+       
 
 
   </style>
@@ -643,9 +682,7 @@
 
     <div class="marquesina-container">
       <div class="marquesina-text" id="texto-marquesina">
-        🌟 Bienvenido a la aplicación de tomar ordenes, primero comienza con generar un numero
-        de orden que te obtorgara el sistema oprimiendo el boton verde que esta aqui arriba, el boton tiene un emoji con un dado una vez que oprimas el boton se abrira un ventana para que llenes la informacion que va ser
-        necesaria para vincular la orden del cliente, una vez llenada la forma oprime el boton de copiar para salvar esto ahora es tiempo de que no pasemos a abrir el menu para tomar ordenes— ¡Disfruta tu Nueva Experiencia!
+        🌟 Hola Juan Listo Para Tomar Ordenes ¡Disfruta tu Nueva Experiencia!
       </div>
     </div>
     
@@ -662,7 +699,7 @@
   </div> 
    
   
-  <div style="display: flex; gap: 20px; left: 100px; height: 70px; position: relative; top: 1px;">
+  <div style="display: flex; gap: 20px; left: 100px; width: 800px;height: 120px; position: relative; top: 1px;">
     <button id="mostrar-header-btn" onclick="mostrarHeader()" style="
       background-color: #06d410;
       color: white;
@@ -1371,7 +1408,7 @@
         console.error("Error cargando desde Firestore:", error);
       });
     }
-
+    
 
     function switchSection(index) {
       const mensajes = [
@@ -1388,14 +1425,14 @@
         "#264653"  // Cerradas - fondo oscuro
       ];
 
-      const colorTexto = [ "white", "black", "black", "white" ];
+      const colorTexto = [ "white", "blue", "purple", "white" ];
 
       secciones.forEach((sec, i) => sec.classList.toggle("hidden", i !== index));
       const mensajeEl = $("seccion-mensaje");
       mensajeEl.textContent = mensajes[index];
       mensajeEl.style.backgroundColor = colores[index];
       mensajeEl.style.color = colorTexto[index];  // 👈 cambia el color según la sección
-      mensajeEl.style.fontSize = "22px";
+      mensajeEl.style.fontSize = "32px";
       mensajeEl.style.padding = "12px 24px";
       mensajeEl.style.borderRadius = "12px";
       mensajeEl.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
@@ -1603,25 +1640,25 @@
       // Encabezado con Input Pass
       const headerActions = document.createElement("div");
       headerActions.innerHTML = `
-        <div style="margin: 10px 0; display: flex; gap: 10px; align-items: center;">
+        <div style="margin: 10px 0; display: gap: 40px; align-items: center;">
           <input type="text" id="passTerminal" value="${passTerminal}" readonly
-            style="padding: 30px 15px; font-size: 18px; width: 80px; border: 2px solid #ccc; border-radius: 8px; background-color: #f5f5f5;" />
+            style="padding: 42px 15px; font-size: 18px; width: 80px; border: 2px solid #ccc; border-radius: 8px; background-color: #f5f5f5;" />
 
           <input type="text" id="filtroOrdenInput" placeholder="🔎 Número de orden..." value="${filtroLimpio}"
-            style="padding: 30px 15px; font-size: 18px; width: 150px; border: 2px solid #ccc; border-radius: 8px;" />
+            style="padding: 42px 15px; font-size: 18px; width: 150px; border: 2px solid #ccc; border-radius: 8px;" />
 
           <button onclick="filtrarPorOrden()" 
-            style="padding: 30px 20px; font-size: 18px; background-color: #4285F4; color: white; border: none; border-radius: 8px; cursor: pointer;">
+            style="padding: 42px 15px; font-size: 18px; background-color: #4285F4; color: white; border: none; border-radius: 8px; cursor: pointer;">
             🔍 Buscar
           </button>
 
           <button onclick="renderTomadas()" 
-            style="padding: 30px 20px; font-size: 18px; background-color: #34A853; color: white; border: none; border-radius: 8px; cursor: pointer;">
+            style="padding: 42px 15px; font-size: 18px; background-color: #34A853; color: white; border: none; border-radius: 8px; cursor: pointer;">
             📋 Mostrar todas
           </button>
 
           <button onclick="aplicarDatosGlobalesAFiltradas()" 
-            style="padding: 30px 20px; font-size: 18px; background-color: #FBBC05; color: black; border: none; border-radius: 8px; cursor: pointer;">
+            style="padding: 42px 15px; font-size: 18px; background-color: #FBBC05; color: black; border: none; border-radius: 8px; cursor: pointer;">
             📝 Aplicar encabezado
           </button>
         </div>
@@ -1662,7 +1699,7 @@
                 </span>`).join("")}
             </div><br>
 
-            <div style="margin-top:10px; background:#fef3c7; padding:10px 12px; border-radius:6px; color:#92400e; font-size:28px;">
+            <div style="margin-top:12px; background:#fef3c7; padding:10px 12px; border-radius:6px; color:#92400e; font-size:28px;">
               <h1 style="margin:0; font-size:28px;"><strong>Notas: <br> ${orden.nota}</strong></div><br>
 
             <button class="edit">✏️ Editar</button>
@@ -1752,7 +1789,8 @@
 
       enCocina.forEach((orden, i) => {
         const startTime = (orden.start instanceof Date) ? orden.start : new Date(orden.start);
-        const elapsed = Math.floor((new Date() - startTime) / 1000);
+        const elapsedSeconds = Math.floor((new Date() - startTime) / 1000);
+        const elapsedMinutes = Math.floor(elapsedSeconds / 60);
         const card = document.createElement("div");
 
         // 🔁 Asegurar estado inicial
@@ -1777,10 +1815,21 @@
 
 
         card.innerHTML = `
-          <h1 style="margin:0; font-size:28px;">
-            <strong>Orden: ${orden.orden || "—"} - Mesero: ${orden.mesero || "—"}</strong><br>
-          </h1>
-         
+
+          <strong>
+            <span class="label2">#:</span> <span class="valor2">${orden.orden}</span> 
+            <span class="label2">Mesero:</span> <span class="valor2">${orden.mesero}</span> 
+            <span class="label2">Mesa:</span> <span class="valor2">${orden.mesa}</span> 
+            <span class="label2">Cliente:</span> <span class="valor2">${orden.cliente}</span>
+          </strong><br><br>
+          
+          <strong>
+            <span class="label2">Hora:</span> <span class="valor2">${startTime.toLocaleTimeString()}</span> 
+            <span class="label2">Minutos:</span> <span class="valor2">${elapsedMinutes}</span>
+             
+          </strong><br><br>
+
+        
 
           <h1 style="display: inline-block; background-color: purple; color: white; padding: 10px 12px; border-radius: 6px; margin: 0;  font-size: 35px;">
               ${orden.cantidad || 1} ${orden.producto}
@@ -1791,32 +1840,11 @@
             <div style="font-size:16px;">${opcionesHTML || "—"}</div>
           </div>
           
-          ${notaHTML}
+          ${notaHTML}        
+          
 
           
-          <div>
-            <span style="font-size: 28px; font-weight: bold;">Hora Recivida:</span>
-            <span style="font-size: 25px;">${startTime.toLocaleTimeString()}</span>
-          </div>
-
-          <!-- Tiempo -->
-          <div style="display: flex; justify-content: space-between; width: 14%;">
-            <span style="font-size: 28px; font-weight: bold;">Tiempo Transcurrido: </span>
-            <span style="font-size: 25px;">${elapsed}s</span>
-          </div>
-
-          <!-- Mesa y Cliente -->
-          <div style="display: flex; justify-content: space-between; align-items: center; width: 35%; max-width: 600px;">
-            <div style="display: flex; align-items: center; gap: 2px;">
-              <span style="font-size: 28px; font-weight: bold;">Mesa:</span>
-              <span style="font-size: 25px;">${orden.mesa}</span>
-            </div>
-
-            <div style="display: flex; align-items: center; gap: 2px;">
-              <span style="font-size: 28px; font-weight: bold;">Cliente:</span>
-              <span style="font-size: 25px;">${orden.cliente || "—"}</span>
-            </div>
-          </div>
+        </div>
        
 
           
@@ -2457,6 +2485,48 @@
         ? "Activar Texto Animado"
         : "Desactivar Texto Animado";
     }
+
+    function lanzarEstrellas() {
+      const container = document.querySelector(".marquesina-container");
+
+      setInterval(() => {
+        const estrella = document.createElement("div");
+        estrella.className = "estrella";
+        estrella.textContent = "💎 🪩";
+
+        // Posición horizontal aleatoria
+        estrella.style.left = Math.random() * container.offsetWidth + "px";
+
+        // Duración aleatoria
+        estrella.style.animationDuration = (2 + Math.random() * 2) + "s";
+
+        container.appendChild(estrella);
+
+        // Eliminar después de la animación
+        setTimeout(() => {
+          estrella.remove();
+        }, 4000);
+      }, 300); // Cada 300ms aparece una estrella
+    }
+
+    lanzarEstrellas();
+
+    /*
+    Emojis que puedes usar para efectos visuales
+    Categoría	Emojis sugeridos	Ideal para...
+    ✨ Estrellas y magia	⭐ ✨ 🌟 💫 🪄	Fantasía, celebraciones
+    ❤️ Amor y ternura	❤️ 💖 💘 💝 💗	Romántico, afectivo
+    🎉 Fiesta y alegría	🎉 🎊 🪅 🎈 🥳	Eventos, cumpleaños, festejos
+    🌸 Naturaleza	🌸 🌼 🍃 🍂 🍁	Primavera, otoño, relajación
+    🐾 Animales	🐶 🐱 🐰 🐥 🐾	Infantil, divertido
+    🔥 Elementos	🔥 💧 🌪️ 🌈 ⚡	Acción, energía, clima
+    💎 Objetos brillantes	💎 🪩 🧿 🧸 🪙	Lujo, juguetón, místico
+    🍬 Dulces y comida	🍭 🍬 🍫 🍩 🍪	Temas dulces, infantiles
+    🧠 Creatividad	🧠 🪐 🎨 🧵 🧩	Arte, ciencia, imaginación
+    */
+
   </script>
+
+  
 
 </body></html>
