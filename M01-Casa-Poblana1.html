@@ -1453,57 +1453,71 @@
     
           
     function renderMenu() {
-      // Limpiar columnas
-      [1, 2].forEach(num => {
-        document.querySelector(`.columna-${num}`).innerHTML = "";
-      });
+    // Limpiar columnas
+    [1, 2].forEach(num => {
+      document.querySelector(`.columna-${num}`).innerHTML = "";
+    });
 
-      // 🔧 Asignación de familia a columna
-      const familiasPorColumna = {
-        "Desayunos": 1,
-        "Tacos": 1,
-        "Sopes": 1,
-        "Burritos": 1,
-        "Bebidas": 1,
-        "Anotojitos": 1,
-        "Chilaquiles": 2,
-        "Platillos": 2,
-        "Caldos": 2,
-        "Tortas": 2,
-        "Tortas Cubanas": 2,
-        "Cemitas": 2,
-        // Agrega más como necesites
-      };
+    const familiasPorColumna = {
+      "Desayunos": 1,
+      "Tacos": 1,
+      "Sopes": 1,
+      "Burritos": 1,
+      "Bebidas": 1,
+      "Antojitos": 1,
+      "Chilaquiles": 2,
+      "Platillos": 2,
+      "Caldos": 2,
+      "Tortas": 2,
+      "Tortas Cubanas": 2,
+      "Cemitas": 2,
+    };
 
-      // Detectar si el dispositivo es táctil
-      const esTactil = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const esTactil = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-      // Recorrer productos y asignar según familia
-      productos.forEach(prod => {
-        const colNum = familiasPorColumna[prod.familia] || 1; // por defecto columna 1
-        const columna = document.querySelector(`.columna-${colNum}`);
+    // Agrupar productos por familia
+    const productosPorFamilia = {};
+    productos.forEach(prod => {
+      if (!productosPorFamilia[prod.familia]) {
+        productosPorFamilia[prod.familia] = [];
+      }
+      productosPorFamilia[prod.familia].push(prod);
+    });
 
-        // Si es la primera vez que aparece esta familia en esta columna, agregar encabezado
-        if (!columna.querySelector(`h3[data-fam="${prod.familia}"]`)) {
-          const header = document.createElement("h3");
-          header.dataset.fam = prod.familia;
-          header.textContent = prod.familia;
-          columna.appendChild(header);
-        }
+    // Crear encabezados por familia
+    Object.keys(productosPorFamilia).forEach(familia => {
+      const colNum = familiasPorColumna[familia] || 1;
+      const columna = document.querySelector(`.columna-${colNum}`);
 
+      const header = document.createElement("h3");
+      header.dataset.fam = familia;
+      header.textContent = familia;
+      header.style.cursor = "pointer";
+      columna.appendChild(header);
+
+      const container = document.createElement("div");
+      container.classList.add("productos-container");
+      container.style.display = "none"; // Oculto por defecto
+      columna.appendChild(container);
+
+      productosPorFamilia[familia].forEach(prod => {
         const pEl = document.createElement("p");
         pEl.textContent = `${prod.nombre} - $${prod.precio.toFixed(2)}`;
-
-        // Compatibilidad con táctil y mouse
         if (esTactil) {
-          pEl.addEventListener('dblclick', () => openModal(prod));//touchstart
+          pEl.addEventListener('dblclick', () => openModal(prod));
         } else {
           pEl.addEventListener('dblclick', () => openModal(prod));
         }
-
-        columna.appendChild(pEl);
+        container.appendChild(pEl);
       });
-    }
+
+      // Mostrar/ocultar productos al hacer clic en el encabezado
+      header.addEventListener("click", () => {
+        container.style.display = container.style.display === "none" ? "block" : "none";
+      });
+    });
+  }
+
 
     
 
