@@ -1415,26 +1415,37 @@
 
     function switchSection(index) {
       const mensajes = [
-        "📋 Aquí puedes ver los platillos disponibles para ordenar. " ,
+        "📋 Aquí puedes ver los platillos disponibles para ordenar.",
         "📝 Órdenes que han sido tomadas y están pendientes de enviarse a cocina.",
         "👨‍🍳 Órdenes que están siendo preparadas actualmente por la cocina.",
         "📦 Historial de órdenes finalizadas, puedes imprimir o cancelar."
       ];
 
       const colores = [
-        "#2a9d8f", // Menú - fondo oscuro
-        "#e9c46a", // Tomadas - fondo claro
-        "#f4a261", // Cocina - fondo claro
-        "#264653"  // Cerradas - fondo oscuro
+        "#2a9d8f", // Menú
+        "#e9c46a", // Tomadas
+        "#f4a261", // Cocina
+        "#264653"  // Cerradas
       ];
 
       const colorTexto = [ "white", "blue", "purple", "white" ];
 
       secciones.forEach((sec, i) => sec.classList.toggle("hidden", i !== index));
       const mensajeEl = $("seccion-mensaje");
-      mensajeEl.textContent = mensajes[index];
+
+      // 🧠 Si es la sección de cocina, incluir el número de órdenes
+      if (index === 2) {
+        const totalEnCocina = enCocina.length;
+        mensajeEl.innerHTML = `
+          👨‍🍳 Órdenes que están siendo preparadas actualmente por la cocina.<br>
+          <strong style="font-size: 28px;">Cantidad de órdenes en cocina: <span id="numero-en-cocina">${totalEnCocina}</span></strong>
+        `;
+      } else {
+        mensajeEl.textContent = mensajes[index];
+      }
+
       mensajeEl.style.backgroundColor = colores[index];
-      mensajeEl.style.color = colorTexto[index];  // 👈 cambia el color según la sección
+      mensajeEl.style.color = colorTexto[index];
       mensajeEl.style.fontSize = "32px";
       mensajeEl.style.padding = "12px 24px";
       mensajeEl.style.borderRadius = "12px";
@@ -1443,6 +1454,11 @@
       mensajeEl.style.textAlign = "center";
       mensajeEl.style.fontWeight = "bold";
       mensajeEl.style.maxWidth = "90%";
+    }
+
+    function updateCountCocina() {
+      const el = document.getElementById("numero-en-cocina");
+      if (el) el.textContent = enCocina.length;
     }
 
 
