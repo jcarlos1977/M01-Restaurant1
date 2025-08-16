@@ -1780,7 +1780,6 @@
               saveData();
               renderTomadas(filtro);
               renderCerradas();
-              updateCountCocina();
             } else {
               enCocina.push({ ...orden, start: new Date(), working: false });
               tomadas = tomadas.filter(o => o.id !== orden.id);
@@ -1788,6 +1787,8 @@
               renderTomadas(filtro);
               renderCocina();
               updateCountCocina();
+              updateCountCocina();
+              
             }
           };
 
