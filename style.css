@@ -679,7 +679,7 @@ html, body {
 
 .sidenav {
   height: 100%;
-  width: 100%; /* cerrado por defecto */
+  width: 70%; /* cerrado por defecto */
   position: fixed;
   z-index: 2000;
   top: 0;
@@ -692,32 +692,32 @@ html, body {
 }
 
 
-#btn-menu { background-color: #2a9d8f; font-size: 50px;}
-#btn-tomadas { background-color: #e9c46a; font-size: 50px;}
-#btn-cocina { background-color: #f4a261; font-size: 50px;}
-#btn-cerradas { background-color: #264653; font-size: 50px;}
-#cambiar-modo { background-color: #06d410; font-size: 50px;}
-#logout-btn { background-color: #d62828; font-size: 50px;}
-#btn-marquesina { background-color: #4715ea; font-size: 50px;}
+#btn-menu { background-color: #2a9d8f; font-size: 30px;}
+#btn-tomadas { background-color: #e9c46a; font-size: 30px;}
+#btn-cocina { background-color: #f4a261; font-size: 30px;}
+#btn-cerradas { background-color: #264653; font-size: 30px;}
+#cambiar-modo { background-color: #06d410; font-size: 30px;}
+#logout-btn { background-color: #d62828; font-size: 30px;}
+#btn-marquesina { background-color: #4715ea; font-size: 30px;}
 #mostrar-header-btn {
-  background-color: #4715ea; font-size: 50px;
+  background-color: #4715ea; font-size: 30px;
   display: block !important;
 }
 
-#btn-menu2 { background-color: #2a9d8f; font-size: 50px;}
-#btn-tomadas2 { background-color: #e9c46a; font-size: 50px;}
-#btn-cocina2 { background-color: #f4a261; font-size: 50px;}
-#btn-cerradas2 { background-color: #264653; font-size: 50px;}
-#cambiar-modo2 { background-color: #06d410; font-size: 50px;}
-#logout-btn2 { background-color: #d62828; font-size: 50px;}
-#btn-marquesina2 { background-color: #4715ea; font-size: 50px;}
-#mostrar-header-btn2 { background-color: #4715ea; font-size: 50px;}
+#btn-menu2 { background-color: #2a9d8f; font-size: 30px;}
+#btn-tomadas2 { background-color: #e9c46a; font-size: 30px;}
+#btn-cocina2 { background-color: #f4a261; font-size: 30px;}
+#btn-cerradas2 { background-color: #264653; font-size: 30px;}
+#cambiar-modo2 { background-color: #06d410; font-size: 30px;}
+#logout-btn2 { background-color: #d62828; font-size: 30px;}
+#btn-marquesina2 { background-color: #4715ea; font-size: 30px;}
+#mostrar-header-btn2 { background-color: #4715ea; font-size: 30px;}
 
 .sidebar-button {
   display: block;
   width: 100%;
   padding: 40px 60px;
-  font-size: 120px;
+  font-size: 80px;
   font-weight: bold;
   color: white;
   border: none;
@@ -734,7 +734,7 @@ html, body {
   display: block;
   width: 100%;
   padding: 40px 60px;
-  font-size: 120px;
+  font-size: 80px;
   font-weight: bold;
   color: white;
   border: none;
@@ -761,8 +761,6 @@ html, body {
   margin-left: 50px;
   color: #f1f1f1;
 }
-
-
 
 
 
