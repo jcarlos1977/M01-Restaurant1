@@ -1723,7 +1723,7 @@ document.getElementById("mySidenav").style.width = "0";
 }
 
 function openNav2() {
-document.getElementById("mySidenav2").style.width = "40%";
+document.getElementById("mySidenav2").style.width = "80%";
 }
 
 function closeNav2() {
@@ -1745,3 +1745,4 @@ Categoría	Emojis sugeridos	Ideal para...
 🧠 Creatividad	🧠 🪐 🎨 🧵 🧩	Arte, ciencia, imaginación
 
 */
+
