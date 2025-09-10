@@ -679,7 +679,7 @@ html, body {
 
 .sidenav {
   height: 100%;
-  width: 20%; /* cerrado por defecto */
+  width: 50%; /* cerrado por defecto */
   position: fixed;
   z-index: 2000;
   top: 0;
@@ -761,6 +761,7 @@ html, body {
   margin-left: 50px;
   color: #f1f1f1;
 }
+
 
 
 
