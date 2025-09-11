@@ -677,9 +677,10 @@ html, body {
   margin-top: 30px;
 }
 
+/*
 .sidenav {
   height: 100%;
-  width: 70%; /* cerrado por defecto */
+  width: 50%; 
   position: fixed;
   z-index: 2000;
   top: 0;
@@ -690,8 +691,8 @@ html, body {
   padding-top: 100px;
   
 }
-
-
+*/
+/*
 #btn-menu { background-color: #2a9d8f; font-size: 30px;}
 #btn-tomadas { background-color: #e9c46a; font-size: 30px;}
 #btn-cocina { background-color: #f4a261; font-size: 30px;}
@@ -703,7 +704,8 @@ html, body {
   background-color: #4715ea; font-size: 30px;
   display: block !important;
 }
-
+*/
+/*
 #btn-menu2 { background-color: #2a9d8f; font-size: 30px;}
 #btn-tomadas2 { background-color: #e9c46a; font-size: 30px;}
 #btn-cocina2 { background-color: #f4a261; font-size: 30px;}
@@ -712,7 +714,8 @@ html, body {
 #logout-btn2 { background-color: #d62828; font-size: 30px;}
 #btn-marquesina2 { background-color: #4715ea; font-size: 30px;}
 #mostrar-header-btn2 { background-color: #4715ea; font-size: 30px;}
-
+*/
+/*
 .sidebar-button {
   display: block;
   width: 100%;
@@ -729,7 +732,8 @@ html, body {
   height: 6%;
   margin: 40px;
 }
-
+*/
+/*
 .sidebar-button2 {
   display: block;
   width: 100%;
@@ -746,9 +750,9 @@ html, body {
   height: 6%;
   margin: 40px;
 }
+*/
 
-
-
+/*
 .sidenav button:hover {
   background-color: #575757;
 }
@@ -761,7 +765,83 @@ html, body {
   margin-left: 50px;
   color: #f1f1f1;
 }
+*/
 
+.sidenav {
+  height: 100%;
+  width: 0; /* cerrado por defecto */
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav .sidebar-link {
+  display: block;
+  padding: 12px 20px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #f1f1f1;
+  transition: 0.3s;
+}
+
+.sidenav .sidebar-link:hover {
+  background-color: #575757;
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  font-size: 36px;
+  margin-left: 50px;
+  color: #f1f1f1;
+}
+
+.sidenav2 {
+  height: 100%;
+  width: 0; /* cerrado por defecto */
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav .sidebar-link2 {
+  display: block;
+  padding: 12px 20px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #f1f1f1;
+  transition: 0.3s;
+}
+
+.sidenav .sidebar-link2:hover {
+  background-color: #575757;
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.sidenav .closebtn2 {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  font-size: 36px;
+  margin-left: 50px;
+  color: #f1f1f1;
+}
 
 
 
