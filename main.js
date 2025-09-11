@@ -1715,7 +1715,7 @@ estrella.remove();
 lanzarEstrellas();
 
 function openNav() {
-document.getElementById("mySidenav").style.width = "20%";
+document.getElementById("mySidenav").style.width = "80%";
 }
 
 function closeNav() {
@@ -1745,4 +1745,5 @@ Categoría	Emojis sugeridos	Ideal para...
 🧠 Creatividad	🧠 🪐 🎨 🧵 🧩	Arte, ciencia, imaginación
 
 */
+
 
