@@ -16,6 +16,9 @@ window.mostrarHeader = function () {
   mostrarBtn.style.display = 'none';
 };
 
+
+
+
 // Asignar eventos a los botones que deben ocultar el header
 document.getElementById('btn-menu').addEventListener('click', ocultarHeader);
 document.getElementById('btn-tomadas').addEventListener('click', ocultarHeader);
