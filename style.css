@@ -818,7 +818,8 @@ html, body {
   padding-top: 60px;
 }
 
-.sidenav .sidebar-link2 {
+
+.sidenav2 .sidebar-link2 {
   display: block;
   padding: 12px 20px;
   text-decoration: none;
@@ -827,14 +828,14 @@ html, body {
   transition: 0.3s;
 }
 
-.sidenav .sidebar-link2:hover {
+.sidenav2 .sidebar-link2:hover {
   background-color: #575757;
   color: white;
   text-decoration: underline;
   cursor: pointer;
 }
 
-.sidenav .closebtn2 {
+.sidenav2 .closebtn2 {
   position: absolute;
   top: 0;
   right: 20px;
