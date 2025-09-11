@@ -805,6 +805,26 @@ html, body {
   color: #f1f1f1;
 }
 
+.openbtn {
+  font-size: 30px;       /* 🔹 tamaño del texto (y del ícono ☰) */
+  padding: 20px 40px;    /* 🔹 espacio interno */
+  width: 100px;          /* 🔹 ancho fijo (ajústalo a tu gusto) */
+  height: 80px;          /* 🔹 alto fijo */
+  background-color: #06d410; /* color de fondo */
+  color: white;          /* color del texto */
+  border: none;          /* sin borde */
+  border-radius: 12px;   /* esquinas redondeadas */
+  cursor: pointer;       /* cambia el cursor */
+  font-weight: bold;     /* texto más grueso */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* sombrita */
+  transition: background-color 0.3s ease;
+}
+
+.openbtn:hover {
+  background-color: #04a30c; /* 🔹 color al pasar el mouse */
+}
+
+
 .sidenav2 {
   height: 100%;
   width: 0; /* cerrado por defecto */
