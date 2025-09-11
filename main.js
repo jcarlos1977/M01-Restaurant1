@@ -7,13 +7,14 @@ const mostrarBtn = document.getElementById('mostrar-header-btn');
 // Ocultar el header y mostrar el botón flotante
 function ocultarHeader() {
   header.classList.add('hidden-header');
-  mostrarBtn.style.display = 'block';
+  /*mostrarBtn.style.display = 'block';*/
 }
 
 // Mostrar el header y ocultar el botón flotante
+
 window.mostrarHeader = function () {
   header.classList.remove('hidden-header');
-  mostrarBtn.style.display = 'none';
+  /*mostrarBtn.style.display = 'none';*/
 };
 
 
@@ -31,7 +32,7 @@ document.getElementById('btn-cocina2').addEventListener('click', ocultarHeader);
 document.getElementById('btn-cerradas2').addEventListener('click', ocultarHeader);
 
 // Al cargar la página, el botón flotante debe estar oculto
-mostrarBtn.style.display = 'none';
+/*mostrarBtn.style.display = 'none';*/
 });
 
 // firebase Configation
@@ -1484,6 +1485,7 @@ document.getElementById("logout-btn").style.display = "none";
 //WebSocket start
 
 // <![CDATA[  <-- For SVG support
+/*
 if ('WebSocket' in window) {
 (function () {
 function refreshCSS() {
@@ -1664,7 +1666,7 @@ sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
 else {
 console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
 }
-
+*/
 document.addEventListener("DOMContentLoaded", () => {
 const logoutBtn = document.getElementById("logoutBtn");
 
