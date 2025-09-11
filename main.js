@@ -1715,7 +1715,7 @@ estrella.remove();
 lanzarEstrellas();
 
 function openNav() {
-document.getElementById("mySidenav").style.width = "80%";
+document.getElementById("mySidenav").style.width = "250px";
 }
 
 function closeNav() {
@@ -1723,7 +1723,7 @@ document.getElementById("mySidenav").style.width = "0";
 }
 
 function openNav2() {
-document.getElementById("mySidenav2").style.width = "80%";
+document.getElementById("mySidenav2").style.width = "250px";
 }
 
 function closeNav2() {
@@ -1743,7 +1743,4 @@ Categoría	Emojis sugeridos	Ideal para...
 💎 Objetos brillantes	💎 🪩 🧿 🧸 🪙	Lujo, juguetón, místico
 🍬 Dulces y comida	🍭 🍬 🍫 🍩 🍪	Temas dulces, infantiles
 🧠 Creatividad	🧠 🪐 🎨 🧵 🧩	Arte, ciencia, imaginación
-
 */
-
-
