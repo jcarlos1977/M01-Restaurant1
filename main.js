@@ -648,7 +648,7 @@ function switchSection(index) {
   mensajeEl.textContent = mensajes[safeIndex];
   mensajeEl.style.backgroundColor = colores[safeIndex] || "#333";
   mensajeEl.style.color = colorTexto[safeIndex] || "white";
-  mensajeEl.style.fontSize = "28px";
+  mensajeEl.style.fontSize = "14px";
   mensajeEl.style.padding = "10px 18px";
   mensajeEl.style.borderRadius = "10px";
   mensajeEl.style.boxShadow = "0 4px 10px rgba(0,0,0,0.15)";
@@ -1842,3 +1842,4 @@ Categoría	Emojis sugeridos	Ideal para...
 🍬 Dulces y comida	🍭 🍬 🍫 🍩 🍪	Temas dulces, infantiles
 🧠 Creatividad	🧠 🪐 🎨 🧵 🧩	Arte, ciencia, imaginación
 */
+
