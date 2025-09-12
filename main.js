@@ -123,20 +123,21 @@ document.getElementById("modalOrdenInput").value = ""; // Aunque se sobreescribe
 
 //New lines para contador de ordenes
 
-function listenToCocinaCountRealtime(userId) {
-const docRef = firebase.firestore().collection("ordenesEstado").doc(userId);
-const contadorElemento = document.getElementById("contador-en-cocina");
+function listenToCocinaCountRealtime(userId, contadorId) {
+  const docRef = firebase.firestore().collection("ordenesEstado").doc(userId);
+  const contadorElemento = document.getElementById(contadorId);
 
-docRef.onSnapshot((doc) => {
-if (doc.exists) {
-const data = doc.data();
-const cocinaActual = data.enCocina || [];
-contadorElemento.textContent = `👨‍🍳 Cantidad de Ordenes En cocina: ${cocinaActual.length}`;
-} else {
-contadorElemento.textContent = "👨‍🍳 En cocina: 0";
-}
-});
+  if (!contadorElemento) return; // Evita errores si no existe el elemento en esa página
 
+  docRef.onSnapshot((doc) => {
+    if (doc.exists) {
+      const data = doc.data();
+      const cocinaActual = data.enCocina || [];
+      contadorElemento.textContent = `👨‍🍳 Cantidad de Ordenes En cocina: ${cocinaActual.length}`;
+    } else {
+      contadorElemento.textContent = "👨‍🍳 En cocina: 0";
+    }
+  });
 }
 
 
@@ -504,7 +505,10 @@ if (user) {
 const userId = user.uid;
 const docRef = firebase.firestore().collection("ordenesEstado").doc(userId);
 //New lines para contador de ordenes
-listenToCocinaCountRealtime(user.uid);
+listenToCocinaCountRealtime(userId, "contador-en-cocina1");
+
+    // 🔹 Escuchar cambios y actualizar contador 2
+listenToCocinaCountRealtime(userId, "contador-en-cocina2");
 
 docRef.onSnapshot((doc) => {
 if (doc.exists) {
@@ -590,36 +594,125 @@ console.error("Error cargando desde Firestore:", error);
 
 
 function switchSection(index) {
-const mensajes = [
-"📋 Aquí puedes ver los platillos disponibles para ordenar. " ,
-"📝 Órdenes que han sido tomadas y están pendientes de enviarse a cocina.",
-"👨‍🍳 Órdenes que están siendo preparadas actualmente por la cocina.",
-"📦 Historial de órdenes finalizadas, puedes imprimir o cancelar."
-];
+  const mensajes = [
+    "📋 Aquí puedes ver los platillos disponibles para ordenar.",
+    "📝 Órdenes que han sido tomadas y están pendientes de enviarse a cocina.",
+    "👨‍🍳 Ódenes que están siendo preparadas actualmente por la cocina.",
+    "📦 Historial de órdenes finalizadas, puedes imprimir o cancelar."
+  ];
 
-const colores = [
-"#2a9d8f", // Menú - fondo oscuro
-"#e9c46a", // Tomadas - fondo claro
-"#f4a261", // Cocina - fondo claro
-"#264653"  // Cerradas - fondo oscuro
-];
+  const colores = [
+    "#2a9d8f", // Menú
+    "#e9c46a", // Tomadas
+    "#f4a261", // Cocina
+    "#264653"  // Cerradas
+  ];
 
-const colorTexto = [ "white", "blue", "purple", "white" ];
+  const colorTexto = ["white", "black", "black", "white"];
 
-secciones.forEach((sec, i) => sec.classList.toggle("hidden", i !== index));
-const mensajeEl = $("seccion-mensaje");
-mensajeEl.textContent = mensajes[index];
-mensajeEl.style.backgroundColor = colores[index];
-mensajeEl.style.color = colorTexto[index];  // 👈 cambia el color según la sección
-mensajeEl.style.fontSize = "32px";
-mensajeEl.style.padding = "12px 24px";
-mensajeEl.style.borderRadius = "12px";
-mensajeEl.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
-mensajeEl.style.margin = "10px auto";
-mensajeEl.style.textAlign = "center";
-mensajeEl.style.fontWeight = "bold";
-mensajeEl.style.maxWidth = "90%";
+  console.log("switchSection llamado con index =", index);
+
+  // 1) Obtener lista de "secciones" (usa la variable global si existe, si no busca elementos)
+  let secciones = window.secciones;
+  if (!secciones || !secciones.length) {
+    // intenta distintos selectores comunes
+    secciones = Array.from(document.querySelectorAll('section, .tab-content, .tab-pane'));
+  }
+  // Mostrar/ocultar secciones si las encontramos
+  if (secciones && secciones.length) {
+    secciones.forEach((sec, i) => {
+      if (i === index) sec.classList.remove('hidden');
+      else sec.classList.add('hidden');
+    });
+  } else {
+    console.warn("switchSection: no encontré elementos 'secciones' (section, .tab-content, .tab-pane).");
+  }
+
+  // 2) Asegurar que exista #seccion-mensaje; si no, crear uno al inicio del <main> o body
+  let mensajeEl = document.getElementById("seccion-mensaje");
+  if (!mensajeEl) {
+    const container = document.querySelector('main') || document.body;
+    mensajeEl = document.createElement('div');
+    mensajeEl.id = "seccion-mensaje";
+    // estilo básico para que siempre se vea
+    mensajeEl.style.transition = "all .25s ease";
+    mensajeEl.style.display = "block";
+    mensajeEl.style.boxSizing = "border-box";
+    mensajeEl.style.zIndex = 9999;
+    container.prepend(mensajeEl);
+    console.log("switchSection: Creé #seccion-mensaje dinámicamente.");
+  }
+
+  // 3) Actualizar contenido y estilos (si index fuera inválido, lo capamos)
+  const safeIndex = Math.max(0, Math.min(index, mensajes.length - 1));
+  mensajeEl.textContent = mensajes[safeIndex];
+  mensajeEl.style.backgroundColor = colores[safeIndex] || "#333";
+  mensajeEl.style.color = colorTexto[safeIndex] || "white";
+  mensajeEl.style.fontSize = "28px";
+  mensajeEl.style.padding = "10px 18px";
+  mensajeEl.style.borderRadius = "10px";
+  mensajeEl.style.boxShadow = "0 4px 10px rgba(0,0,0,0.15)";
+  mensajeEl.style.margin = "12px auto";
+  mensajeEl.style.textAlign = "center";
+  mensajeEl.style.fontWeight = "700";
+  mensajeEl.style.maxWidth = "95%";
 }
+
+// ----------------------------
+// Wire-up automático de botones
+// ----------------------------
+
+// 1) Si tus botones tienen data-index, los conectamos preferentemente
+document.querySelectorAll('[data-index]').forEach(el => {
+  el.addEventListener('click', (e) => {
+    e.preventDefault();
+    const idx = parseInt(el.getAttribute('data-index'), 10);
+    if (!Number.isNaN(idx)) switchSection(idx);
+  });
+});
+
+// 2) Conectar .tab-button (si tu HTML usa data-tab o layout por orden)
+const tabButtons = document.querySelectorAll('.tab-button');
+if (tabButtons && tabButtons.length) {
+  tabButtons.forEach((btn, i) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchSection(i);
+    });
+  });
+}
+
+// 3) Conectar .sidebar-link (si están en el mismo orden que tus secciones)
+const sidebarLinks = document.querySelectorAll('.sidebar-link');
+if (sidebarLinks && sidebarLinks.length) {
+  sidebarLinks.forEach((link, i) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchSection(i);
+      // opcional: cerrar sidebar si existe función
+      if (typeof closeNav === 'function') closeNav();
+    });
+  });
+}
+
+// 4) Conectar links con ids concretos que ya tienes (si así prefieres)
+const mapping = [
+  { id: 'mostrar-header-btn', index: 0 },
+  { id: 'btn-tomadas', index: 1 },
+  { id: 'btn-cocina', index: 2 },
+  { id: 'btn-cerradas', index: 3 }
+];
+mapping.forEach(m => {
+  const el = document.getElementById(m.id);
+  if (el) el.addEventListener('click', (e) => { e.preventDefault(); switchSection(m.index); });
+});
+
+// Finalmente, opcional: inicializar la sección 0 al cargar (si quieres que muestre mensaje)
+document.addEventListener('DOMContentLoaded', () => {
+  // Solo si quieres que muestre desde el inicio:
+  // switchSection(0);
+});
+
 
 
 $("btn-menu").onclick = () => { renderMenu();switchSection(0) };
