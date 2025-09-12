@@ -648,14 +648,15 @@ function switchSection(index) {
   mensajeEl.textContent = mensajes[safeIndex];
   mensajeEl.style.backgroundColor = colores[safeIndex] || "#333";
   mensajeEl.style.color = colorTexto[safeIndex] || "white";
-  mensajeEl.style.fontSize = "14px";
+  mensajeEl.style.fontSize = "25px";
   mensajeEl.style.padding = "10px 18px";
   mensajeEl.style.borderRadius = "10px";
   mensajeEl.style.boxShadow = "0 4px 10px rgba(0,0,0,0.15)";
   mensajeEl.style.margin = "12px auto";
   mensajeEl.style.textAlign = "center";
   mensajeEl.style.fontWeight = "700";
-  mensajeEl.style.maxWidth = "95%";
+  mensajeEl.style.maxWidth = "70%";
+  
 }
 
 // ----------------------------
@@ -1842,4 +1843,3 @@ Categoría	Emojis sugeridos	Ideal para...
 🍬 Dulces y comida	🍭 🍬 🍫 🍩 🍪	Temas dulces, infantiles
 🧠 Creatividad	🧠 🪐 🎨 🧵 🧩	Arte, ciencia, imaginación
 */
-
