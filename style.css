@@ -810,11 +810,11 @@ html, body {
 .openbtn {
   display: flex;               /* activa flexbox */
   align-items: center;         /* centra verticalmente */
-  justify-content: center;     /* centra horizontalmente */
+  justify-content: left;     /* centra horizontalmente */
   gap: 15px;                   /* espacio entre icono y texto */
   font-size: 40px;       /* 🔹 tamaño del texto (y del ícono ☰) */
   padding: 60px 60px;    /* 🔹 espacio interno */
-  width: 150px;          /* 🔹 ancho fijo (ajústalo a tu gusto) */
+  width: 1650px;          /* 🔹 ancho fijo (ajústalo a tu gusto) */
   height: 50px;          /* 🔹 alto fijo */
   background-color: #050505; /* color de fondo */
   color: white;          /* color del texto */
@@ -824,6 +824,7 @@ html, body {
   font-weight: bold;     /* texto más grueso */
   box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* sombrita */
   transition: background-color 0.3s ease;
+  margin-left: 2%;
 }
 
 .openbtn:hover {
