@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Mi Casita La Poblana1</title>
+  <title>My Restaurant</title>
   
   <link rel="stylesheet" href="style.css">
 
@@ -52,44 +52,46 @@
   
   <div class="sticky-header">
 
-        
-    
-    
-
     
     <!-- 📌 Sidebar -->
-  <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 
-    <!-- Botones que tenías en el header -->
-    <!--
-    <button id="mostrar-header-btn" onclick="mostrarHeader()"class="sidebar-button">🏠 Mostrar Página Principal</button>
-    <button id="btn-menu" class="sidebar-button">📋 Menú</button>
-    <button id="btn-tomadas" class="sidebar-button">📋 Órdenes tomadas</button>
-    <button id="btn-cocina" class="sidebar-button">👨‍🍳 Órdenes en cocina</button>
-    <button id="btn-cerradas" class="sidebar-button">📋 Órdenes cerradas</button>
-    <button id="cambiar-modo" class="sidebar-button">💻 Cambiar modo</button>
-    <button id="btn-marquesina" onclick="toggleMarquesina()" class="sidebar-button">✨ Desactivar Texto Animado</button>
-    <button id="logout-btn" onclick="logout()" class="sidebar-button">🚪 Cerrar Sesión></button>
-    --> 
+      <!-- Botones que tenías en el header -->
+      <!--
+      <button id="mostrar-header-btn" onclick="mostrarHeader()"class="sidebar-button">🏠 Mostrar Página Principal</button>
+      <button id="btn-menu" class="sidebar-button">📋 Menú</button>
+      <button id="btn-tomadas" class="sidebar-button">📋 Órdenes tomadas</button>
+      <button id="btn-cocina" class="sidebar-button">👨‍🍳 Órdenes en cocina</button>
+      <button id="btn-cerradas" class="sidebar-button">📋 Órdenes cerradas</button>
+      <button id="cambiar-modo" class="sidebar-button">💻 Cambiar modo</button>
+      <button id="btn-marquesina" onclick="toggleMarquesina()" class="sidebar-button">✨ Desactivar Texto Animado</button>
+      <button id="logout-btn" onclick="logout()" class="sidebar-button">🚪 Cerrar Sesión></button>
+      --> 
+      
+      <a href="#" id="btn-menu" class="sidebar-link">📋 Menú</a>
+      <a href="#" id="btn-tomadas" class="sidebar-link">📋 Órdenes tomadas</a>
+      <a href="#" id="btn-cocina" class="sidebar-link">👨‍🍳 Órdenes en cocina</a>
+      <a href="#" id="btn-cerradas" class="sidebar-link">📋 Órdenes cerradas</a>
+      <a href="#" id="cambiar-modo" class="sidebar-link">💻 Cambiar modo</a>
+      <a href="javascript:void(0)" onclick="toggleMarquesina()" class="sidebar-link">✨ Desactivar Texto Animado</a>
+      <a href="javascript:void(0)" id="logout-btn" onclick="logout()" class="sidebar-link">🚪 Cerrar Sesión</a>
     
-    <a href="#" id="btn-menu" class="sidebar-link">📋 Menú</a>
-    <a href="#" id="btn-tomadas" class="sidebar-link">📋 Órdenes tomadas</a>
-    <a href="#" id="btn-cocina" class="sidebar-link">👨‍🍳 Órdenes en cocina</a>
-    <a href="#" id="btn-cerradas" class="sidebar-link">📋 Órdenes cerradas</a>
-    <a href="#" id="cambiar-modo" class="sidebar-link">💻 Cambiar modo</a>
-    <a href="javascript:void(0)" onclick="toggleMarquesina()" class="sidebar-link">✨ Desactivar Texto Animado</a>
-    <a href="javascript:void(0)" id="logout-btn" onclick="logout()" class="sidebar-link">🚪 Cerrar Sesión</a>
-    
 
-  </div>
+    </div>
 
-  <!-- 📌 Botón para abrir sidebar -->
-  <button class="openbtn" onclick="openNav()">☰ Menú</button><br>
+    <!-- 📌 Botón para abrir sidebar -->
+    <button class="openbtn" onclick="openNav()">
+      <span style="font-size:30px;">☰</span>
+      <span style="font-size:10px;">Option List</span>
+    </button>
+
+
+
 
     
     <!--New lines para contador de ordenes-->
-    <p1 id="contador-en-cocina" style="color:  rgb(43, 6, 229); font-size: 50px; margin-bottom: 30px;">
+    <p1 id="contador-en-cocina1" style="color:  rgb(43, 6, 229); font-size: 50px; margin-bottom: 30px;">
       👨‍🍳 Cantidad de Ordenes En cocina: <span id="numero-en-cocina">0</span>
       
     </p1>
@@ -157,22 +159,27 @@
   
   
   
-  <div >
-    <!-- Botón para abrir sidebar -->
-    <button class="openbtn" onclick="openNav2()">☰ Menú</button><br>
-  </div>
+  <button class="openbtn" onclick="openNav2()">
+    <span style="font-size:30px;">☰</span>
+    <span style="font-size:10px;">Option List</span>
+  </button>
   
   <!-- Content below to simulate scrolling -->
   <div style="height: 5px;">
     <p></p>
   </div>
 
-  <div id="seccion-mensaje" style="padding: 10px 20px; background: rgb(244, 162, 97); font-style: italic; color: black;">.</div>
+  <!--<div id="seccion-mensaje" style="padding: 10px 20px; background: rgb(97, 244, 224); font-style: italic; color: black;">.</div>-->
   
   
   
   
   <main>
+    <!--New lines para contador de ordenes-->
+    <p1 id="contador-en-cocina2" style="color:  rgb(43, 6, 229); font-size: 50px; margin-bottom: 30px;">
+      👨‍🍳 Cantidad de Ordenes En cocina: <span id="numero-en-cocina">0</span>
+      
+    </p1>
     <section id="menu-section" class="">
       <div class="menu-grid">
         <div class="columna columna-1"><h3 data-fam="Tacos">Tacos</h3><p>Tacos al Pastor - $2.70</p><p>Tacos de Asada - $2.70</p><p>Tacos de Pollo - $2.70</p><p>Tacos de Tripa - $2.70</p><p>Tacos de Cabeza - $2.70</p><p>Tacos de Lengua - $2.70</p><h3 data-fam="Sopes">Sopes</h3><p>Sopes de al Pastor - $2.70</p><p>Sopes de Asada - $2.70</p><p>Sopes de Pollo - $2.70</p><p>Sopes de Tripa - $2.70</p><p>Sopes de Cabeza - $2.70</p><p>Sopes de Lengua - $2.70</p></div>
