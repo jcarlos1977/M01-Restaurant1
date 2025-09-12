@@ -100,6 +100,8 @@ body.modo-movil .card {
 #seccion-mensaje {
   color: white;
 }
+
+
 #modal-close {
   display: none;
 }
@@ -806,11 +808,15 @@ html, body {
 }
 
 .openbtn {
-  font-size: 30px;       /* 🔹 tamaño del texto (y del ícono ☰) */
-  padding: 20px 40px;    /* 🔹 espacio interno */
-  width: 100px;          /* 🔹 ancho fijo (ajústalo a tu gusto) */
-  height: 80px;          /* 🔹 alto fijo */
-  background-color: #06d410; /* color de fondo */
+  display: flex;               /* activa flexbox */
+  align-items: center;         /* centra verticalmente */
+  justify-content: center;     /* centra horizontalmente */
+  gap: 15px;                   /* espacio entre icono y texto */
+  font-size: 40px;       /* 🔹 tamaño del texto (y del ícono ☰) */
+  padding: 60px 60px;    /* 🔹 espacio interno */
+  width: 150px;          /* 🔹 ancho fijo (ajústalo a tu gusto) */
+  height: 50px;          /* 🔹 alto fijo */
+  background-color: #050505; /* color de fondo */
   color: white;          /* color del texto */
   border: none;          /* sin borde */
   border-radius: 12px;   /* esquinas redondeadas */
