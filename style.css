@@ -492,6 +492,7 @@ body.header-activo .contenido {
 }
 
 .modal-content2 input {
+  flex: 1;
   width: 90%;
   padding: 16px;
   margin-top: 5px;
@@ -500,6 +501,8 @@ body.header-activo .contenido {
   border-radius: 4px;
   font-size: 60px
 }
+
+
 
 .hidden-header {
   display: none;
