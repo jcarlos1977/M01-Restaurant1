@@ -57,18 +57,6 @@
     <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">Close x</a><br>
 
-      <!-- Botones que tenías en el header -->
-      <!--
-      <button id="mostrar-header-btn" onclick="mostrarHeader()"class="sidebar-button">🏠 Mostrar Página Principal</button>
-      <button id="btn-menu" class="sidebar-button">📋 Menú</button>
-      <button id="btn-tomadas" class="sidebar-button">📋 Órdenes tomadas</button>
-      <button id="btn-cocina" class="sidebar-button">👨‍🍳 Órdenes en cocina</button>
-      <button id="btn-cerradas" class="sidebar-button">📋 Órdenes cerradas</button>
-      <button id="cambiar-modo" class="sidebar-button">💻 Cambiar modo</button>
-      <button id="btn-marquesina" onclick="toggleMarquesina()" class="sidebar-button">✨ Desactivar Texto Animado</button>
-      <button id="logout-btn" onclick="logout()" class="sidebar-button">🚪 Cerrar Sesión></button>
-      --> 
-      
       <a href="#" id="btn-menu" class="sidebar-link">📋 Menú</a>
       <a href="#" id="btn-tomadas" class="sidebar-link">📋 Órdenes tomadas</a>
       <a href="#" id="btn-cocina" class="sidebar-link">👨‍🍳 Órdenes en cocina</a>
@@ -135,17 +123,6 @@
   <!-- 📌 Sidebar -->
   <div id="mySidenav2" class="sidenav2">
     <a href="javascript:void(0)" class="closebtn2" onclick="closeNav2()">Close X</a><br>
-
-    <!-- Botones que tenías en el header -->
-    <!--<button id="mostrar-header-btn2" onclick="mostrarHeader()"class="sidebar-button2">🏠 Mostrar Página Principal</button>
-    <button id="btn-menu2" class="sidebar-button2">📋 Menú</button>
-    <button id="btn-tomadas2" class="sidebar-button2">📋 Órdenes tomadas</button>
-    <button id="btn-cocina2" class="sidebar-button2">👨‍🍳 Órdenes en cocina</button>
-    <button id="btn-cerradas2" class="sidebar-button2">📋 Órdenes cerradas</button>
-    <button id="cambiar-modo2" class="sidebar-button2">💻 Cambiar modo</button>
-    <button id="btn-marquesina2" onclick="toggleMarquesina()" class="sidebar-button2">✨ Desactivar Texto Animado</button>
-    <button id="logout-btn2" onclick="logout()" class="sidebar-button2">🚪 Cerrar Sesión></button>
-    -->
     
     <a href="javascript:void(0)" id="mostrar-header-btn2" onclick="mostrarHeader()" class="sidebar-link2">🏠 Mostrar Página Principal</a>
     <a href="#" id="btn-menu2" class="sidebar-link2">📋 Menú</a>
@@ -253,10 +230,18 @@
   <div id="modalOverlay" class="modal-overlay" style="display: none;">
     <div class="modal-content2">
       <h3>Detalles de la Orden</h3>
-      <label>Cliente: <input type="text" id="modalCliente" placeholder="Cliente"></label><br>
-      <label>Mesa: <input type="text" id="modalMesa" placeholder="#mesa"></label><br>
+      <button onclick="startVoiceStepByStep()">🎤 Llenar con voz paso a paso</button>
+      <label>Cliente: <input type="text" id="modalCliente" placeholder="Cliente"></label>
+      <button type="button" onclick="startVoice('modalCliente')" style="font-size:24px !important; padding:4px 8px; width:auto; min-width:unset;;">🎤</button><br>
+
+      <label>Mesa: <input type="text" id="modalMesa" placeholder="#mesa"></label>
+      <button type="button" onclick="startVoice('modalMesa')" style="font-size:24px !important; padding:4px 8px; width:auto; min-width:unset;;">🎤</button><br>
+
       <label>Orden: <input type="text" id="modalOrdenInput" placeholder="#orden" readonly></label><br>
-      <label>Mesero: <input type="text" id="modalMesero" placeholder="Mesero"></label><br><br>
+
+      <label>Mesero: <input type="text" id="modalMesero" placeholder="Mesero"></label><br>
+      <button type="button" onclick="startVoice('modalMesero')" style="font-size:24px !important; padding:4px 8px; width:auto; min-width:unset;">🎤</button><br>
+      
       <button onclick="copiarDatosAlHeader()">Copiar al Encabezado</button>
       <button onclick="cerrarModalOrden()">Cerrar</button>
     </div>
