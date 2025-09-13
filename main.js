@@ -655,7 +655,7 @@ function switchSection(index) {
   mensajeEl.style.margin = "12px auto";
   mensajeEl.style.textAlign = "center";
   mensajeEl.style.fontWeight = "700";
-  mensajeEl.style.maxWidth = "70%";
+  mensajeEl.style.maxWidth = "90%";
   
 }
 
