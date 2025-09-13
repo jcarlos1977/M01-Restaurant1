@@ -1829,6 +1829,98 @@ function closeNav2() {
 document.getElementById("mySidenav2").style.width = "0";
 }
 
+/* Esta funcion es para llenar uno ala vez */
+function startVoice(inputId) {
+  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  recognition.lang = "es-ES";
+
+  recognition.onresult = function(event) {
+    const texto = event.results[0][0].transcript;
+    document.getElementById(inputId).value = texto;
+  };
+
+  recognition.start();
+}
+
+/* Esta funcion es para llenar todo ala vez */
+// 🔹 Asegúrate de declarar esto FUERA de la función
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+let recognition = null;
+
+if (SpeechRecognition) {
+  recognition = new SpeechRecognition();
+  recognition.lang = "es-ES";
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+} else {
+  alert("Tu navegador no soporta reconocimiento de voz.");
+}
+
+function convertirNumero(texto) {
+  const mapa = {
+    "uno": "1", "una": "1",
+    "dos": "2",
+    "tres": "3",
+    "cuatro": "4",
+    "cinco": "5",
+    "seis": "6",
+    "siete": "7",
+    "ocho": "8",
+    "nueve": "9",
+    "diez": "10"
+  };
+  const palabras = texto.toLowerCase().split(" ");
+  return palabras.map(p => mapa[p] || p).join(" ");
+}
+
+function startVoiceStepByStep() {
+  if (!recognition) {
+    alert("Tu navegador no soporta reconocimiento de voz.");
+    return;
+  }
+
+  let step = 0; 
+  const preguntas = [
+    "Diga el nombre del cliente",
+    "Diga el número de mesa",
+    "Diga el nombre del mesero"
+  ];
+
+  function askNextQuestion() {
+    if (step < preguntas.length) {
+      alert(preguntas[step]); 
+      recognition.start();
+    } else {
+      alert("✅ Todos los campos han sido llenados.");
+    }
+  }
+
+  recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript.trim();
+    console.log("Texto capturado:", transcript);
+
+    if (step === 0) {
+      document.getElementById("modalCliente").value = transcript;
+    } else if (step === 1) {
+      document.getElementById("modalMesa").value = convertirNumero(transcript);
+    } else if (step === 2) {
+      document.getElementById("modalMesero").value = transcript;
+    }
+
+    step++;
+    recognition.stop();
+  };
+
+  recognition.onend = () => {
+    askNextQuestion();
+  };
+
+  recognition.onerror = (event) => {
+    console.error("Error en reconocimiento:", event.error);
+  };
+
+  askNextQuestion();
+}
 
 /*
 Emojis que puedes usar para efectos visuales
