@@ -1829,18 +1829,6 @@ function closeNav2() {
 document.getElementById("mySidenav2").style.width = "0";
 }
 
-/* Esta funcion es para llenar uno ala vez */
-function startVoice(inputId) {
-  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-  recognition.lang = "es-ES";
-
-  recognition.onresult = function(event) {
-    const texto = event.results[0][0].transcript;
-    document.getElementById(inputId).value = texto;
-  };
-
-  recognition.start();
-}
 
 /* Esta funcion es para llenar todo ala vez */
 // 🔹 Asegúrate de declarar esto FUERA de la función
