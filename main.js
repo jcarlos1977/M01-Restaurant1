@@ -1814,7 +1814,7 @@ estrella.remove();
 lanzarEstrellas();
 
 function openNav() {
-document.getElementById("mySidenav").style.width = "250px";
+document.getElementById("mySidenav").style.width = "370px";
 }
 
 function closeNav() {
@@ -1822,7 +1822,7 @@ document.getElementById("mySidenav").style.width = "0";
 }
 
 function openNav2() {
-document.getElementById("mySidenav2").style.width = "250px";
+document.getElementById("mySidenav2").style.width = "370px";
 }
 
 function closeNav2() {
