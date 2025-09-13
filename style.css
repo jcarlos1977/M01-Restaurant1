@@ -789,6 +789,7 @@ html, body {
   font-size: 30px;
   color: #f1f1f1;
   transition: 0.3s;
+  margin-bottom: 30px;
   
 }
 
@@ -854,6 +855,7 @@ html, body {
   font-size: 30px;
   color: #f1f1f1;
   transition: 0.3s;
+  margin-bottom: 30px;
 }
 
 .sidenav2 .sidebar-link2:hover {
