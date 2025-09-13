@@ -812,8 +812,8 @@ html, body {
   align-items: center;         /* centra verticalmente */
   justify-content: left;     /* centra horizontalmente */
   gap: 15px;                   /* espacio entre icono y texto */
-  font-size: 40px;       /* 🔹 tamaño del texto (y del ícono ☰) */
-  padding: 60px 60px;    /* 🔹 espacio interno */
+  font-size: 20px;       /* 🔹 tamaño del texto (y del ícono ☰) */
+  padding: 80px 80px;    /* 🔹 espacio interno */
   width: 1650px;          /* 🔹 ancho fijo (ajústalo a tu gusto) */
   height: 50px;          /* 🔹 alto fijo */
   background-color: #050505; /* color de fondo */
