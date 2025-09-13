@@ -230,22 +230,43 @@
   <div id="modalOverlay" class="modal-overlay" style="display: none;">
     <div class="modal-content2">
       <h3>Detalles de la Orden</h3>
+
+      <!-- Botón principal para llenar todo con voz -->
       <button onclick="startVoiceStepByStep()">🎤 Llenar con voz paso a paso</button>
-      <label>Cliente: <input type="text" id="modalCliente" placeholder="Cliente"></label>
-      <button type="button" onclick="startVoice('modalCliente')" style="font-size:24px !important; padding:4px 8px; width:auto; min-width:unset;;">🎤</button><br>
 
-      <label>Mesa: <input type="text" id="modalMesa" placeholder="#mesa"></label>
-      <button type="button" onclick="startVoice('modalMesa')" style="font-size:24px !important; padding:4px 8px; width:auto; min-width:unset;;">🎤</button><br>
+      <!-- Cliente -->
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <span style="font-size: 46px;">Cliente:</span><br>
+        <input type="text" id="modalCliente" placeholder="Cliente" style="flex: 1; font-size: 60px; padding: 16px; margin-left: 3%;">
+        
+      </div>
 
-      <label>Orden: <input type="text" id="modalOrdenInput" placeholder="#orden" readonly></label><br>
+      <!-- Mesa -->
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <span style="font-size: 46px;">Mesa:</span><br>
+        <input type="text" id="modalMesa" placeholder="#mesa" style="flex: 1; font-size: 60px; padding: 16px; margin-left: 6.5%;">
+        
+      </div>
 
-      <label>Mesero: <input type="text" id="modalMesero" placeholder="Mesero"></label><br>
-      <button type="button" onclick="startVoice('modalMesero')" style="font-size:24px !important; padding:4px 8px; width:auto; min-width:unset;">🎤</button><br>
-      
+      <!-- Orden (solo input, sin botón) -->
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <span style="font-size: 46px;">Orden:</span><br>
+        <input type="text" id="modalOrdenInput" placeholder="#orden" readonly style="flex: 1; font-size: 60px; padding: 16px; margin-left: 4%;">
+      </div>
+
+      <!-- Mesero -->
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <span style="font-size: 46px;">Mesero:</span><br>
+        <input type="text" id="modalMesero" placeholder="Mesero" style="flex: 1; font-size: 60px; padding: 16px; margin-left: 1.2%;">
+        
+      </div>
+
+      <!-- Acciones finales -->
       <button onclick="copiarDatosAlHeader()">Copiar al Encabezado</button>
       <button onclick="cerrarModalOrden()">Cerrar</button>
     </div>
   </div>
+
 
   <script src="main.js"></script>
   
