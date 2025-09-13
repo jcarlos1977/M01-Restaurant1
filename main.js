@@ -1840,10 +1840,12 @@ if (SpeechRecognition) {
   recognition.lang = "es-ES";
   recognition.interimResults = false;
   recognition.maxAlternatives = 1;
+  recognition.continuous = false; // ⚡️ cerrar rápido tras captar voz
 } else {
   alert("Tu navegador no soporta reconocimiento de voz.");
 }
 
+// 🔢 Conversión de palabras a números
 function convertirNumero(texto) {
   const mapa = {
     "uno": "1", "una": "1",
@@ -1876,10 +1878,10 @@ function startVoiceStepByStep() {
 
   function askNextQuestion() {
     if (step < preguntas.length) {
-      alert(preguntas[step]); 
+      document.getElementById("preguntaActual").innerText = preguntas[step];
       recognition.start();
     } else {
-      alert("✅ Todos los campos han sido llenados.");
+      document.getElementById("preguntaActual").innerText = "✅ Todos los campos han sido llenados.";
     }
   }
 
@@ -1897,18 +1899,181 @@ function startVoiceStepByStep() {
 
     step++;
     recognition.stop();
-  };
 
-  recognition.onend = () => {
-    askNextQuestion();
+    // ⚡️ pasar rápido a la siguiente pregunta
+    setTimeout(askNextQuestion, 200);
   };
 
   recognition.onerror = (event) => {
     console.error("Error en reconocimiento:", event.error);
+    document.getElementById("preguntaActual").innerText = "❌ Error: " + event.error;
   };
 
+  // 🚀 Iniciar con la primera pregunta
   askNextQuestion();
 }
+
+
+/* Otra opcion*/
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // --- Inicialización segura del reconocimiento ---
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  let recognition = null;
+  if (SpeechRecognition) {
+    recognition = new SpeechRecognition();
+    recognition.lang = "es-ES";
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+    recognition.continuous = false; // cerrar rápido tras captar la frase
+  } else {
+    console.warn("SpeechRecognition no soportado en este navegador.");
+  }
+
+  // --- Helpers ---
+  function ensurePreguntaElement() {
+    let el = document.getElementById('preguntaActual');
+    if (!el) {
+      // intenta insertar en el modal si existe o en main/body
+      const container = document.getElementById('modal') || document.querySelector('main') || document.body;
+      el = document.createElement('div');
+      el.id = 'preguntaActual';
+      el.style.margin = '10px';
+      el.style.fontWeight = '700';
+      el.style.color = '#0a58ca';
+      container.prepend(el);
+      console.log("Se creó #preguntaActual dinámicamente");
+    }
+    return el;
+  }
+
+  function ensureInput(id, placeholderText) {
+    let el = document.getElementById(id);
+    if (!el) {
+      // crea un input temporal para prueba y aviso en consola
+      const container = document.getElementById('modal') || document.querySelector('main') || document.body;
+      const wrap = document.createElement('div');
+      wrap.style.margin = '6px 0';
+      const label = document.createElement('label');
+      label.textContent = placeholderText + ': ';
+      el = document.createElement('input');
+      el.type = 'text';
+      el.id = id;
+      el.placeholder = placeholderText;
+      label.appendChild(el);
+      wrap.appendChild(label);
+      container.prepend(wrap);
+      console.warn(`Input "${id}" no existía: se creó un input temporal para pruebas.`);
+    }
+    return el;
+  }
+
+  // convierte palabras comunes a dígitos (extendible)
+  function convertirNumero(texto) {
+    const mapa = {
+      "uno": "1","una":"1","dos":"2","tres":"3","cuatro":"4","cinco":"5",
+      "seis":"6","siete":"7","ocho":"8","nueve":"9","diez":"10",
+      "once":"11","doce":"12","trece":"13","catorce":"14","quince":"15"
+    };
+    // si el texto es algo como "veinte" o "veintiuno" no está aquí; se puede ampliar si necesitas.
+    const palabras = texto.toLowerCase().replace(/[^a-z0-9\s]/g,'').split(/\s+/);
+    // intenta devolver un número si toda la cadena es una palabra numerica
+    if (palabras.length === 1 && mapa[palabras[0]]) return mapa[palabras[0]];
+    // si hay mezcla, sustituye las palabras conocidas
+    return palabras.map(p => mapa[p] || p).join(' ');
+  }
+
+  // --- Función principal (expuesta globalmente) ---
+  window.startVoiceStepByStep = function startVoiceStepByStep() {
+    if (!recognition) {
+      alert("Tu navegador no soporta reconocimiento de voz (usa Chrome o Edge).");
+      return;
+    }
+
+    // asegurar elementos
+    const preguntaEl = ensurePreguntaElement();
+    const clienteEl = ensureInput('modalCliente', 'Cliente');
+    const mesaEl = ensureInput('modalMesa', 'Mesa');
+    const meseroEl = ensureInput('modalMesero', 'Mesero');
+
+    let step = 0;
+    const preguntas = [
+      "Diga el nombre del cliente",
+      "Diga el número de mesa",
+      "Diga el nombre del mesero"
+    ];
+
+    // remover handlers previos (evita duplicados)
+    recognition.onresult = null;
+    recognition.onend = null;
+    recognition.onerror = null;
+
+    function askNextQuestion() {
+      if (step < preguntas.length) {
+        preguntaEl.innerText = preguntas[step];
+        try {
+          recognition.start();
+        } catch (err) {
+          // si start falla (estado inválido), intentar reinicializar la instancia
+          console.warn("recognition.start() falló — reinicializando instancia:", err);
+          // crear nueva instancia rápida
+          recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+          recognition.lang = "es-ES";
+          recognition.interimResults = false;
+          recognition.maxAlternatives = 1;
+          recognition.continuous = false;
+          // reasignar handlers
+          setupHandlers();
+          recognition.start();
+        }
+      } else {
+        preguntaEl.innerText = "✅ Todos los campos han sido llenados.";
+      }
+    }
+
+    // manejo de resultado
+    function onResultHandler(event) {
+      const transcript = event.results[0][0].transcript.trim();
+      console.log("Voz capturada (step " + step + "):", transcript);
+
+      if (step === 0) {
+        clienteEl.value = transcript;
+      } else if (step === 1) {
+        mesaEl.value = convertirNumero(transcript);
+      } else if (step === 2) {
+        meseroEl.value = transcript;
+      }
+
+      step++;
+      // detener y pasar rápidamente a la siguiente (pequeño delay)
+      try { recognition.stop(); } catch (e) { console.warn("stop() fallo:", e); }
+      setTimeout(askNextQuestion, 150);
+    }
+
+    function onEndHandler() {
+      // en algunos navegadores onend se dispara antes o después; askNextQuestion ya es llamado en setTimeout
+      // no hacemos nada aquí para evitar duplicados
+    }
+
+    function onErrorHandler(e) {
+      console.error("SpeechRecognition error:", e);
+      preguntaEl.innerText = "❌ Error: " + (e.error || 'error desconocido') + ". Intenta de nuevo.";
+      // no avanzamos step para permitir reintento
+    }
+
+    function setupHandlers(){
+      recognition.onresult = onResultHandler;
+      recognition.onend = onEndHandler;
+      recognition.onerror = onErrorHandler;
+    }
+
+    setupHandlers();
+    // iniciar flujo
+    askNextQuestion();
+  };
+
+}); // DOMContentLoaded
 
 /*
 Emojis que puedes usar para efectos visuales
